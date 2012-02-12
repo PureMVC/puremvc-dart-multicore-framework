@@ -33,15 +33,15 @@ class MVCNotification implements INotification
     /**
      * Constructor. 
      * 
-     * Param [noteName] - name of the [MVCNotification] instance. (required)
-     * Param [bodyObject] - the [MVCNotification] body. (optional)
-     * Param [noteType] - the type of the [MVCNotification] (optional)
+     * Param [name] - name of the [MVCNotification] instance. (required)
+     * Param [body] - the [MVCNotification] body. (optional)
+     * Param [type] - the type of the [MVCNotification] (optional)
      */
-    MVCNotification( String noteName, Object bodyObject, String noteType )
+    MVCNotification( String name, [Dynamic body, String type] )
     {
-        name = noteName;
-        body = bodyObject;
-        type = noteType;
+        this.name = name;
+        this.body = body;
+        this.type = type;
     }
     
     /**
@@ -59,7 +59,7 @@ class MVCNotification implements INotification
      * 
      * Param [body] - the body of the [MVCNotification] instance
      */
-    void setBody( Object bodyObject )
+    void setBody( Dynamic bodyObject )
     {
         body = bodyObject;
     }
@@ -67,9 +67,9 @@ class MVCNotification implements INotification
     /**
      * Get the body of the [MVCNotification] instance.
      * 
-     * Returns [Object] - the body of the [MVCNotification] instance. 
+     * Returns [Dynamic] - the body of the [MVCNotification] instance. 
      */
-    Object getBody()
+    Dynamic getBody()
     {
         return body;
     }
@@ -112,6 +112,6 @@ class MVCNotification implements INotification
     // the type of the notification instance
     String type;
     // the body of the notification instance
-    Object body;
+    Dynamic body;
     
 }
