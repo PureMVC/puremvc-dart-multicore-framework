@@ -8,7 +8,7 @@
  * - Provide a method for notifying the interested object.
  * 
  * The Observer Pattern as implemented within
- * PureMVC exists to support communication
+ * PureMVC exists to support portable communication
  * between the application and the actors of the
  * MVC triad.
  * 
@@ -35,13 +35,13 @@ class MVCObserver implements IObserver
      * The notifyMethod method on the interested object should take 
      * one parameter of type [INotification]
      * 
-     * Param notifyMethod the notification method of the interested object
-     * Param notifyContext the notification context of the interested object
+     * Param [notifyMethod] the notification method 
+     * Param [notifyContext] the notification context of the interested object (keeps the context object alive if the function reference alone doesn't) 
      */
-    MVCObserver( Function notifyMethod, Object notifyContext ) 
+    MVCObserver( Function notifyMethod, [Object notifyContext] ) 
     {
         setNotifyMethod( notifyMethod );
-        setNotifyContext( notifyContext );
+        if ( notifyContext != null ) setNotifyContext( notifyContext );
     }
     
     /**
@@ -93,7 +93,7 @@ class MVCObserver implements IObserver
      */
     void notifyObserver( INotification notification )
     {
-        getNotifyMethod()(getNotifyContext(),[notification]);
+      if ( notify != null ) getNotifyMethod()(notification);  
     }
 
     /**
