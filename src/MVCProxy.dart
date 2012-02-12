@@ -24,8 +24,8 @@ class MVCProxy extends MVCNotifier implements IProxy
      */
     MVCProxy( String proxyName, Dynamic dataObject ) 
     {
-        proxyName = (proxyName != null)?proxyName:NAME; 
-        setData(data);
+        this.proxyName = (proxyName != null)?proxyName:NAME; 
+        setData( dataObject );
     }
 
     /**
