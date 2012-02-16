@@ -21,8 +21,11 @@ class MVCProxy extends MVCNotifier implements IProxy
     
     /**
      * Constructor
+     * 
+     * Param [proxyName] - the name this IProxy will be registered with
+     * Param [dataObject] - the data object (optional)
      */
-    MVCProxy( String proxyName, Dynamic dataObject ) 
+    MVCProxy( String proxyName, [Dynamic dataObject] ) 
     {
         this.proxyName = (proxyName != null)?proxyName:NAME; 
         setData( dataObject );
@@ -41,7 +44,7 @@ class MVCProxy extends MVCNotifier implements IProxy
     /**
      * Set the data object
      * 
-     * Param [data] - the data object
+     * Param [dataObject] - the data object
      */
     void setData( Dynamic dataObject )
     {
