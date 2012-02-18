@@ -37,7 +37,7 @@ class MVCMediator extends MVCNotifier implements IMediator
   /**
    * Constructor.
    */
-  MVCMediator( String mediatorName, Dynamic viewComponent ) 
+  MVCMediator( [String mediatorName, Dynamic viewComponent] ) 
   {
     this.mediatorName = (mediatorName != null)?mediatorName:NAME; 
     setViewComponent( viewComponent );    
