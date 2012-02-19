@@ -37,12 +37,7 @@ class MVCNotification implements INotification
      * Param [body] - the [MVCNotification] body. (optional)
      * Param [type] - the type of the [MVCNotification] (optional)
      */
-    MVCNotification( String name, [Dynamic body, String type] )
-    {
-        this.name = name;
-        this.body = body;
-        this.type = type;
-    }
+    MVCNotification( String this.name, [Dynamic this.body, String this.type] ){}
     
     /**
      * Get the name of the [MVCNotification] instance.

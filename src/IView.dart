@@ -27,10 +27,10 @@ interface IView
   /**
    * Remove an [IObserver] from the observer list for a given [Notification] name.
    * 
-   * Param [notificationName] - which observer list to remove from 
+   * Param [noteName] - which observer list to remove from 
    * Param [notifyContext] - remove the observers with this object as their notifyContext
    */
-  void removeObserver( String notificationName, Object notifyContext );
+  void removeObserver( String noteName, Object notifyContext );
 
   /**
    * Notify the [IObservers] for a particular [INotification].

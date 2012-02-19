@@ -258,9 +258,39 @@ class MVCFacade implements IFacade
    * Param [body] - the body of the notification (optional)
    * Param [type] - the type of the notification (optional)
    */ 
-  void sendNotification( String noteName, Object body, String type )
+  void sendNotification( String noteName, [Dynamic body, String type] )
   {
     notifyObservers( new MVCNotification( noteName, body, type ) );
+  }
+
+  /**
+   * Register an [IObserver] to be notified of [INotifications] with a given name.
+   * 
+   * Typically the developer does not need to use this method, as [ICommand]s and 
+   * [IMediator]s are registered as [IObserver]s by other means. However, this method
+   * allows any arbitrary class instance to be notified.  
+   * 
+   * Param [noteName] - the name of the [INotifications] to notify this [IObserver] of
+   * Param [observer] - the [IObserver] to register
+   */
+  void registerObserver( String noteName, IObserver observer )
+  {
+    view.registerObserver(noteName, observer);
+  }
+
+  /**
+   * Remove an [IObserver] from the observer list for a given [Notification] name.
+   * 
+   * Typically the developer does not need to use this method, as Commands and 
+   * Mediators are registered as [IObserver]s by other means. However, this can
+   * allow any arbitrary class instance to be notified.  
+   * 
+   * Param [noteName] - which observer list to remove from 
+   * Param [notifyContext] - remove the observers with this object as their notifyContext
+   */
+  void removeObserver( String noteName, Object notifyContext )
+  {
+    view.removeObserver( noteName, notifyContext );
   }
 
   /**
@@ -278,7 +308,7 @@ class MVCFacade implements IFacade
    */
   void notifyObservers( INotification note )
   {
-    if ( view != null ) view.notifyObservers( notification );
+    if ( view != null ) view.notifyObservers( note );
   }
 
   /**

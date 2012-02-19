@@ -100,6 +100,23 @@ interface IFacade extends INotifier
     bool hasMediator( String mediatorName );
 
     /**
+     * Register an [IObserver] to be notified
+     * of [INotifications] with a given name.
+     * 
+     * Param [noteName] - the name of the [INotifications] to notify this [IObserver] of
+     * Param [observer] - the [IObserver] to register
+     */
+    void registerObserver( String noteName, IObserver observer );
+
+    /**
+     * Remove an [IObserver] from the observer list for a given [Notification] name.
+     * 
+     * Param [noteName] - which observer list to remove from 
+     * Param [notifyContext] - remove the observers with this object as their notifyContext
+     */
+    void removeObserver( String noteName, Object notifyContext );
+
+    /**
      * Notify [Observer]s.
      * 
      * This method is left public mostly for backward 

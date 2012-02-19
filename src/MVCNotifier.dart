@@ -43,7 +43,7 @@ class MVCNotifier implements INotifier
      * Param [body] - the body of the [INotification] (optional)
      * Param [type] - the type of the [INotification] (optional)
      */ 
-    void sendNotification( String noteName, Object body, String type )
+    void sendNotification( String noteName, [Dynamic body, String type] )
     {
         if (facade != null) 
             facade.sendNotification( noteName, body, type );

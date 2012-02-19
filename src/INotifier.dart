@@ -25,11 +25,11 @@ interface INotifier {
    * Convenience method to prevent having to construct new 
    * notification instances in our implementation code.
    * 
-   * Param [notificationName] the name of the notification to send
+   * Param [noteName] the name of the notification to send
    * Param [body] - the body of the notification (optional)
    * Param [type] - the type of the notification (optional)
    */ 
-  void sendNotification( String notificationName, Object body, String type ); 
+  void sendNotification( String noteName, [Dynamic body, String type] ); 
 
   /**
    * Initialize this [INotifier] instance.
