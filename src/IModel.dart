@@ -50,4 +50,10 @@ interface IModel
      */
     bool hasProxy( String proxyName );
 
+    /**
+     * This IModel's Multiton Key
+     */
+    void set multitonKey( String key );
+    String get multitonKey();
+    
 }

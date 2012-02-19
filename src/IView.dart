@@ -85,5 +85,11 @@ interface IView
    */
   bool hasMediator( String mediatorName );
 
+  /**
+   * This IView's Multiton Key
+   */
+  void set multitonKey( String key );
+  String get multitonKey();
+  
 }
 

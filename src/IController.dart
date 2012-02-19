@@ -47,4 +47,10 @@ interface IController
    */
   bool hasCommand( String notificationName );
 
+  /**
+   * This IController's Multiton Key
+   */
+  void set multitonKey( String key );
+  String get multitonKey();
+  
 }

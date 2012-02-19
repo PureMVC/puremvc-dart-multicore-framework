@@ -9,7 +9,7 @@
  * the core MVC actors (IModel], [IView], [IController) and
  * the rest of your application.
  * 
- * See [IModel], [IView], [IController], [ICommand], [INotification]
+ * See [IModel], [IView], [IController], [IProxy], [IMediator], [ICommand], [INotification]
  */
 interface IFacade extends INotifier
 {
@@ -114,4 +114,28 @@ interface IFacade extends INotifier
      */
     void notifyObservers( INotification notification );
 
+    /**
+     * This IFacade's Multiton Key
+     */
+    void set multitonKey( String key );
+    String get multitonKey();
+    
+    /**
+     * This IFacade's IModel
+     */
+    void set model( IModel modelInstance );
+    IModel get model();
+    
+    /**
+     * This IFacade's IView
+     */
+    void set view( IView viewInstance );
+    IView get view();
+    
+    /**
+     * This IFacade's IController
+     */
+    void set controller( IController controllerInstance );
+    IController get controller();
+    
 }

@@ -26,7 +26,7 @@ class MVCFacade implements IFacade
    */
   MVCFacade( String key ) 
   {
-    if (instanceMap[ key ] != null) throw new FacadeExistsError();
+    if ( instanceMap[ key ] != null ) throw new FacadeExistsError();
     initializeNotifier( key );
     instanceMap[ multitonKey ] = this;
     initializeFacade();    
