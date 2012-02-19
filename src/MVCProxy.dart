@@ -16,29 +16,22 @@
  */
 class MVCProxy extends MVCNotifier implements IProxy
 {
-
-    static String NAME = "Proxy";
-    
     /**
      * Constructor
      * 
-     * Param [proxyName] - the name this IProxy will be registered with
-     * Param [dataObject] - the data object (optional)
+     * Param [name] - the name this IProxy will be registered with
+     * Param [data] - the data object (optional)
      */
-    MVCProxy( String proxyName, [Dynamic dataObject] ) 
-    {
-        this.proxyName = (proxyName != null)?proxyName:NAME; 
-        setData( dataObject );
-    }
+    MVCProxy( String this.name, [Dynamic this.data] ){ }
 
     /**
      * Get the [IProxy] name
      * 
      * Returns [String] - the [IProxy] instance name
      */
-    String getProxyName()
+    String getName()
     {
-        return proxyName;
+        return name;
     }        
     
     /**
@@ -64,16 +57,17 @@ class MVCProxy extends MVCNotifier implements IProxy
     /**
      * Called by the [IModel] when the [IProxy] is registered
      */ 
-    void onRegister( ){}
+    void onRegister(){}
 
     /**
      * Called by the [IModel] when the [IProxy] is removed
      */ 
-    void onRemove( ){}
+    void onRemove(){}
     
     // the proxy name
-    String proxyName;
+    String name;
     
     // the data object
     Dynamic data;
+    
 }

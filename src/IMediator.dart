@@ -30,7 +30,7 @@ interface IMediator extends INotifier
    * 
    * Returns [String] - the [IMediator] instance name
    */
-  String getMediatorName();
+  String getName();
   
   /**
    * Get the [IMediator]'s view component.
@@ -69,4 +69,18 @@ interface IMediator extends INotifier
    * Called by the [IView] when the [IMediator] is removed
    */ 
   void onRemove( );   
+  
+  
+  /**
+   * This IMediator's view component
+   */
+  void set viewComponent( Dynamic viewComponent );
+  Dynamic get viewComponent();
+  
+  /**
+   * This IMediator's name
+   */
+  void set name( String mediatorName );
+  String get name();
+
 }

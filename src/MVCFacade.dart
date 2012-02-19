@@ -254,13 +254,13 @@ class MVCFacade implements IFacade
    * Convenience method to prevent having to construct new 
    * notification instances in our implementation code.
    * 
-   * Param [notificationName] the name of the notification to send
+   * Param [noteName] the name of the notification to send
    * Param [body] - the body of the notification (optional)
    * Param [type] - the type of the notification (optional)
    */ 
-  void sendNotification( String notificationName, Object body, String type )
+  void sendNotification( String noteName, Object body, String type )
   {
-    notifyObservers( new MVCNotification( notificationName, body, type ) );
+    notifyObservers( new MVCNotification( noteName, body, type ) );
   }
 
   /**
@@ -274,9 +274,9 @@ class MVCFacade implements IFacade
    * and pass the parameters, never having to 
    * construct the notification yourself.
    * 
-   * Param [notification] the [INotification] to have the [View] notify [Observers] of.
+   * Param [note] the [INotification] to have the [View] notify [Observers] of.
    */
-  void notifyObservers( INotification notification )
+  void notifyObservers( INotification note )
   {
     if ( view != null ) view.notifyObservers( notification );
   }
@@ -324,7 +324,7 @@ class MVCFacade implements IFacade
     instanceMap[ key ] = null;
   }
 
-  // References to Model, View and Controller
+  // References to Model, View, and Controller
   IController controller;
   IModel model;
   IView view;

@@ -21,7 +21,7 @@ interface IProxy extends INotifier
      * 
      * Returns the [IProxy] instance name
      */
-    String getProxyName();
+    String getName();
     
     /**
      * Set the data object
@@ -46,5 +46,18 @@ interface IProxy extends INotifier
      * Called by the [IModel] when the [IProxy] is removed
      */ 
     void onRemove( );
+    
+    /**
+     * This IProxy's data
+     */
+    void set data( Dynamic dataObject );
+    Dynamic get data();
+    
+    /**
+     * This IProxy's name
+     */
+    void set name( String proxyName );
+    String get name();
+    
     
 }

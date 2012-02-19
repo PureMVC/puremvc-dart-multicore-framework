@@ -43,5 +43,10 @@ interface INotifier {
    */
   void initializeNotifier( String key );
 
+  /**
+   * This INotifier's Multiton Key
+   */
+  void set multitonKey( String key );
+  String get multitonKey();
   
 }

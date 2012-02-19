@@ -26,84 +26,88 @@
  */
 class MVCObserver implements IObserver
 {
-    Function notify;
-    Object context;
 
-    /**
-     * Constructor. 
-     * 
-     * The notifyMethod method on the interested object should take 
-     * one parameter of type [INotification]
-     * 
-     * Param [notifyMethod] the notification method 
-     * Param [notifyContext] the notification context of the interested object (keeps the context object alive if the function reference alone doesn't) 
-     */
-    MVCObserver( Function notifyMethod, [Object notifyContext] ) 
-    {
-        setNotifyMethod( notifyMethod );
-        if ( notifyContext != null ) setNotifyContext( notifyContext );
-    }
-    
-    /**
-     * Set the notification method.
-     * 
-     * The notification method should take one parameter of type [INotification]
-     * 
-     * Param [notifyMethod] - the notification (callback) method of the interested object
-     */
-    void setNotifyMethod( Function notifyMethod )
-    {
-        notify = notifyMethod;
-    }
-    
-    /**
-     * Set the notification context.
-     * 
-     * Param [notifyContext] - the notification context (this) of the interested object
-     */
-    void setNotifyContext( Object notifyContext )
-    {
-        context = notifyContext;
-    }
-    
-    /**
-     * Get the notification method.
-     * 
-     * Returns [Function] the notification (callback) method of the interested object.
-     */
-    Function getNotifyMethod()
-    {
-        return notify;
-    }
-    
-    /**
-     * Get the notification context.
-     * 
-     * Returns [Object] the notification context ([this]) of the interested object.
-     */
-    Object getNotifyContext()
-    {
-        return context;
-    }
-    
-    /**
-     * Notify the interested object.
-     * 
-     * Param [notification] the [INotification] to pass to the interested object's notification method
-     */
-    void notifyObserver( INotification notification )
-    {
-      if ( notify != null ) getNotifyMethod()(notification);  
-    }
+  /**
+   * This IObserver's notify method (i.e., callback)
+   */
+  Function notifyMethod;
+  
+  /**
+   * This IObserver's notify context (i.e., caller)
+   */
+  Object notifyContext;
 
-    /**
-     * Compare the given object to the notificaiton context object.
-     * 
-     * Param [object] the object to compare.
-     * Returns [bool] indicating if the notification context and the object are the same.
-     */
-    bool compareNotifyContext( Object object )
-    {
-         return object === context;
-    }        
+  /**
+   * Constructor. 
+   * 
+   * The notifyMethod method on the interested object should take 
+   * one parameter of type [INotification]
+   * 
+   * Param [notifyMethod] the callback method 
+   * Param [notifyContext] the caller object 
+   */
+  MVCObserver( Function this.notifyMethod, [Object this.notifyContext] ){}
+  
+  /**
+   * Set the notification method.
+   * 
+   * The notification method should take one parameter of type [INotification]
+   * 
+   * Param [callback] - the method to call back when notifying the Observer
+   */
+  void setNotifyMethod( Function callback )
+  {
+    notifyMethod = callback;
+  }
+  
+  /**
+   * Set the notification context.
+   * 
+   * Param [caller] - the caller object
+   */
+  void setNotifyContext( Object caller )
+  {
+    notifyContext = caller;
+  }
+  
+  /**
+   * Get the notification method.
+   * 
+   * Returns [Function] the callback method
+   */
+  Function getNotifyMethod()
+  {
+    return notifyMethod;
+  }
+  
+  /**
+   * Get the notification context.
+   * 
+   * Returns [Object] the caller
+   */
+  Object getNotifyContext()
+  {
+      return notifyContext;
+  }
+  
+  /**
+   * Notify the interested object.
+   * 
+   * Param [notification] the [INotification] to pass to the caller's callback method
+   */
+  void notifyObserver( INotification notification )
+  {
+    if ( notifyContext != null ) getNotifyMethod()( notification );  
+  }
+
+  /**
+   * Compare the given object to the notificaiton context object.
+   * 
+   * Param [object] the object to compare.
+   * Returns [bool] indicating if the caller and the object are the same.
+   */
+  bool compareNotifyContext( Object object )
+  {
+       return object === notifyContext;
+  }        
 }

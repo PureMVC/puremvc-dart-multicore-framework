@@ -60,7 +60,7 @@ class MVCMacroCommand extends MVCNotifier implements ICommand
    */
   void addSubCommand( Function commandClassRef )
   {
-      subCommands.add(commandClassRef);
+      subCommands.add( commandClassRef );
   }
   
   /** 

@@ -66,9 +66,22 @@ interface INotification
     String getType();
 
     /**
-     * Get the string representation of the [INotification] instance
-     * 
-     * Returns [String] - the name, body and type of the [INotification]
+     * This INotifications's body
      */
-    String toString();
+    void set body( Dynamic bodyObject );
+    Dynamic get body();
+    
+    /**
+     * This INotifications's name
+     */
+    void set name( String noteName );
+    String get name();
+    
+    /**
+     * This INotifications's type
+     */
+    void set type( String noteType );
+    String get type();
+    
+    
 }

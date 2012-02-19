@@ -50,9 +50,9 @@ class MVCNotifier implements INotifier
     }
     
     /**
-     * Initialize this [Notifier] instance.
+     * Initialize this [INotifier] instance.
      * 
-     * This is how a [Notifier] gets its multitonKey. 
+     * This is how a [INotifier] gets its multitonKey. 
      * Calls to [sendNotification] or to access the
      * facade will fail until after this method 
      * has been called.
@@ -60,12 +60,12 @@ class MVCNotifier implements INotifier
      * 
      * [IMediator]s, [ICommand]s, or [IProxy]s may override 
      * this method in order to send notifications
-     * or access the Multiton [Facade] instance as
+     * or access the Multiton [IFacade] instance as
      * soon as possible. They CANNOT access the facade
      * in their constructors, since this method will not
      * yet have been called. 
      * 
-     * Param [key] - the multitonKey for this [Notifier] 
+     * Param [key] - the multitonKey for this [INotifier] 
      */
     void initializeNotifier( String key )
     {

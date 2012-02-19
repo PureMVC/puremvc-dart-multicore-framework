@@ -26,31 +26,18 @@ class MVCMediator extends MVCNotifier implements IMediator
 {
 
   /**
-   * The name of the [IMediator]. 
-   * 
-   * Typically, an [MVCMediator] subclass will be written to serve
-   * one specific control or group controls and so,
-   * will not have a need to be dynamically named. 
-   */
-  static String NAME = "Mediator";
-    
-  /**
    * Constructor.
    */
-  MVCMediator( [String mediatorName, Dynamic viewComponent] ) 
-  {
-    this.mediatorName = (mediatorName != null)?mediatorName:NAME; 
-    setViewComponent( viewComponent );    
-  }
+  MVCMediator( String this.name, [Dynamic this.viewComponent] ){ }
   
   /**
    * Get the [IMediator] instance name
    * 
    * Returns [String] - the [IMediator] instance name
    */
-  String getMediatorName() 
+  String getName() 
   {    
-    return mediatorName;
+    return name;
   }
 
   /**
@@ -101,7 +88,7 @@ class MVCMediator extends MVCNotifier implements IMediator
   void onRemove( ) {}
 
   // the mediator name
-  String mediatorName;
+  String name;
 
   // The view component
   Object viewComponent;

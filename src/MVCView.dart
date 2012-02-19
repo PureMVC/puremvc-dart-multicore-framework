@@ -85,14 +85,13 @@ class MVCView implements IView
    */
   void notifyObservers( INotification note )
   {
-    if( observerMap[ note.getName() ] != null ) 
+    // Get a reference to the observers list for this notification name
+    List<IObserver> observers_ref = observerMap[ note.getName() ];
+    if( observers_ref != null ) 
     {
-      // Get a reference to the observers list for this notification name
-      List<IObserver>observers_ref = observerMap[ note.getName() ];
-  
       // Copy observers from reference array to working array, 
       // since the reference array may change during the notification loop
-      List<IObserver> observers; 
+      List<IObserver> observers = new List<IObserver>(); 
       IObserver observer;
       for (var i = 0; i < observers_ref.length; i++) { 
         observer = observers_ref[ i ];
@@ -113,10 +112,10 @@ class MVCView implements IView
    * Param [notificationName] - which observer list to remove from 
    * Param [notifyContext] - remove the observers with this object as their notifyContext
    */
-  void removeObserver( String notificationName, Object notifyContext )
+  void removeObserver( String noteName, Object notifyContext )
   {
       // the observer list for the notification under inspection
-      List<IObserver> observers = observerMap[ notificationName ];
+      List<IObserver> observers = observerMap[ noteName ];
 
       // find the observer for the notifyContext
       for ( var i=0; i<observers.length; i++ ) 
@@ -133,7 +132,7 @@ class MVCView implements IView
       // Also, when a Notification's Observer list length falls to 
       // zero, delete the notification key from the observer map
       if ( observers.length == 0 ) {
-          observerMap[ notificationName ] = null;        
+          observerMap[ noteName ] = null;        
       }
   } 
 
@@ -157,18 +156,18 @@ class MVCView implements IView
   {
   
     // do not allow re-registration (you must to removeMediator fist)
-    if ( mediatorMap[ mediator.getMediatorName() ] != null ) return;
+    if ( mediatorMap[ mediator.getName() ] != null ) return;
     
     mediator.initializeNotifier( multitonKey );
 
     // Register the Mediator for retrieval by name
-    mediatorMap[ mediator.getMediatorName() ] = mediator;
+    mediatorMap[ mediator.getName() ] = mediator;
     
     // Get Notification interests, if any.
     List<String> interests = mediator.listNotificationInterests();
 
     // Register Mediator as an observer for each notification of interests
-    if ( interests.length > 0) 
+    if ( interests.length > 0 ) 
     {
       // Create Observer referencing this mediator's handlNotification method
       IObserver observer = new MVCObserver( mediator.handleNotification, mediator );

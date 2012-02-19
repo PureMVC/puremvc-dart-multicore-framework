@@ -33,14 +33,14 @@ interface IObserver
      * 
      * Param [notifyMethod] the notification (callback) method of the interested object
      */
-    void setNotifyMethod( Function notifyMethod );
+    void setNotifyMethod( Function callback );
     
     /**
      * Set the notification context.
      * 
      * Param [notifyContext] the notification context (this) of the interested object
      */
-    void setNotifyContext( Object notifyContext );
+    void setNotifyContext( Object caller );
     
     /**
      * Get the notification method.
@@ -71,5 +71,17 @@ interface IObserver
      */
     void notifyObserver( INotification notification );
     
+    /**
+     * This IObserver's notify method (i.e., callback)
+     */
+    void set notifyMethod( Function callback );
+    Function get notifyMethod();
+    
+    /**
+     * This IObserver's notify context (i.e., caller)
+     */
+    void set notifyContext( Object caller );
+    Object get notifyContext();
+
 }
 

@@ -93,19 +93,6 @@ class MVCNotification implements INotification
     {
         return type;
     }
-
-    /**
-     * Get the String representation of the [MVCNotification] instance.
-     * 
-     * Returns [String] - a representation of the [MVCNotification] instance.
-     */
-    String toString()
-    {
-        String msg = "MVCNotification Name: "+getName();
-        msg += "\nBody:"+(( body == null )?"null":body.toString());
-        msg += "\nType:"+(( type == null )?"null":type);
-        return msg;
-    }
     
     // the name of the notification instance
     String name;

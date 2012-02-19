@@ -72,7 +72,7 @@ class MVCModel implements IModel
   void registerProxy( IProxy proxy )
   {
     proxy.initializeNotifier( multitonKey );
-    proxyMap[ proxy.getProxyName() ] = proxy;
+    proxyMap[ proxy.getName() ] = proxy;
     proxy.onRegister();
   }
 
