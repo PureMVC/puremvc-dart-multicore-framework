@@ -1,11 +1,11 @@
 /**
- * A Multiton [IController] implementation.
+ * A PureMVC MultiCore [IController] implementation.
  * 
  * In PureMVC, an [IController] implementor 
  * follows the 'Command and Controller' strategy, and 
  * assumes these responsibilities:
  * 
- * -  Remembering which [ICommand]s are intended to handle which [INotifications].
+ * -  Remembering which [ICommand]s are intended to handle which [INotification]s.
  * -  Registering itself as an [IObserver] with the [View] for each [INotification] that it has an [ICommand] mapping for.
  * -  Creating a new instance of the proper [ICommand] to handle a given [INotification] when notified by the [IView].
  * -  Calling the [ICommand]'s [execute] method, passing in the [INotification]. 
@@ -18,13 +18,10 @@ class MVCController implements IController
   /**
    * Constructor. 
    * 
-   * This [IController] implementation is a Multiton, 
-   * so you should not call the constructor 
-   * directly, but instead call the static [getInstance] method, 
-   * passing the unique key for this instance 
+   * This [IController] implementation is a Multiton, so you should not call the constructor directly,  
+   * but instead call the static [getInstance] method.   
    * 
-   * Throws [MultitonControllerExistsError] Error if instance for this Multiton key has already been constructed
-   * 
+   * -  Throws [MultitonControllerExistsError] if instance for this Multiton key has already been constructed
    */
   MVCController( String key )
   {
@@ -36,15 +33,13 @@ class MVCController implements IController
   }
   
   /**
-   * Initialize the Multiton [MVCController] instance.
+   * Initialize the [IController] Multiton instance.
    * 
    * Called automatically by the constructor. 
    * 
-   * Note that if you are using a subclass of [MVCView]
-   * in your application, you should also subclass [MVCController]
-   * and override the [initializeController] method and set
-   * [view] equal to the return value of a call to [getInstance]
-   * on your [MVCView] subclass. 
+   * Note that if you are using a custom [IView] implementor in your application, 
+   * you should also subclass [MVCController] and override the [initializeController] method,
+   * setting [view] equal to the return value of a call to [getInstance] on your [IView] implementor. 
    */
   void initializeController( )
   {
@@ -52,12 +47,13 @@ class MVCController implements IController
   }
 
   /**
-   * <code>Controller</code> Multiton Factory method.
+   * [IController] Multiton Factory method.
    * 
-   * @return the Multiton instance of <code>Controller</code>
+   * -  Returns the [IController] Multiton instance for the specified key  
    */
   static IController getInstance( String key )
   {
+    if ( key == null || key == "" ) return null;
     if ( instanceMap == null ) instanceMap = new Map<String,IController>();
     if ( instanceMap[ key ] == null ) instanceMap[ key ] = new MVCController( key );
     return instanceMap[ key ];
@@ -65,75 +61,74 @@ class MVCController implements IController
 
   /**
    * Execute the [ICommand] previously registered as the
-   * handler for [INotification]s with the given notification name.
+   * handler for [INotification]s with the given notification's name.
    * 
-   * Param [note] - the [INotification] to execute the associated [ICommand] for
+   * -  Param [note] - the [INotification] to execute the associated [ICommand] for
    */
   void executeCommand( INotification note )
   {
-    Function commandClassRef = commandMap[ note.getName() ];
-    if ( commandClassRef == null ) return;
+    Function commandFactory = commandMap[ note.getName() ];
+    if ( commandFactory == null ) return;
 
-    ICommand commandInstance = commandClassRef();
+    ICommand commandInstance = commandFactory();
     commandInstance.initializeNotifier( multitonKey );
     commandInstance.execute( note );
   }
 
   /**
-   * Register a particular [ICommand] class as the handler 
-   * for a particular [INotification].
+   * Register an [INotification] to [ICommand] mapping with the [Controller].
    * 
-   * Param [notificationName] - the name of the [INotification]
-   * Param [commandClassRef] - the Class constructor of the [ICommand]
+   * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
+   * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
-  void registerCommand( String notificationName, Function commandClassRef )
+  void registerCommand( String noteName, Function commandFactory )
   {
-    if ( commandMap[ notificationName ] == null ) {
-      view.registerObserver( notificationName, new MVCObserver( executeCommand, this ) );
+    if ( commandMap[ noteName ] == null ) {
+      view.registerObserver( noteName, new MVCObserver( executeCommand, this ) );
     }
-    commandMap[ notificationName ] = commandClassRef;
+    commandMap[ noteName ] = commandFactory;
   }
   
   /**
-   * Check if a Command is registered for a given Notification 
+   * Check if an [ICommand] is registered for a given [INotification] name with the [IController].
    * 
-   * Param [notificationName] - the notification name to check on
-   * Returns [bool] - whether an [ICommand] is currently registered for the given [notificationName].
+   * -  Param [noteName] - the name of the [INotification].
+   * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
    */
-  bool hasCommand( String notificationName )
+  bool hasCommand( String noteName )
   {
-    return commandMap[ notificationName ] != null;
+    return commandMap[ noteName ] != null;
   }
 
   /**
-   * Remove a previously registered [ICommand] to [INotification] mapping.
+   * Remove a previously registered [INotification] to [ICommand] mapping from the [IController].
    * 
-   * Param [notificationName] - the name of the [INotification] to remove the [ICommand] mapping for
+   * -  Param [noteName] - the name of the [INotification] to remove the [ICommand] mapping for.
    */
-  void removeCommand( String notificationName )
+  void removeCommand( String noteName )
   {
     // if the Command is registered...
-    if ( hasCommand( notificationName ) )
+    if ( hasCommand( noteName ) )
     {
       // remove the observer
-      view.removeObserver( notificationName, this );
+      view.removeObserver( noteName, this );
                   
       // remove the command
-      commandMap[ notificationName ] = null;
+      commandMap[ noteName ] = null;
     }
   }
   
   /**
-   * Remove an [IController] instance
+   * Remove an [IController] instance.
    * 
-   * Param [key] multitonKey of the [IController] instance to remove
+   * -  Param [key] multitonKey of the [IController] instance to remove
    */
   static void removeController( String key )
   {
     instanceMap[ key ] = null;
   }
 
-  // Local reference to View 
+  // Local reference to this core's IView 
   IView view;
   
   // Mapping of Notification names to Command Class references
@@ -151,6 +146,6 @@ class MultitonControllerExistsError {
   const MultitonControllerExistsError();
 
   String toString() {
-    return "Controller instance for this Multiton key already constructed!";
+    return "IController Multiton instance already constructed for this key.";
   }
 }

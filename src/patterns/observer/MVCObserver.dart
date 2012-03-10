@@ -2,38 +2,37 @@
  * A base [IObserver] implementation.
  * 
  * In PureMVC, [IObserver] implementors assume these responsibilities:
- * - Encapsulate the notification (callback) method of the interested object.
- * - Encapsulate the notification context (this) of the interested object.
- * - Provide methods for setting the interested object' notification method and context.
- * - Provide a method for notifying the interested object.
+ *
+ * -  Encapsulate the notification (callback) method of the interested object.
+ * -  Encapsulate the notification context (this) of the interested object.
+ * -  Provide methods for setting the interested object's notification method and context.
+ * -  Provide a method for notifying the interested object.
  * 
- * The Observer Pattern as implemented within
- * PureMVC exists to support portable communication
- * between the application and the actors of the
- * MVC triad.
+ * The Observer Pattern as implemented within PureMVC exists 
+ * to support publish/subscribe communication between actors.
  * 
- * An [Observer] is an object that encapsulates information
- * about an interested object with a notification method that
- * should be called when an [INotification] is broadcast. The [Observer] then
- * acts as a proxy for notifying the interested object.
+ * An [IObserver] is an object that encapsulates information
+ * about an interested object with a notification (callback) 
+ * method that should be called when an [INotification] is 
+ * broadcast. The [IObserver] then acts as a conduit for 
+ * notifying the interested object.
  * 
- * [Observer]s can receive [INotification]s by having their
- * [notifyObserver] method invoked, passing
- * in an object implementing the [INotification] interface, such
- * as a subclass of [MVCNotification].
+ * [IObserver]s can receive [Notification]s by having their
+ * [notifyObserver] method invoked, passing in an object 
+ * implementing the [INotification] interface.
  * 
- * See [MVCView], [MVCNotification]
+ * See [IView], [INotification]
  */
 class MVCObserver implements IObserver
 {
 
   /**
-   * This IObserver's notify method (i.e., callback)
+   * This [IObserver]'s [notifyMethod] (i.e., callback)
    */
   Function notifyMethod;
   
   /**
-   * This IObserver's notify context (i.e., caller)
+   * This [IObserver]'s [notifyContext] (i.e., caller)
    */
   Object notifyContext;
 
@@ -51,9 +50,9 @@ class MVCObserver implements IObserver
   /**
    * Set the notification method.
    * 
-   * The notification method should take one parameter of type [INotification]
+   * The notification method should take one parameter of type [INotification].
    * 
-   * Param [callback] - the method to call back when notifying the Observer
+   * -  Param [notifyMethod] - the notification (callback) method of the interested object.
    */
   void setNotifyMethod( Function callback )
   {
@@ -63,7 +62,7 @@ class MVCObserver implements IObserver
   /**
    * Set the notification context.
    * 
-   * Param [caller] - the caller object
+   * -  Param [caller] - a reference to the object to be notified.
    */
   void setNotifyContext( Object caller )
   {
@@ -73,7 +72,7 @@ class MVCObserver implements IObserver
   /**
    * Get the notification method.
    * 
-   * Returns [Function] the callback method
+   * -  Returns [Function] - the notification (callback) method of the interested object.
    */
   Function getNotifyMethod()
   {
@@ -83,7 +82,7 @@ class MVCObserver implements IObserver
   /**
    * Get the notification context.
    * 
-   * Returns [Object] the caller
+   * -  Returns [Object] - the caller.
    */
   Object getNotifyContext()
   {
@@ -93,7 +92,7 @@ class MVCObserver implements IObserver
   /**
    * Notify the interested object.
    * 
-   * Param [notification] the [INotification] to pass to the caller's callback method
+   * -  Param [note] - the [INotification] to pass to the caller's [notifyMethod].
    */
   void notifyObserver( INotification notification )
   {
@@ -101,10 +100,10 @@ class MVCObserver implements IObserver
   }
 
   /**
-   * Compare the given object to the notificaiton context object.
+   * Compare a given object to the [notifyContext] (caller) object.
    * 
-   * Param [object] the object to compare.
-   * Returns [bool] indicating if the caller and the object are the same.
+   * -  Param [Object] - the object to compare.
+   * -  Returns [bool] - whether the given object and the [notifyContext] (caller) are the same.
    */
   bool compareNotifyContext( Object object )
   {

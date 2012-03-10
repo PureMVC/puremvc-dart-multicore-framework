@@ -1,156 +1,170 @@
 /**
- * The interface definition for a PureMVC [MVCFacade]. 
+ * The interface definition for a PureMVC MultiCore Facade. 
  * 
  * The Facade Pattern suggests providing a single
  * class to act as a central point of communication 
  * for a subsystem. 
  * 
  * In PureMVC, the [IFacade] acts as an interface between
- * the core MVC actors (IModel], [IView], [IController) and
- * the rest of your application.
+ * the core MVC actors [IModel], [IView], [IController], and
+ * the rest of your application, which (aside from view components
+ * and data objects) is mostly expressed with [ICommand]s, 
+ * [IMediator]s, and [IProxy]s. 
+ * 
+ * This means you don't need to communicate with the [IModel], 
+ * [IView], [IController] instances directly, you can just go through 
+ * the [IFacade]. And conveniently, [ICommand]s, [IMediator]s, and 
+ * [IProxy]s all have a built-in reference to their [IFacade] after 
+ * initialization, so they're all plugged in and ready to communicate 
+ * with each other. 
  * 
  * See [IModel], [IView], [IController], [IProxy], [IMediator], [ICommand], [INotification]
  */
 interface IFacade extends INotifier
 {
 
-    /**
-     * Register an [IProxy] with an [IModel], by name.
+	/**
+     * Register an [IProxy] instance with the [IModel].
      * 
-     * Param [proxy] - the [IProxy] to be registered with the [IModel].
-     */
-    void registerProxy( IProxy proxy );
+     * -  Param [proxy] - an object reference to be held by the [IModel].
+	 */
+	void registerProxy( IProxy proxy );
 
     /**
-     * Retrieve a [IProxy] from an [IModel], by name.
+     * Retrieve an [IProxy] instance from the [IModel].
      * 
-     * Param [proxyName] - the name of the [IProxy] instance to be retrieved.
-     * Returns the [IProxy] previously regisetered by [proxyName] with the [IModel].
+     * -  Param [proxyName] - the name of the [IProxy] instance to retrieve.
+     * -  Returns the [IProxy] instance previously registered with the given [proxyName].
      */
     IProxy retrieveProxy( String proxyName );
     
     /**
-     * Remove an [IProxy] instance from the [Model] by name.
-     *
-     * Param [proxyName] - the [IProxy] to remove from the [Model].
-     * Returns the [IProxy] that was removed from the [Model]
+     * Remove an [IProxy] instance from the [IModel].
+     * 
+     * -  Param [proxyName] - name of the [IProxy] instance to be removed.
+     * -  Returns [IProxy] - the [IProxy] that was removed from the [IModel].
      */
     IProxy removeProxy( String proxyName );
 
     /**
-     * Check if a Proxy is registered
+     * Check if an [IProxy] is registered with the [IModel].
      * 
-     * Param [proxyName]
-     * Returns [bool] - whether a Proxy is currently registered with the given [proxyName].
+     * -  Param [proxyName] - the name of the [IProxy] instance you're looking for.
+     * -  Returns [bool] - whether an [IProxy] is currently registered with the given [proxyName].
      */
     bool hasProxy( String proxyName );
 
     /**
-     * Register an [ICommand] with the [Controller].
+     * Register an [INotification] to [ICommand] mapping with the [IController].
      * 
-     * Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
-     * Param [commandClassRef] - a reference to the Class constructor of the [ICommand].
+     * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
+     * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
      */
-    void registerCommand( String noteName, Function commandClassRef );
+    void registerCommand( String noteName, Function commandFactory );
     
     /**
-     * Remove a previously registered [ICommand] to [INotification] mapping from the Controller.
+     * Remove a previously registered [INotification] to [ICommand] mapping from the [IController].
      * 
-     * Param [notificationName] - the name of the [INotification] to remove the [ICommand] mapping for
+     * -  Param [noteName] - the name of the [INotification] to remove the [ICommand] mapping for.
      */
-    void removeCommand( String notificationName );
+    void removeCommand( String noteName );
 
     /**
-     * Check if a Command is registered for a given Notification 
+     * Check if an [ICommand] is registered for a given [INotification] name with the [IController].
      * 
-     * Param [notificationName]
-     * Returns [bool] - whether a Command is currently registered for the given [notificationName].
+     * -  Param [noteName] - the name of the [INotification].
+     * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
      */
-    bool hasCommand( String notificationName );
+    bool hasCommand( String noteName );
     
     /**
-     * Register an [IMediator] instance with the [View].
+     * Register an [IMediator] instance with the [IView].
      * 
-     * Param [mediator] - a reference to the [IMediator] instance
+     * Registers the [IMediator] so that it can be retrieved by name,
+     * and interrogates the [IMediator] for its [INotification] interests.
+     * 
+     * If the [IMediator] returns a list of [INotification] 
+     * names to be notified about, an [Observer] is created encapsulating 
+     * the [IMediator] instance's [handleNotification] method 
+     * and registering it as an [IObserver] for all [INotification]s the 
+     * [IMediator] is interested in.
+     * 
+     * -  Param [mediator] - a reference to the [IMediator] instance.
      */
     void registerMediator( IMediator mediator );
 
     /**
-     * Retrieve an [IMediator] instance from the [View].
+     * Retrieve an [IMediator] from the [IView].
      * 
-     * Param [mediatorName] - the name of the [IMediator] instance to retrievve
-     * Returns the [IMediator] previously registered in this core with the given [mediatorName].
+     * -  Param [mediatorName] - the name of the [IMediator] instance to retrieve.
+     * -  Returns [IMediator] - the [IMediator] instance previously registered in this core with the given [mediatorName].
      */
     IMediator retrieveMediator( String mediatorName );
 
     /**
-     * Remove a [IMediator] instance from the [View].
+     * Remove an [IMediator] from the [IView].
      * 
-     * Param [mediatorName] - name of the [IMediator] instance to be removed.
-     * Returns the [IMediator] instance previously registered in this core with the given [mediatorName].
+     * -  Param [mediatorName] - name of the [IMediator] instance to be removed.
+     * -  Returns [IMediator] - the [IMediator] that was removed from this core's [IView].
      */
     IMediator removeMediator( String mediatorName );
     
     /**
-     * Check if a Mediator is registered or not
+     * Check if an [IMediator] is registered with the [IView].
      * 
-     * Param [mediatorName]
-     * Returns [bool] - whether an [IMediator] is registered in this core with the given [mediatorName].
+     * -  Param [mediatorName] - the name of the [IMediator] you're looking for. 
+     * -  Returns [bool] - whether an [IMediator] is registered in this core with the given [mediatorName].
      */
     bool hasMediator( String mediatorName );
 
     /**
-     * Register an [IObserver] to be notified
-     * of [INotifications] with a given name.
+     * Register an [IObserver] to be notified of [INotification]s with a given name.
      * 
-     * Param [noteName] - the name of the [INotifications] to notify this [IObserver] of
-     * Param [observer] - the [IObserver] to register
+     * -  Param [noteName] - the name of the [INotification] to notify this [IObserver] of.
+     * -  Param [observer] - the [IObserver] to register.
      */
     void registerObserver( String noteName, IObserver observer );
 
     /**
-     * Remove an [IObserver] from the observer list for a given [Notification] name.
+     * Remove an [IObserver] from the list for a given [INotification] name.
      * 
-     * Param [noteName] - which observer list to remove from 
-     * Param [notifyContext] - remove the observers with this object as their notifyContext
+     * -  Param [noteName] - which [IObserver] list to remove from. 
+     * -  Param [notifyContext] - remove [IObserver]s with this object as the [notifyContext].
      */
     void removeObserver( String noteName, Object notifyContext );
 
     /**
-     * Notify [Observer]s.
+     * Notify [IObserver]s.
      * 
-     * This method is left public mostly for backward 
-     * compatibility, and to allow you to send custom 
-     * notification classes using the facade.
+     * This method allows you to send custom [INotification] classes using the [IFacade].
      * 
-     * Usually you should just call sendNotification
-     * and pass the parameters, never having to 
-     * construct the notification yourself.
+     * Usually you should just call [sendNotification] and pass the parameters, 
+     * never having to construct an [INotification] yourself.
      * 
-     * Param [notification] the [INotification] to have the [View] notify [Observers] of.
+     * -  Param [note] the [INotification] to have the [View] notify [Observers] of.
      */
     void notifyObservers( INotification notification );
 
     /**
-     * This IFacade's Multiton Key
+     * This [IFacade]'s Multiton key
      */
     void set multitonKey( String key );
     String get multitonKey();
     
     /**
-     * This IFacade's IModel
+     * This [IFacade]'s [IModel]
      */
     void set model( IModel modelInstance );
     IModel get model();
     
     /**
-     * This IFacade's IView
+     * This [IFacade]'s [IView]
      */
     void set view( IView viewInstance );
     IView get view();
     
     /**
-     * This IFacade's IController
+     * This [IFacade]'s [IController]
      */
     void set controller( IController controllerInstance );
     IController get controller();

@@ -6,8 +6,17 @@
  * for a subsystem. 
  * 
  * In PureMVC, the [IFacade] acts as an interface between
- * the core MVC actors [IModel], [IView], [IController) and
- * the rest of your application.
+ * the core MVC actors [IModel], [IView], [IController], and
+ * the rest of your application, which (aside from view components
+ * and data objects) is mostly expressed with [ICommand]s, 
+ * [IMediator]s, and [IProxy]s. 
+ * 
+ * This means you don't need to communicate with the [IModel], 
+ * [IView], [IController] instances directly, you can just go through 
+ * the [IFacade]. And conveniently, [ICommand]s, [IMediator]s, and 
+ * [IProxy]s all have a built-in reference to their [IFacade] after 
+ * initialization, so they're all plugged in and ready to communicate 
+ * with each other. 
  * 
  * See [MVCModel], [MVCView], [MVCController], [INotification], [ICommand], [IMediator], [IProxy]
  */
@@ -16,17 +25,14 @@ class MVCFacade implements IFacade
   /**
    * Constructor. 
    * 
-   * This [IFacade] implementation is a Multiton, 
-   * so you should not call the constructor 
-   * directly, but instead call the static getInstance method, 
-   * passing the unique key for this instance 
+   * This [IFacade] implementation is a Multiton,  so you should not call the constructor directly, 
+   * but instead call the static [getInstance] method. 
    * 
-   * Throws [FacadeExistsError] if instance for this Multiton key has already been constructed
-   * 
+   * -  Throws [MultitonFacadeExistsError] if instance for this Multiton key has already been constructed.
    */
   MVCFacade( String key ) 
   {
-    if ( instanceMap[ key ] != null ) throw new FacadeExistsError();
+    if ( instanceMap[ key ] != null ) throw new MultitonFacadeExistsError();
     initializeNotifier( key );
     instanceMap[ multitonKey ] = this;
     initializeFacade();    
@@ -47,12 +53,13 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Facade Multiton Factory method
+   * [IFacade] Multiton Factory method
    * 
-   * Returns [IFacade] the Multiton instance of the [IFacade]
+   * -  Returns the [IFacade] Multiton instance for the specified key.
    */
   static IFacade getInstance( String key )
   {
+    if ( key == null || key == "" ) return null;
     if ( instanceMap == null ) instanceMap = new Map<String,IFacade>();
     if ( instanceMap[ key ] == null ) instanceMap[ key ] = new MVCFacade( key );
     return instanceMap[ key ];
@@ -62,14 +69,8 @@ class MVCFacade implements IFacade
    * Initialize the [IController].
    * 
    * Called by the [initializeFacade] method.
-   * Override this method in your subclass of [MVCFacade] 
-   * if one or both of the following are true:
-   * - You wish to initialize a different [IController].
-   * - You have [ICommands] to register with the [IController] at startup.
-   *          
-   * If you don't want to initialize a different [IController], 
-   * call [super.initializeController()] at the beginning of your
-   * method, then register [ICommand]s.
+   *
+   * Override this method in a subclass of [MVCFacade] if you want to provide a different [IController]. 
    */
   void initializeController( )
   {
@@ -81,19 +82,8 @@ class MVCFacade implements IFacade
    * Initialize the [IModel].
    * 
    * Called by the [initializeFacade] method.
-   * Override this method in your subclass of [MVCFacade] 
-   * if one or both of the following are true:
    * 
-   * - You wish to initialize a different [IModel].
-   * - You have [IProxy]s to register with the Model that do not retrieve a reference to the MVCFacade at construction time. 
-   * 
-   * If you don't want to initialize a different [IModel], 
-   * call [super.initializeModel()] at the beginning of your
-   * method, then register [IProxy]s. 
-   * 
-   * Note: This method is rarely overridden; in practice you are more
-   * likely to use an [ICommand] to create and register [MVCProxy]s
-   * with the [IModel].
+   * Override this method in a subclass of [MVCFacade] if you wish to initialize a different [IModel].
    */
   void initializeModel( )
   {
@@ -106,19 +96,8 @@ class MVCFacade implements IFacade
    * Initialize the [IView].
    * 
    * Called by the [initializeFacade] method.
-   * Override this method in your subclass of [Facade] 
-   * if one or both of the following are true:
    * 
-   * -  You wish to initialize a different [IView].
-   * -  You have [IObservers] to register with the [IView]
-   * 
-   * If you don't want to initialize a different [IView], 
-   * call [super.initializeView()] at the beginning of your
-   * method, then register [IMediator] instances.
-   * 
-   * Note: This method is rarely overridden; in practice you are more
-   * likely to use an [ICommand] to create and register [Mediator]s
-   * with the [IView]. 
+   * Override this method in a subclass of [MVCFacade] if you wish to initialize a different [IView].
    */
   void initializeView( )
   {
@@ -127,41 +106,41 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Register an [ICommand] with the [Controller].
+   * Register an [INotification] to [ICommand] mapping with the [Controller].
    * 
-   * Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
-   * Param [commandClassRef] - a reference to the concrete [Class] of the [ICommand].
+   * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
+   * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
-  void registerCommand( String noteName, Function commandClassRef ) 
+  void registerCommand( String noteName, Function commandFactory ) 
   {
-    controller.registerCommand( noteName, commandClassRef );
+    controller.registerCommand( noteName, commandFactory );
   }
 
   /**
-   * Remove a previously registered [ICommand] to [INotification] mapping from the [IController].
+   * Remove a previously registered [INotification] to [ICommand] mapping from the [IController].
    * 
-   * Param [notificationName] - the name of the [INotification] to remove the [ICommand] mapping for
+   * -  Param [noteName] - the name of the [INotification] to remove the [ICommand] mapping for
    */
-  void removeCommand( String notificationName )
+  void removeCommand( String noteName )
   {
-    controller.removeCommand( notificationName );
+    controller.removeCommand( noteName );
   }
 
   /**
-   * Check if a Command is registered for a given Notification 
+   * Check if an [ICommand] is registered for a given [INotification] name with the [IController].
    * 
-   * Param [notificationName]
-   * Returns [bool] - whether a Command is currently registered for the given [notificationName].
+   * -  Param [noteName] - the name of the [INotification].
+   * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
    */
-  bool hasCommand( String notificationName )
+  bool hasCommand( String noteName )
   {
-    return controller.hasCommand( notificationName );
+    return controller.hasCommand( noteName );
   }
 
   /**
-   * Register an [IProxy] with an [IModel], by name.
+   * Register an [IProxy] instance with the [IModel].
    * 
-   * Param [proxy] - the [IProxy] to be registered with this core's [IModel].
+   * -  Param [proxy] - an object reference to be held by the [IModel].
    */
   void registerProxy( IProxy proxy )
   {
@@ -169,10 +148,10 @@ class MVCFacade implements IFacade
   }
           
   /**
-   * Retrieve a [IProxy] from an [IModel], by name.
+   * Retrieve an [IProxy] instance from the [IModel].
    * 
-   * Param [proxyName] - the name of the [IProxy] instance to be retrieved.
-   * Returns the [IProxy] previously regisetered by [proxyName] with the [IModel].
+   * -  Param [proxyName] - the name of the [IProxy] instance to retrieve.
+   * -  Returns the [IProxy] instance previously registered with the given [proxyName].
    */
   IProxy retrieveProxy( String proxyName ) 
   {
@@ -180,10 +159,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Remove an [IProxy] instance from the [Model] by name.
-   *
-   * Param [proxyName] - the [IProxy] to remove from the [Model].
-   * Returns the [IProxy] that was removed from the [Model]
+   * Remove an [IProxy] instance from the [IModel].
+   * 
+   * -  Param [proxyName] - name of the [IProxy] instance to be removed.
+   * -  Returns [IProxy] - the [IProxy] that was removed from the [IModel].
    */
   IProxy removeProxy( String proxyName ) 
   {
@@ -193,10 +172,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Check if a Proxy is registered
+   * Check if an [IProxy] is registered with the [IModel].
    * 
-   * Param [proxyName]
-   * Returns [bool] - whether a Proxy is currently registered with the given [proxyName].
+   * -  Param [proxyName] - the name of the [IProxy] instance you're looking for.
+   * -  Returns [bool] - whether an [IProxy] is currently registered with the given [proxyName].
    */
   bool hasProxy( String proxyName )
   {
@@ -204,9 +183,18 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Register an [IMediator] instance with the [View].
+   * Register an [IMediator] instance with the [IView].
    * 
-   * Param [mediator] - a reference to the [IMediator] instance
+   * Registers the [IMediator] so that it can be retrieved by name,
+   * and interrogates the [IMediator] for its [INotification] interests.
+   * 
+   * If the [IMediator] returns a list of [INotification] 
+   * names to be notified about, an [Observer] is created encapsulating 
+   * the [IMediator] instance's [handleNotification] method 
+   * and registering it as an [IObserver] for all [INotification]s the 
+   * [IMediator] is interested in.
+   * 
+   * -  Param [mediator] - a reference to the [IMediator] instance.
    */
   void registerMediator( IMediator mediator ) 
   {
@@ -214,10 +202,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Retrieve an [IMediator] instance from the [View].
+   * Retrieve an [IMediator] from the [IView].
    * 
-   * Param [mediatorName] - the name of the [IMediator] instance to retrievve
-   * Returns the [IMediator] previously registered in this core with the given [mediatorName].
+   * -  Param [mediatorName] - the name of the [IMediator] instance to retrieve.
+   * -  Returns  [IMediator] - the [IMediator] instance previously registered in this core with the given [mediatorName].
    */
   IMediator retrieveMediator( String mediatorName ) 
   {
@@ -225,10 +213,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Remove a [IMediator] instance from the [View].
+   * Remove an [IMediator] from the [IView].
    * 
-   * Param [mediatorName] - name of the [IMediator] instance to be removed.
-   * Returns the [IMediator] instance previously registered in this core with the given [mediatorName].
+   * -  Param [mediatorName] - name of the [IMediator] instance to be removed.
+   * -  Returns [IMediator] - the [IMediator] that was removed from this core's [IView].
    */
   IMediator removeMediator( String mediatorName ) 
   {
@@ -252,11 +240,11 @@ class MVCFacade implements IFacade
    * Send an [INotification].
    * 
    * Convenience method to prevent having to construct new 
-   * notification instances in our implementation code.
+   * [INotification] instances in our implementation code.
    * 
-   * Param [noteName] the name of the notification to send
-   * Param [body] - the body of the notification (optional)
-   * Param [type] - the type of the notification (optional)
+   * -  Param [noteName] the name of the note to send
+   * -  Param [body] - the body of the note (optional)
+   * -  Param [type] - the type of the note (optional)
    */ 
   void sendNotification( String noteName, [Dynamic body, String type] )
   {
@@ -264,14 +252,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Register an [IObserver] to be notified of [INotifications] with a given name.
+   * Register an [IObserver] to be notified of [INotification]s with a given name.
    * 
-   * Typically the developer does not need to use this method, as [ICommand]s and 
-   * [IMediator]s are registered as [IObserver]s by other means. However, this method
-   * allows any arbitrary class instance to be notified.  
-   * 
-   * Param [noteName] - the name of the [INotifications] to notify this [IObserver] of
-   * Param [observer] - the [IObserver] to register
+   * -  Param [noteName] - the name of the [INotification] to notify this [IObserver] of.
+   * -  Param [observer] - the [IObserver] to register.
    */
   void registerObserver( String noteName, IObserver observer )
   {
@@ -279,14 +263,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Remove an [IObserver] from the observer list for a given [Notification] name.
+   * Remove an [IObserver] from the list for a given [INotification] name.
    * 
-   * Typically the developer does not need to use this method, as Commands and 
-   * Mediators are registered as [IObserver]s by other means. However, this can
-   * allow any arbitrary class instance to be notified.  
-   * 
-   * Param [noteName] - which observer list to remove from 
-   * Param [notifyContext] - remove the observers with this object as their notifyContext
+   * -  Param [noteName] - which [IObserver] list to remove from. 
+   * -  Param [notifyContext] - remove [IObserver]s with this object as the [notifyContext].
    */
   void removeObserver( String noteName, Object notifyContext )
   {
@@ -294,17 +274,14 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Notify [Observer]s.
+   * Notify [IObserver]s.
    * 
-   * This method is left public mostly for backward 
-   * compatibility, and to allow you to send custom 
-   * notification classes using the facade.
+   * This method allows you to send custom [INotification] classes using the [IFacade].
    * 
-   * Usually you should just call sendNotification
-   * and pass the parameters, never having to 
-   * construct the notification yourself.
+   * Usually you should just call [sendNotification] and pass the parameters, 
+   * never having to construct an [INotification] yourself.
    * 
-   * Param [note] the [INotification] to have the [View] notify [Observers] of.
+   * -  Param [note] the [INotification] to have the [View] notify [Observers] of.
    */
   void notifyObservers( INotification note )
   {
@@ -312,14 +289,14 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Initialize this [INotifier] instance.
+   * Initialize this [INotifier].
    *
-   * This is how a [Notifier] gets its [multitonKey]. 
+   * This is how an [INotifier] gets its [multitonKey]. 
    * Calls to [sendNotification] or to access the
-   * facade will fail until after this method 
+   * [facade] will fail until after this method 
    * has been called.
    * 
-   * Param [key] - the [multitonKey] for this [INotifier] to use
+   * -  Param [key] - the [multitonKey] for this [INotifier] to use.
    */
   void initializeNotifier( String key )
   {
@@ -327,10 +304,10 @@ class MVCFacade implements IFacade
   }
 
   /**
-   * Check if a Core is registered or not
+   * Check if a Core is registered or not.
    * 
-   * Param [key] - the multiton key for the Core in question
-   * Returns [bool] - whether a core is registered with the given [key].
+   * -  Param [key] - the Multiton key for the Core.
+   * -  Returns [bool] - whether a Core is registered with the given [key].
    */
   static bool hasCore( String key ) 
   {
@@ -339,11 +316,11 @@ class MVCFacade implements IFacade
 
   /**
    * Remove a Core.
-   * <P>
-   * Remove the Model, View, Controller and Facade 
+   * 
+   * Remove the [IModel], [IView], [IController], and [IFacade] 
    * instances for the given key.</P>
    * 
-   * @param multitonKey of the Core to remove
+   * -  Param [key] - the Multiton key of the Core to remove.
    */
   static void removeCore( String key )
   {
@@ -354,23 +331,23 @@ class MVCFacade implements IFacade
     instanceMap[ key ] = null;
   }
 
-  // References to Model, View, and Controller
+  // References to [IModel], [IView], and [IController]
   IController controller;
   IModel model;
   IView view;
   
-  // The Multiton Key for this app
+  // This [IFacade]'s Multiton key 
   String multitonKey;
   
-  // The Multiton Facade instanceMap.
+  // The [IFacade] Multiton instanceMap.
   static Map<String,IFacade> instanceMap;
 }
 
-class FacadeExistsError {
-  const FacadeExistsError();
+class MultitonFacadeExistsError {
+  const MultitonFacadeExistsError();
 
   String toString() {
-    return "Facade instance for this Multiton key already constructed!";
+    return "IFacade Multiton instance already constructed for this key.";
   }
 }
 

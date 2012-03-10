@@ -23,23 +23,23 @@ interface INotifier {
    * Send an [INotification].
    * 
    * Convenience method to prevent having to construct new 
-   * notification instances in our implementation code.
+   * [INotification] instances in our implementation code.
    * 
-   * Param [noteName] the name of the notification to send
-   * Param [body] - the body of the notification (optional)
-   * Param [type] - the type of the notification (optional)
+   * -  Param [noteName] the name of the note to send
+   * -  Param [body] - the body of the note (optional)
+   * -  Param [type] - the type of the note (optional)
    */ 
   void sendNotification( String noteName, [Dynamic body, String type] ); 
 
   /**
    * Initialize this [INotifier] instance.
-   *
-   * This is how a [Notifier] gets its [multitonKey]. 
-   * Calls to [sendNotification] or to access the
-   * facade will fail until after this method 
+   * 
+   * This is how a [INotifier] gets its [multitonKey]. 
+   * Calls to [sendNotification] or access to the
+   * [facade] will fail until after this method 
    * has been called.
    * 
-   * Param [key] - the [multitonKey] for this [INotifier] to use
+   * -  Param [key] - the Multiton key for this [INotifier]. 
    */
   void initializeNotifier( String key );
 

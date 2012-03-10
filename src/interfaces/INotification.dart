@@ -1,30 +1,19 @@
 /**
- * The interface definition for a PureMVC [MVCNotification].
+ * The interface definition for a PureMVC MultiCore Notification.
  *
- * PureMVC does not rely upon underlying event models such 
- * as the one provided with Flash, and ActionScript 3 does 
- * not have an inherent event model.
- * 
  * The Observer Pattern as implemented within PureMVC exists 
- * to support event-driven communication between the 
- * application and the actors of the MVC triad.
+ * to support publish/subscribe communication between actors.
  * 
- * [MVCNotification]s are not meant to be a replacement for Events
- * Generally, [IMediator] implementors
- * place event listeners on their view components, which they
- * then handle in the usual way. This may lead to the broadcast of [MVCNotification]s to 
- * trigger [ICommand]s or to communicate with other [IMediators]. [IProxy] and [ICommand]
- * instances communicate with each other and [IMediator]s 
- * by broadcasting [INotification]s.
+ * [INotification]s are not meant to be a replacement for [Event]s, 
+ * but rather an internal communication mechanism that ensures
+ * PureMVC is portable regardless of what type of Event mechanism
+ * is supported (or not) on a given platform. 
  * 
- * A key difference between [Event]s and PureMVC 
- * [MVCNotification]s is that [Event]s follow the 
- * 'Chain of Responsibility' pattern, 'bubbling' up the display hierarchy 
- * until some parent component handles the [Event], while
- * PureMVC [MVCNotification]s follow a 'Publish/Subscribe'
- * pattern. PureMVC classes need not be related to each other in a 
- * parent/child relationship in order to communicate with one another
- * using [MVCNotification]s.
+ * Generally, [IMediator] implementors place [Event] listeners on 
+ * their view components, and [IProxy] implementors place [Event] 
+ * listeners on service components. Those [Event]s are then handled in 
+ * the usual way, and may lead to the broadcast of [INotification]s 
+ * that trigger [ICommand]s or notify [IMediator]s. 
  * 
  * See [IView], [IObserver], [MVCNotification] 
  */
@@ -32,53 +21,54 @@ interface INotification
 {
     
     /**
-     * Get the name of the [INotification] instance. 
-     * No setter, should be set by constructor only
+     * Get the [name] of the [INotification].
+     * 
+     * -  Returns [String] - the name of the [INotification].
      */
     String getName();
 
     /**
-     * Set the body of the [INotification] instance
+     * Set the [body] of the [INotification].
      * 
-     * Param [body] - the body of the [INotification]
+     * -  Param [body] - the body of the [INotification].
      */
     void setBody( Object body );
     
     /**
-     * Get the body of the [INotification] instance     
+     * Get the [body] of the [INotification].
      * 
-     * Returns [Object] - the body of the [INotification]
+     * -  Returns [Dynamic] - the body of the [INotification]. 
      */
-    Object getBody();
+    Dynamic getBody();
     
     /**
-     * Set the type of the [INotification] instance
+     * Set the [type] of the [INotification].
      * 
-     * Param [type] - the type of the [INotification]
+     * -  Param [type] - the type of the [INotification].
      */
     void setType( String type );
     
     /**
-     * Get the type of the [INotification] instance
+     * Get the [type] of the [INotification].
      * 
-     * Returns [String] - the type of the [INotification]
+     * -  Returns [String] - the type of the [INotification].  
      */
     String getType();
 
     /**
-     * This INotifications's body
+     * This [INotifications]'s [body]
      */
     void set body( Dynamic bodyObject );
     Dynamic get body();
     
     /**
-     * This INotifications's name
+     * This [INotifications]'s [name]
      */
     void set name( String noteName );
     String get name();
     
     /**
-     * This INotifications's type
+     * This [INotifications]'s [type]
      */
     void set type( String noteType );
     String get type();

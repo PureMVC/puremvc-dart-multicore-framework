@@ -5512,7 +5512,7 @@ MVCProxy.prototype.onRegister = function() {
 }
 // ********** Code for MVCFacade **************
 function MVCFacade(key) {
-  if ($$ne($globals.MVCFacade_instanceMap.$index(key))) $throw(new FacadeExistsError());
+  if ($$ne($globals.MVCFacade_instanceMap.$index(key))) $throw(new MultitonFacadeExistsError());
   this.initializeNotifier(key);
   $globals.MVCFacade_instanceMap.$setindex(this.multitonKey, this);
   this.initializeFacade();
@@ -5523,6 +5523,7 @@ MVCFacade.prototype.initializeFacade = function() {
   this.initializeView();
 }
 MVCFacade.getInstance = function(key) {
+  if (key == null || key == "") return null;
   if ($globals.MVCFacade_instanceMap == null) $globals.MVCFacade_instanceMap = new HashMapImplementation_dart_core_String$IFacade();
   if ($$eq($globals.MVCFacade_instanceMap.$index(key))) $globals.MVCFacade_instanceMap.$setindex(key, new MVCFacade(key));
   return $globals.MVCFacade_instanceMap.$index(key);
@@ -5548,16 +5549,16 @@ MVCFacade.prototype.retrieveProxy = function(proxyName) {
 MVCFacade.prototype.initializeNotifier = function(key) {
   this.multitonKey = key;
 }
-// ********** Code for FacadeExistsError **************
-function FacadeExistsError() {
+// ********** Code for MultitonFacadeExistsError **************
+function MultitonFacadeExistsError() {
 
 }
-FacadeExistsError.prototype.toString = function() {
-  return "Facade instance for this Multiton key already constructed!";
+MultitonFacadeExistsError.prototype.toString = function() {
+  return "IFacade Multiton instance already constructed for this key.";
 }
 // ********** Code for MVCModel **************
 function MVCModel(key) {
-  if ($$ne($globals.MVCModel_instanceMap.$index(key))) $throw(new ModelExistsError());
+  if ($$ne($globals.MVCModel_instanceMap.$index(key))) $throw(new MultitonModelExistsError());
   this.multitonKey = key;
   $globals.MVCModel_instanceMap.$setindex(this.multitonKey, this);
   this.proxyMap = new HashMapImplementation_dart_core_String$IProxy();
@@ -5567,6 +5568,7 @@ MVCModel.prototype.initializeModel = function() {
 
 }
 MVCModel.getInstance = function(key) {
+  if (key == null || key == "") return null;
   if ($globals.MVCModel_instanceMap == null) $globals.MVCModel_instanceMap = new HashMapImplementation_dart_core_String$IModel();
   if ($$eq($globals.MVCModel_instanceMap.$index(key))) $globals.MVCModel_instanceMap.$setindex(key, new MVCModel(key));
   return $globals.MVCModel_instanceMap.$index(key);
@@ -5579,16 +5581,16 @@ MVCModel.prototype.registerProxy = function(proxy) {
 MVCModel.prototype.retrieveProxy = function(proxyName) {
   return this.proxyMap.$index(proxyName);
 }
-// ********** Code for ModelExistsError **************
-function ModelExistsError() {
+// ********** Code for MultitonModelExistsError **************
+function MultitonModelExistsError() {
 
 }
-ModelExistsError.prototype.toString = function() {
-  return "Model instance for this Multiton key already constructed!";
+MultitonModelExistsError.prototype.toString = function() {
+  return "IModel Multiton instance already constructed for this key.";
 }
 // ********** Code for MVCView **************
 function MVCView(key) {
-  if ($$ne($globals.MVCView_instanceMap.$index(key))) $throw(new ViewExistsError());
+  if ($$ne($globals.MVCView_instanceMap.$index(key))) $throw(new MultitonViewExistsError());
   this.multitonKey = key;
   $globals.MVCView_instanceMap.$setindex(this.multitonKey, this);
   this.mediatorMap = new HashMapImplementation_dart_core_String$IMediator();
@@ -5599,20 +5601,21 @@ MVCView.prototype.initializeView = function() {
 
 }
 MVCView.getInstance = function(key) {
+  if (key == null || key == "") return null;
   if ($globals.MVCView_instanceMap == null) $globals.MVCView_instanceMap = new HashMapImplementation_dart_core_String$IView();
   if ($$eq($globals.MVCView_instanceMap.$index(key))) $globals.MVCView_instanceMap.$setindex(key, new MVCView(key));
   return $globals.MVCView_instanceMap.$index(key);
 }
-// ********** Code for ViewExistsError **************
-function ViewExistsError() {
+// ********** Code for MultitonViewExistsError **************
+function MultitonViewExistsError() {
 
 }
-ViewExistsError.prototype.toString = function() {
-  return "View instance for this Multiton key already constructed!";
+MultitonViewExistsError.prototype.toString = function() {
+  return "IViewMultiton instance already constructed for this key.";
 }
 // ********** Code for MVCController **************
 function MVCController(key) {
-  if ($$ne($globals.MVCController_instanceMap.$index(key))) $throw(new ControllerExistsError());
+  if ($$ne($globals.MVCController_instanceMap.$index(key))) $throw(new MultitonControllerExistsError());
   this.multitonKey = key;
   $globals.MVCController_instanceMap.$setindex(this.multitonKey, this);
   this.commandMap = new HashMapImplementation_dart_core_String$dart_core_Function();
@@ -5622,16 +5625,17 @@ MVCController.prototype.initializeController = function() {
   this.view = MVCView.getInstance(this.multitonKey);
 }
 MVCController.getInstance = function(key) {
+  if (key == null || key == "") return null;
   if ($globals.MVCController_instanceMap == null) $globals.MVCController_instanceMap = new HashMapImplementation_dart_core_String$IController();
   if ($$eq($globals.MVCController_instanceMap.$index(key))) $globals.MVCController_instanceMap.$setindex(key, new MVCController(key));
   return $globals.MVCController_instanceMap.$index(key);
 }
-// ********** Code for ControllerExistsError **************
-function ControllerExistsError() {
+// ********** Code for MultitonControllerExistsError **************
+function MultitonControllerExistsError() {
 
 }
-ControllerExistsError.prototype.toString = function() {
-  return "Controller instance for this Multiton key already constructed!";
+MultitonControllerExistsError.prototype.toString = function() {
+  return "IController Multiton instance already constructed for this key.";
 }
 // ********** Code for top level **************
 //  ********** Library Z:\Outgoing\workspaces\FB3\PureMVC\PureMVC_Dart\PureMVC_Dart **************

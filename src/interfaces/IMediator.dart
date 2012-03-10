@@ -1,24 +1,23 @@
 /**
- * The interface definition for a PureMVC [Mediator].
+ * The interface definition for a PureMVC MultiCore Mediator.
  *
  * In PureMVC, [IMediator] implementors assume these responsibilities:
- * - Implement a common method which returns a list of all [INotification]s the [IMediator] has interest in
- * - Implement a notification callback method
- * - Implement methods that are called when the [IMediator] is registered or removed from an [IView].
+ *
+ * -  Implement a common method which returns a list of all [INotification]s the [IMediator] has interest in.
+ * -  Implement a notification (callback) method for handling [INotification]s.
+ * -  Implement methods that are called when the [IMediator] is registered or removed from an [IView].
  *
  * Additionally, [IMediator]s typically:
- * - Act as an intermediary between one or more view components such as text boxes or list controls, maintaining references and coordinating their behavior.
- * - This is often the place where event listeners are added to view components, and their handlers implemented.
- * - Respond to and generate [INotifications], interacting with of  the rest of the PureMVC app.
+ *
+ * -  Act as an intermediary between one or more view components and the rest of the application.
+ * -  Place [Event] listeners on view components, and implement handlers which often send [INotification]s or interact with [IProxy]s to post or retrieve data.
+ * -  Receive [INotification]s, (typically containing data) and updating view components in response.
  *  
- * When an [IMediator] is registered with the [IView], 
- * the [IView] will call the [IMediator]'s [listNotificationInterests] method. 
- * The [IMediator] will return an [Array] of [INotification] names which it wishes to be notified about.
+ * When an [IMediator] is registered with the [IView], the [IMediator]'s [listNotificationInterests] method is called 
+ * The [IMediator] will return a [List] of [INotification] names which it wishes to be notified about.
  * 
- * The [IView] will then create an [Observer] object 
- * encapsulating that [IMediator]'s ([handleNotification]) method
- * and register it as an Observer for each [INotification] name returned by 
- * [listNotificationInterests].
+ * The [IView] will then create an [IObserver] object encapsulating that [IMediator]'s and its [handleNotification] method
+ * and register the [IObserver] for each [INotification] name returned by the [IMediator]'s [listNotificationInterests] method.
  * 
  * See [INotification], [IView]
  */
@@ -26,59 +25,59 @@ interface IMediator extends INotifier
 {
     
   /**
-   * Get the [IMediator] instance name
+   * Get the [IMediator] instance's [name].
    * 
-   * Returns [String] - the [IMediator] instance name
+   * -  Returns [String] - the [IMediator] instance's [name].
    */
   String getName();
   
   /**
-   * Get the [IMediator]'s view component.
+   * Get the [IMediator]'s [viewComponent].
    * 
-   * Returns [Object] - the view component
+   * -  Returns [Dynamic] - the View Component
    */
-  Object getViewComponent();
+  Dynamic getViewComponent();
 
   /**
-   * Set the [IMediator]'s view component.
+   * Set the [IMediator]'s [viewComponent].
    * 
-   * Param [Object] - the view component
+   * -  Param [Dynamic] - the [viewComponent].
    */
-  void setViewComponent( Object viewComponent );
+  void setViewComponent( Dynamic viewComponent );
   
   /**
    * List [INotification] interests.
    * 
-   * Returns a [List<String>] of the [INotification] names this [IMediator] has an interest in.
+   * -  Returns [List] - a [List] of the [INotification] names this [IMediator] has an interest in.
    */
   List<String> listNotificationInterests( );
   
   /**
    * Handle an [INotification].
    * 
-   * Param [note] - the [INotification] to be handled
+   * -  Param [note] - the [INotification] to be handled.
    */
   void handleNotification( INotification note );
   
   /**
-   * Called by the [IView] when the [IMediator] is registered
+   * Called by the [IView] when the [IMediator] is registered.
    */ 
   void onRegister( );
 
   /**
-   * Called by the [IView] when the [IMediator] is removed
+   * Called by the [IView] when the [IMediator] is removed.
    */ 
   void onRemove( );   
   
   
   /**
-   * This IMediator's view component
+   * This [IMediator]'s [viewComponent].
    */
   void set viewComponent( Dynamic viewComponent );
   Dynamic get viewComponent();
   
   /**
-   * This IMediator's name
+   * This [IMediator]'s [name].
    */
   void set name( String mediatorName );
   String get name();

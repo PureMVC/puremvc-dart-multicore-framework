@@ -1,15 +1,14 @@
 /**
- * A Multiton [IView]IView[IView] implementation.
+ * A PureMVC MultiCore [IView] implementation.
  * 
  * In PureMVC, [IView] implementors assume these responsibilities:
- * 
- * In PureMVC, the [View] class assumes these responsibilities:
- * - Maintain a cache of [IMediator] instances.
- * - Provide methods for registering, retrieving, and removing [IMediators].
- * - Managing the observer lists for each [INotification] in the application.
- * - Providing a method for attaching [IObservers] to an [INotification]'s observer list.
- * - Providing a method for broadcasting an [INotification].
- * - Notifying the [IObservers] of a given [INotification] when it broadcast.
+ *
+ * -  Maintain a cache of [IMediator] instances.
+ * -  Provide methods for registering, retrieving, and removing [IMediator]s.
+ * -  Managing the [IObserver] lists for each [INotification].
+ * -  Providing a method for attaching [IObserver]s to an [INotification]'s [IObserver] list.
+ * -  Providing a method for broadcasting an [INotification] to each of the [IObserver]s in a list.
+ * -  Notifying the [IObservers] of a given [INotification] when it broadcast.
  * 
  * See [IMediator], [IObserver], [INotification]
  */
@@ -19,16 +18,14 @@ class MVCView implements IView
   /**
    * Constructor. 
    * 
-   * This [IView] implementation is a Multiton, 
-   * so you should not call the constructor 
-   * directly, but instead call the static Multiton 
-   * [getInstance] method
+   * This [IView] implementation is a Multiton, so you should not call the constructor directly, 
+   * but instead call the static [getInstance] method.
    * 
-   * Throws [ViewExistsError] if instance for this Multiton key has already been constructed
+   * -  Throws [MultitonViewExistsError] if instance for this Multiton key has already been constructed
    */
   MVCView( String key )
   {
-    if (instanceMap[ key ] != null) throw new ViewExistsError();
+    if (instanceMap[ key ] != null) throw new MultitonViewExistsError();
     multitonKey = key;
     instanceMap[ multitonKey ] = this;
     mediatorMap = new Map<String,IMediator>();
@@ -39,31 +36,29 @@ class MVCView implements IView
   /**
    * Initialize the Multiton View instance.
    * 
-   * Called automatically by the constructor, this
-   * is your opportunity to initialize the Multiton
-   * instance in your subclass without overriding the
-   * constructor.
+   * Called automatically by the constructor, this is your opportunity to initialize the Multiton
+   * instance in your subclass without overriding the constructor.
    */
   void initializeView(  ){}
 
   /**
-   * View Multiton Factory method.
+   * [IView] Multiton Factory method.
    * 
-   * Returns [IView] the [IView] instance for the given multitonKey
+   * -  Returns the [IView] Multiton instance for the specified key. 
    */
   static IView getInstance( String key )
   {
+    if ( key == null || key == "" ) return null;
     if ( instanceMap == null ) instanceMap = new Map<String,IView>();
     if ( instanceMap[ key ] == null ) instanceMap[ key ] = new MVCView( key );
     return instanceMap[ key ];
   }
           
   /**
-   * Register an [IObserver] to be notified
-   * of [INotifications] with a given name.
+   * Register an [IObserver] to be notified of [INotification]s with a given name.
    * 
-   * Param [noteName] - the name of the [INotifications] to notify this [IObserver] of
-   * Param [observer] - the [IObserver] to register
+   * -  Param [noteName] - the name of the [INotification] to notify this [IObserver] of.
+   * -  Param [observer] - the [IObserver] to register.
    */
   void registerObserver( String noteName, IObserver observer )
   {
@@ -73,15 +68,14 @@ class MVCView implements IView
     observerMap[ noteName ].add( observer );
   }
 
-
   /**
-   * Notify the [IObservers] for a particular [INotification].
+   * Notify the [IObserver]s for a particular [INotification].
    * 
-   * All previously attached [IObservers] for this [INotification]'s
+   * All previously attached [IObserver]s for this [INotification]'s
    * list are notified and are passed a reference to the [INotification] in 
    * the order in which they were registered.
    * 
-   * Param [note] - the [INotification] to notify [IObservers] of.
+   * -  Param [note] - the [INotification] to notify [IObservers] of.
    */
   void notifyObservers( INotification note )
   {
@@ -107,10 +101,10 @@ class MVCView implements IView
   }
                   
   /**
-   * Remove an [IObserver] from the observer list for a given [Notification] name.
+   * Remove an [IObserver] from the list for a given [INotification] name.
    * 
-   * Param [notificationName] - which observer list to remove from 
-   * Param [notifyContext] - remove the observers with this object as their notifyContext
+   * -  Param [noteName] - which [IObserver] list to remove from. 
+   * -  Param [notifyContext] - remove [IObserver]s with this object as the [notifyContext].
    */
   void removeObserver( String noteName, Object notifyContext )
   {
@@ -137,27 +131,25 @@ class MVCView implements IView
   } 
 
   /**
-   * Register an [IMediator] instance with the [View].
+   * Register an [IMediator] instance with the [IView].
    * 
    * Registers the [IMediator] so that it can be retrieved by name,
-   * and further interrogates the [IMediator] for its 
-   * [INotification] interests.
+   * and interrogates the [IMediator] for its [INotification] interests.
    * 
-   * If the [IMediator] returns any [INotification] 
+   * If the [IMediator] returns a list of [INotification] 
    * names to be notified about, an [Observer] is created encapsulating 
    * the [IMediator] instance's [handleNotification] method 
-   * and registering it as an [Observer] for all [INotifications] the 
+   * and registering it as an [IObserver] for all [INotification]s the 
    * [IMediator] is interested in.
    * 
-   * Param [mediatorName] - the name to associate with this [IMediator] instance
-   * Param [mediator] - a reference to the [IMediator] instance
+   * -  Param [mediator] - a reference to the [IMediator] instance.
    */
   void registerMediator( IMediator mediator )
   {
-  
-    // do not allow re-registration (you must to removeMediator fist)
+    // do not allow re-registration (you must call removeMediator first)
     if ( mediatorMap[ mediator.getName() ] != null ) return;
     
+    // Initialize with multiton key
     mediator.initializeNotifier( multitonKey );
 
     // Register the Mediator for retrieval by name
@@ -183,10 +175,10 @@ class MVCView implements IView
   }
 
   /**
-   * Retrieve an [IMediator] from the [View].
+   * Retrieve an [IMediator] from the [IView].
    * 
-   * Param [mediatorName] - the name of the [IMediator] instance to retrieve.
-   * Returns the [IMediator] instance previously registered in this core with the given [mediatorName].
+   * -  Param [mediatorName] - the name of the [IMediator] instance to retrieve.
+   * -  Returns [IMediator] - the [IMediator] instance previously registered in this core with the given [mediatorName].
    */
   IMediator retrieveMediator( String mediatorName )
   {
@@ -194,10 +186,10 @@ class MVCView implements IView
   }
 
   /**
-   * Remove an [IMediator] from the [View].
+   * Remove an [IMediator] from the [IView].
    * 
-   * Param [mediatorName] - name of the [IMediator] instance to be removed.
-   * Returns the [IMediator] that was removed from this core's [IView]
+   * -  Param [mediatorName] - name of the [IMediator] instance to be removed.
+   * -  Returns [IMediator] - the [IMediator] that was removed from this core's [IView].
    */
   IMediator removeMediator( String mediatorName )
   {
@@ -226,10 +218,10 @@ class MVCView implements IView
   }
                   
   /**
-   * Check if a [Mediator] is registered or not
+   * Check if an [IMediator] is registered with the [IView].
    * 
-   * Param [mediatorName]
-   * Returns [bool] - whether a [Mediator] is registered in this core with the given [mediatorName].
+   * -  Param [mediatorName] - the name of the [IMediator] you're looking for. 
+   * -  Returns [bool] - whether an [IMediator] is registered in this core with the given [mediatorName].
    */
   bool hasMediator( String mediatorName )
   {
@@ -237,33 +229,33 @@ class MVCView implements IView
   }
 
   /**
-   * Remove an IView instance
+   * Remove an [IView] Multiton instance.
    * 
-   * @param multitonKey of IView instance to remove
+   * -  Param [key] - the Multiton key of [IView] instance to remove.
    */
   static void removeView( String key )
   {
       instanceMap[ key ] = null;
   }
   
-  // Mapping of Mediator names to Mediator instances
+  // Mapping of IMediator names to IMediator instances
   Map<String,IMediator> mediatorMap;
 
-  // Mapping of Notification names to Observer lists
+  // Mapping of INotification names to IObserver lists
   Map<String,List<IObserver>> observerMap;
   
-  // Multiton instance map
+  // Multiton IView instance map
   static Map<String,IView> instanceMap;
 
-  // The Multiton Key for this Core
+  // The Multiton key for this Core
   String multitonKey;
 }
 
-class ViewExistsError {
-  const ViewExistsError();
+class MultitonViewExistsError {
+  const MultitonViewExistsError();
 
   String toString() {
-    return "View instance for this Multiton key already constructed!";
+    return "IViewMultiton instance already constructed for this key.";
   }
 }
 
