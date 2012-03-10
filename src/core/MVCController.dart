@@ -1,5 +1,5 @@
 /**
- * A Multiton <code>IController</code> implementation.
+ * A Multiton [IController] implementation.
  * 
  * In PureMVC, an [IController] implementor 
  * follows the 'Command and Controller' strategy, and 
@@ -23,12 +23,12 @@ class MVCController implements IController
    * directly, but instead call the static [getInstance] method, 
    * passing the unique key for this instance 
    * 
-   * Throws [ControllerExistsError] Error if instance for this Multiton key has already been constructed
+   * Throws [MultitonControllerExistsError] Error if instance for this Multiton key has already been constructed
    * 
    */
   MVCController( String key )
   {
-    if ( instanceMap[ key ] != null ) throw new ControllerExistsError();
+    if ( instanceMap[ key ] != null ) throw new MultitonControllerExistsError();
     multitonKey = key;
     instanceMap[ multitonKey ] = this;
     commandMap = new Map<String,Function>();    
@@ -147,8 +147,8 @@ class MVCController implements IController
 
 }
 
-class ControllerExistsError {
-  const ControllerExistsError();
+class MultitonControllerExistsError {
+  const MultitonControllerExistsError();
 
   String toString() {
     return "Controller instance for this Multiton key already constructed!";

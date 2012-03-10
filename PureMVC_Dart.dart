@@ -8,36 +8,61 @@ class PureMVC_Dart {
 
   void test() 
   {
-    write("Testing");
-
-    // Get a Facade
     String multitonKey = "Test Core";
-    IFacade facade = MVCFacade.getInstance( multitonKey );
-    write ("Facade created");
+    String dataPoint1 = "Hello";
+    String dataPoint2 = "World";
+    String proxyName = "DataProxy";
+    List<String> retrievedObject;
+    String badJuju = "";
     
-    // Create some data 
-    List<String> dataObject = new List<String>();
-    dataObject.add("Hello");
-    dataObject.add("World");
-    write ("Data Object created");
-    
-    // Register a Proxy to hold the data
-    String proxyName = "MessageProxy";
-    IProxy proxy = new MVCProxy( proxyName, dataObject );
-    write( "Proxy created");
-    
-    facade.registerProxy( proxy );
-    write ("Proxy registered");
-    
-    // Now retrieve the Proxy
-    IProxy retrievedProxy = facade.retrieveProxy( proxyName );
-    write ("Proxy retrieved");
+    try {
+      // Get a Facade
+      IFacade facade = MVCFacade.getInstance( multitonKey );
+      write ("Facade created for ${multitonKey}.");
+      
+      // Create some data 
+      List<String> dataObject = new List<String>();
+      write ("Data Object (List&ltString&gt) created.");
+      dataObject.add(dataPoint1);
+      write ("Data point added '${dataPoint1}'.");
+      dataObject.add(dataPoint2);
+      write ("Data point added '${dataPoint2}'.");
+      
+      // Register a Proxy to hold the data
+      IProxy proxy = new MVCProxy( proxyName, dataObject );
+      write( "Proxy '${proxyName}' created with for Data Object.");
+      facade.registerProxy( proxy );
+      write ("Proxy '${proxyName}' registered with Model, via Facade.");
+      
+      // Now retrieve the Proxy
+      IProxy retrievedProxy = facade.retrieveProxy( proxyName );
+      write ("Proxy '${proxyName}' retrieved from Model, via Facade.");
+      
+      // And get the data
+      retrievedObject = retrievedProxy.getData();
+      write ("Data Object (List&ltString&gt) retrieved from ${proxyName}");
+      write("Data Object (List&ltString&gt) Length: " + retrievedObject.length );
+      write("Contents: ${retrievedObject[0]} ${retrievedObject[1]}");
 
-    List<String> retrievedObject = retrievedProxy.getData();
-    write ("Data Object retrieved");
+      // Prove errors will be reported
+      // throw "Fungers! I've got jelly in my ears!";
+      
+    } catch (var e) {
+      // Catch any error
+      badJuju = e.toString();
+      
+    } finally {
+      // Report final status 
+      if ( badJuju.length == 0 && retrievedObject != null 
+           && retrievedObject[0] == dataPoint1 
+           && retrievedObject[1] == dataPoint2 ){
+        write( "<P/><B>Science!</B> PureMVC is purring like a kitten. Take her out for a spin!");
+      } else {
+        write( "<P/><B>Claptrap!</B> Someone's thrown a spanner in the works.");
+        if( badJuju.length>0 ) write( "<B>Bad juju reported:</B> ${badJuju}");
+      }
+    }
     
-    write("List Length: " + retrievedObject.length );
-
   }
 
   void write(String message) {
