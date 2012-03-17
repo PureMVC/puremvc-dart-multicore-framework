@@ -1,13 +1,18 @@
 PureMVC Port to Dart by Cliff Hall
 PureMVC - Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
-Release Date: 3/11/12
+Release Date: 3/17/12
     Platform: Google Dart
      Version: 1
-    Revision: 1
+    Revision: 2
      Authors: Cliff Hall <cliff@puremvc.org>
      License: Creative Commons Attribution 3.0 United States License
 --------------------------------------------------------------------------
+1.2   Included .project and .children so that Dart Editor can
+	  run the framework verification page (PureMVC_Dart.dart).
+	  The need for these files should be eliminated in a future
+	  version of the editor, but they are required now.
+	  
 1.1   Lots of updates and corrections to the documentation.
 
 	  Moved classes and interfaces into the folder locations of the 
