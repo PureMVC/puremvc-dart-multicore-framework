@@ -1,4 +1,4 @@
-PureMVC Port to Javascript by David Foley, Frédéric Saunier, & Alain Duchesneau
+PureMVC Port to Dart by Cliff Hall
 PureMVC - Copyright(c) 2006-2012 Futurescale, Inc., Some rights reserved.
 --------------------------------------------------------------------------
  Reuse governed by Creative Commons Attribution 3.0 United States License

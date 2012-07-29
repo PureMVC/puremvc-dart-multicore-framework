@@ -41,7 +41,7 @@ class PureMVC_Dart {
       // And get the data
       retrievedObject = retrievedProxy.getData();
       write ("Data Object (List&ltString&gt) retrieved from ${proxyName}");
-      write("Data Object (List&ltString&gt) Length: " + retrievedObject.length );
+      write("Data Object (List&ltString&gt) Length: ${retrievedObject.length}" );
       write("Contents: ${retrievedObject[0]} ${retrievedObject[1]}");
 
       // Prove errors will be reported
@@ -67,7 +67,7 @@ class PureMVC_Dart {
 
   void write(String message) {
     // the HTML library defines a global "document" variable
-    document.query('#status').innerHTML = document.query('#status').innerHTML + "<br/>" + message;
+    document.query('#status').innerHTML = "${document.query('#status').innerHTML} <br/> ${message}";
   }
 }
 
