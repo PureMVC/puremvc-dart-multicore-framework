@@ -1,6 +1,3 @@
-#import('package:unittest/unittest.dart');
-#import('package:puremvc/puremvc.dart');
-
 class MVCNotificationTest 
 {
   _tests() 

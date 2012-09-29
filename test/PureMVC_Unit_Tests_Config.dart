@@ -1,4 +1,3 @@
-#import('package:unittest/unittest.dart');
 class PureMVC_Unit_Tests_Config extends Configuration
 {
 
@@ -14,13 +13,13 @@ class PureMVC_Unit_Tests_Config extends Configuration
   
   void onTestResult( TestCase testCase )
   {
-    appendRow("<TR><TH BGCOLOR=${(testCase.result == 'pass')?'green':'red'}>${testCase.result}</TH><TD COLSPAN='3'>${testCase.description}</TD></TR>");
+    appendRow("<TR><TH BGCOLOR=${(testCase.result == 'pass')?'33FF00':'FF3333'}>${testCase.result}</TH><TD COLSPAN='3'>${testCase.description}</TD></TR>");
     super.onTestResult(testCase);
   }
   
   void onDone(int passed, int failed, int errors, List results, String uncaughtError)
   {
-    writeResult("<TH COLSPAN='4' ALIGN='left' BGCOLOR=${(failed == 0)?'green':'red'}>PASSED: ${passed} ... FAILED: ${failed}</TH>");
+    writeResult("<TH COLSPAN='4' ALIGN='left' BGCOLOR=${(failed == 0)?'33FF00':'FF3333'}>PASSED: ${passed} ... FAILED: ${failed}</TH>");
   }
   void writeStatus(String message) {
     document.query('#status').innerHTML = message;

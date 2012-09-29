@@ -2,10 +2,10 @@
 #import('dart:html');
 
 // The Unit Testing Framework for Dart
-#import("package:unittest");
+#import("package:unittest/unittest.dart");
 
 // PureMVC Framework for Dart
-#import("package:puremvc");
+#import("package:puremvc/puremvc.dart");
 
 // PureMVC Unit Tests
 #source('PureMVC_Unit_Tests_Config.dart');

@@ -1,12 +1,12 @@
 #import('dart:html');
 #import('package:puremvc/puremvc.dart');
 
-class PureMVC_Dart {
+class PureMVC_Dart_Verify {
 
-  PureMVC_Dart() {
+  PureMVC_Dart_Verify() {
   }
 
-  void test()
+  void verify()
   {
     String multitonKey = "Test Core";
     String dataPoint1 = "Hello";
@@ -16,34 +16,37 @@ class PureMVC_Dart {
     String badJuju = "";
 
     try {
+      write ("<UL>");
+      
       // Get a Facade
       IFacade facade = MVCFacade.getInstance( multitonKey );
-      write ("Facade created for ${multitonKey}.");
+      write ("<LI>Facade created for ${multitonKey}.");
 
       // Create some data
       List<String> dataObject = new List<String>();
-      write ("Data Object (List&ltString&gt) created.");
+      write ("<LI>Data Object (List&ltString&gt) created.</LI>");
       dataObject.add(dataPoint1);
-      write ("Data point added '${dataPoint1}'.");
+      write ("<LI>Data point added '${dataPoint1}'.</LI>");
       dataObject.add(dataPoint2);
-      write ("Data point added '${dataPoint2}'.");
+      write ("<LI>Data point added '${dataPoint2}'.</LI>");
 
       // Register a Proxy to hold the data
       IProxy proxy = new MVCProxy( proxyName, dataObject );
-      write( "Proxy '${proxyName}' created with for Data Object.");
+      write( "<LI>Proxy '${proxyName}' created with for Data Object.</LI>");
       facade.registerProxy( proxy );
-      write ("Proxy '${proxyName}' registered with Model, via Facade.");
+      write ("<LI>Proxy '${proxyName}' registered with Model, via Facade.</LI>");
 
       // Now retrieve the Proxy
       IProxy retrievedProxy = facade.retrieveProxy( proxyName );
-      write ("Proxy '${proxyName}' retrieved from Model, via Facade.");
+      write ("<LI>Proxy '${proxyName}' retrieved from Model, via Facade.</LI>");
 
       // And get the data
       retrievedObject = retrievedProxy.getData();
-      write ("Data Object (List&ltString&gt) retrieved from ${proxyName}");
-      write("Data Object (List&ltString&gt) Length: ${retrievedObject.length}" );
-      write("Contents: ${retrievedObject[0]} ${retrievedObject[1]}");
+      write ("<LI>Data Object (List&ltString&gt) retrieved from ${proxyName}</LI>");
+      write("<LI>Data Object (List&ltString&gt) Length: ${retrievedObject.length}</LI>" );
+      write("<LI>Contents: ${retrievedObject[0]} ${retrievedObject[1]}</LI>");
 
+      write ("</UL>");
       // Prove errors will be reported
       // throw "Fungers! I've got jelly in my ears!";
 
@@ -67,10 +70,10 @@ class PureMVC_Dart {
 
   void write(String message) {
     // the HTML library defines a global "document" variable
-    document.query('#text').innerHTML = "${document.query('#text').innerHTML} <br/> ${message}";
+    document.query('#text').innerHTML = "${document.query('#text').innerHTML}${message}";
   }
 }
 
 void main() {
-  new PureMVC_Dart().test();
+  new PureMVC_Dart_Verify().verify();
 }
