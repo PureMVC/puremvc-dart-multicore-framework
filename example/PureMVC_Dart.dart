@@ -1,5 +1,5 @@
 #import('dart:html');
-#import('src/puremvc.dart');
+#import('package:puremvc/puremvc.dart');
 
 class PureMVC_Dart {
 
@@ -67,7 +67,7 @@ class PureMVC_Dart {
 
   void write(String message) {
     // the HTML library defines a global "document" variable
-    document.query('#status').innerHTML = "${document.query('#status').innerHTML} <br/> ${message}";
+    document.query('#text').innerHTML = "${document.query('#text').innerHTML} <br/> ${message}";
   }
 }
 
