@@ -11,7 +11,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * [Reverse Text](https://github.com/PureMVC/puremvc-dart-demo-reversetext/wiki)
 
 ## Status
-Production - [Version 1.3](https://github.com/PureMVC/puremvc-dart-multicore-framework/blob/master/version.txt)
+Production - [Version 2.0.0](https://github.com/PureMVC/puremvc-dart-multicore-framework/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [Google Dart](http://www.dartlang.org)
