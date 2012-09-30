@@ -1,9 +1,10 @@
-Copyright(c) 2006-2012 Futurescale, Inc.,  All rights reserved.
+PureMVC MultiCore Framework for Dart
 --------------------------------------------------------------------------
 Release Date: 9/29/12
     Platform: Google Dart
      Version: 2
     Revision: 0
+       Minor: 0
      Authors: Cliff Hall <cliff@puremvc.org>
      License: BSD 3-Clause
 --------------------------------------------------------------------------

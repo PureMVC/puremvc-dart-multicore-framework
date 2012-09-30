@@ -17,7 +17,7 @@ Production - [Version 2.0.0](https://github.com/PureMVC/puremvc-dart-multicore-f
 * [Google Dart](http://www.dartlang.org)
 
 ## License
-Copyright(c) 2006-2012 Futurescale, Inc.
+* PureMVC Framework - Copyright(c) 2006-2012 [Futurescale, Inc](http://futurescale.com).
 All rights reserved.
 
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
