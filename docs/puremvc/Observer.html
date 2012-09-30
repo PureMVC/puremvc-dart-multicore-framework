@@ -1,0 +1,220 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Observer Class / puremvc Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="puremvc" data-type="Observer">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../puremvc.html">puremvc</a> &rsaquo; <a href="../puremvc/Observer.html">Observer</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../puremvc.html">puremvc</a></h2><ul class="icon">
+<li><a href="../puremvc/Controller.html"><div class="icon-class"></div>Controller</a></li>
+<li><a href="../puremvc/Facade.html"><div class="icon-class"></div>Facade</a></li>
+<li><a href="../puremvc/ICommand.html"><div class="icon-interface"></div>ICommand</a></li>
+<li><a href="../puremvc/IController.html"><div class="icon-interface"></div>IController</a></li>
+<li><a href="../puremvc/IFacade.html"><div class="icon-interface"></div>IFacade</a></li>
+<li><a href="../puremvc/IMediator.html"><div class="icon-interface"></div>IMediator</a></li>
+<li><a href="../puremvc/IModel.html"><div class="icon-interface"></div>IModel</a></li>
+<li><a href="../puremvc/INotification.html"><div class="icon-interface"></div>INotification</a></li>
+<li><a href="../puremvc/INotifier.html"><div class="icon-interface"></div>INotifier</a></li>
+<li><a href="../puremvc/IObserver.html"><div class="icon-interface"></div>IObserver</a></li>
+<li><a href="../puremvc/IProxy.html"><div class="icon-interface"></div>IProxy</a></li>
+<li><a href="../puremvc/IView.html"><div class="icon-interface"></div>IView</a></li>
+<li><a href="../puremvc/MacroCommand.html"><div class="icon-class"></div>MacroCommand</a></li>
+<li><a href="../puremvc/Mediator.html"><div class="icon-class"></div>Mediator</a></li>
+<li><a href="../puremvc/Model.html"><div class="icon-class"></div>Model</a></li>
+<li><a href="../puremvc/MultitonErrorControllerExists.html"><div class="icon-class"></div>MultitonErrorControllerExists</a></li>
+<li><a href="../puremvc/MultitonErrorFacadeExists.html"><div class="icon-class"></div>MultitonErrorFacadeExists</a></li>
+<li><a href="../puremvc/MultitonErrorModelExists.html"><div class="icon-class"></div>MultitonErrorModelExists</a></li>
+<li><a href="../puremvc/MultitonErrorNotifierLacksKey.html"><div class="icon-class"></div>MultitonErrorNotifierLacksKey</a></li>
+<li><a href="../puremvc/MultitonErrorViewExists.html"><div class="icon-class"></div>MultitonErrorViewExists</a></li>
+<li><a href="../puremvc/Notification.html"><div class="icon-class"></div>Notification</a></li>
+<li><a href="../puremvc/Notifier.html"><div class="icon-class"></div>Notifier</a></li>
+<li><div class="icon-class"></div><strong>Observer</strong></li>
+<li><a href="../puremvc/Proxy.html"><div class="icon-class"></div>Proxy</a></li>
+<li><a href="../puremvc/SimpleCommand.html"><div class="icon-class"></div>SimpleCommand</a></li>
+<li><a href="../puremvc/View.html"><div class="icon-class"></div>View</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Observer</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>A base <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> implementation.</p>
+<p>In PureMVC, <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> implementors assume these responsibilities:</p><ul><li>Encapsulate the notification (callback) method of the interested object.</li><li>Encapsulate the notification context (this) of the interested object.</li><li>Provide methods for setting the interested object's notification method and context.</li><li>Provide a method for notifying the interested object.</li></ul>
+<p>The Observer Pattern as implemented within PureMVC exists
+to support publish/subscribe communication between actors.</p>
+<p>An <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> is an object that encapsulates information
+about an interested object with a notification (callback)
+method that should be called when an <a class="crossref" href="../puremvc/INotification.html">INotification</a> is
+broadcast. The <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> then acts as a conduit for
+notifying the interested object.</p>
+<p><a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s can receive <a class="crossref" href="../puremvc/Notification.html">Notification</a>s by having their
+<a class="crossref" href="../puremvc/Observer.html#notifyObserver">notifyObserver</a> method invoked, passing in an object
+implementing the <a class="crossref" href="../puremvc/INotification.html">INotification</a> interface.</p>
+<p>See <a class="crossref" href="../puremvc/IView.html">IView</a>, <a class="crossref" href="../puremvc/INotification.html">INotification</a></p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../puremvc/IObserver.html">IObserver</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Observer">
+<span class="show-code">Code</span>
+new <strong>Observer</strong>(<a href="http://api.dartlang.org/dart_core/Function.html">Function</a> notifyMethod, [<a href="http://api.dartlang.org/dart_core/Object.html">Object</a> notifyContext]) <a class="anchor-link" href="#Observer"
+              title="Permalink to Observer.Observer">#</a></h4>
+<div class="doc">
+<p>Constructor.</p>
+<p>The notifyMethod method on the interested object should take
+one parameter of type <a class="crossref" href="../puremvc/INotification.html">INotification</a></p>
+<p>Param 
+<span class="param">notifyMethod</span> the callback method
+Param 
+<span class="param">notifyContext</span> the caller object</p>
+<pre class="source">
+Observer( Function this.notifyMethod, [Object this.notifyContext] ){}
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="compareNotifyContext">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>compareNotifyContext</strong>(<a href="http://api.dartlang.org/dart_core/Object.html">Object</a> object) <a class="anchor-link" href="#compareNotifyContext"
+              title="Permalink to Observer.compareNotifyContext">#</a></h4>
+<div class="doc">
+<p>Compare a given object to the <a href="caller">notifyContext</a> object.</p><ul><li>Param <code>Object</code> - the object to compare.</li><li>Returns <code>bool</code> - whether the given object and the <a href="caller">notifyContext</a> are the same.</li></ul>
+<pre class="source">
+bool compareNotifyContext( Object object )
+{
+     return object === notifyContext;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getNotifyContext">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Object.html">Object</a> <strong>getNotifyContext</strong>() <a class="anchor-link" href="#getNotifyContext"
+              title="Permalink to Observer.getNotifyContext">#</a></h4>
+<div class="doc">
+<p>Get the notification context.</p><ul><li>Returns <code>Object</code> - the caller.</li></ul>
+<pre class="source">
+Object getNotifyContext()
+{
+    return notifyContext;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getNotifyMethod">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Function.html">Function</a> <strong>getNotifyMethod</strong>() <a class="anchor-link" href="#getNotifyMethod"
+              title="Permalink to Observer.getNotifyMethod">#</a></h4>
+<div class="doc">
+<p>Get the notification method.</p><ul><li>Returns <code>Function</code> - the notification (callback) method of the interested object.</li></ul>
+<pre class="source">
+Function getNotifyMethod()
+{
+  return notifyMethod;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="notifyObserver">
+<span class="show-code">Code</span>
+void <strong>notifyObserver</strong>(<a href="../puremvc/INotification.html">INotification</a> notification) <a class="anchor-link" href="#notifyObserver"
+              title="Permalink to Observer.notifyObserver">#</a></h4>
+<div class="doc">
+<p>Notify the interested object.</p><ul><li>Param <code>note</code> - the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to pass to the caller's <a class="crossref" href="../puremvc/Observer.html#notifyMethod">notifyMethod</a>.</li></ul>
+<pre class="source">
+void notifyObserver( INotification notification )
+{
+  if ( notifyContext != null ) getNotifyMethod()( notification );  
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setNotifyContext">
+<span class="show-code">Code</span>
+void <strong>setNotifyContext</strong>(<a href="http://api.dartlang.org/dart_core/Object.html">Object</a> caller) <a class="anchor-link" href="#setNotifyContext"
+              title="Permalink to Observer.setNotifyContext">#</a></h4>
+<div class="doc">
+<p>Set the notification context.</p><ul><li>Param 
+<span class="param">caller</span> - a reference to the object to be notified.</li></ul>
+<pre class="source">
+void setNotifyContext( Object caller )
+{
+  notifyContext = caller;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setNotifyMethod">
+<span class="show-code">Code</span>
+void <strong>setNotifyMethod</strong>(<a href="http://api.dartlang.org/dart_core/Function.html">Function</a> callback) <a class="anchor-link" href="#setNotifyMethod"
+              title="Permalink to Observer.setNotifyMethod">#</a></h4>
+<div class="doc">
+<p>Set the notification method.</p>
+<p>The notification method should take one parameter of type <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</p><ul><li>Param <a class="crossref" href="../puremvc/Observer.html#notifyMethod">notifyMethod</a> - the notification (callback) method of the interested object.</li></ul>
+<pre class="source">
+void setNotifyMethod( Function callback )
+{
+  notifyMethod = callback;
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="notifyContext">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Object.html">Object</a>         <strong>notifyContext</strong> <a class="anchor-link"
+            href="#notifyContext"
+            title="Permalink to Observer.notifyContext">#</a>
+        </h4>
+        <div class="doc">
+<p>This <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>'s <a class="crossref" href="../puremvc/Observer.html#notifyContext">notifyContext</a> (i.e., caller)</p>
+<pre class="source">
+Object notifyContext;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="notifyMethod">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Function.html">Function</a>         <strong>notifyMethod</strong> <a class="anchor-link"
+            href="#notifyMethod"
+            title="Permalink to Observer.notifyMethod">#</a>
+        </h4>
+        <div class="doc">
+<p>This <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>'s <a class="crossref" href="../puremvc/Observer.html#notifyMethod">notifyMethod</a> (i.e., callback)</p>
+<pre class="source">
+Function notifyMethod;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-09-29 20:40:10.653</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

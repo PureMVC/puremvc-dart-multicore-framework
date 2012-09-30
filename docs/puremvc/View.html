@@ -1,0 +1,407 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>View Class / puremvc Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="puremvc" data-type="View">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../puremvc.html">puremvc</a> &rsaquo; <a href="../puremvc/View.html">View</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../puremvc.html">puremvc</a></h2><ul class="icon">
+<li><a href="../puremvc/Controller.html"><div class="icon-class"></div>Controller</a></li>
+<li><a href="../puremvc/Facade.html"><div class="icon-class"></div>Facade</a></li>
+<li><a href="../puremvc/ICommand.html"><div class="icon-interface"></div>ICommand</a></li>
+<li><a href="../puremvc/IController.html"><div class="icon-interface"></div>IController</a></li>
+<li><a href="../puremvc/IFacade.html"><div class="icon-interface"></div>IFacade</a></li>
+<li><a href="../puremvc/IMediator.html"><div class="icon-interface"></div>IMediator</a></li>
+<li><a href="../puremvc/IModel.html"><div class="icon-interface"></div>IModel</a></li>
+<li><a href="../puremvc/INotification.html"><div class="icon-interface"></div>INotification</a></li>
+<li><a href="../puremvc/INotifier.html"><div class="icon-interface"></div>INotifier</a></li>
+<li><a href="../puremvc/IObserver.html"><div class="icon-interface"></div>IObserver</a></li>
+<li><a href="../puremvc/IProxy.html"><div class="icon-interface"></div>IProxy</a></li>
+<li><a href="../puremvc/IView.html"><div class="icon-interface"></div>IView</a></li>
+<li><a href="../puremvc/MacroCommand.html"><div class="icon-class"></div>MacroCommand</a></li>
+<li><a href="../puremvc/Mediator.html"><div class="icon-class"></div>Mediator</a></li>
+<li><a href="../puremvc/Model.html"><div class="icon-class"></div>Model</a></li>
+<li><a href="../puremvc/MultitonErrorControllerExists.html"><div class="icon-class"></div>MultitonErrorControllerExists</a></li>
+<li><a href="../puremvc/MultitonErrorFacadeExists.html"><div class="icon-class"></div>MultitonErrorFacadeExists</a></li>
+<li><a href="../puremvc/MultitonErrorModelExists.html"><div class="icon-class"></div>MultitonErrorModelExists</a></li>
+<li><a href="../puremvc/MultitonErrorNotifierLacksKey.html"><div class="icon-class"></div>MultitonErrorNotifierLacksKey</a></li>
+<li><a href="../puremvc/MultitonErrorViewExists.html"><div class="icon-class"></div>MultitonErrorViewExists</a></li>
+<li><a href="../puremvc/Notification.html"><div class="icon-class"></div>Notification</a></li>
+<li><a href="../puremvc/Notifier.html"><div class="icon-class"></div>Notifier</a></li>
+<li><a href="../puremvc/Observer.html"><div class="icon-class"></div>Observer</a></li>
+<li><a href="../puremvc/Proxy.html"><div class="icon-class"></div>Proxy</a></li>
+<li><a href="../puremvc/SimpleCommand.html"><div class="icon-class"></div>SimpleCommand</a></li>
+<li><div class="icon-class"></div><strong>View</strong></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>View</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>A PureMVC MultiCore <a class="crossref" href="../puremvc/IView.html">IView</a> implementation.</p>
+<p>In PureMVC, <a class="crossref" href="../puremvc/IView.html">IView</a> implementors assume these responsibilities:</p><ul><li>Maintain a cache of <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instances.</li><li>Provide methods for registering, retrieving, and removing <a class="crossref" href="../puremvc/IMediator.html">IMediator</a>s.</li><li>Managing the <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> lists for each <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</li><li>Providing a method for attaching <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s to an <a class="crossref" href="../puremvc/INotification.html">INotification</a>'s <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> list.</li><li>Providing a method for broadcasting an <a class="crossref" href="../puremvc/INotification.html">INotification</a> to each of the <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s in a list.</li><li>Notifying the <code>IObservers</code> of a given <a class="crossref" href="../puremvc/INotification.html">INotification</a> when it broadcast.</li></ul>
+<p>See <a class="crossref" href="../puremvc/IMediator.html">IMediator</a>, <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>, <a class="crossref" href="../puremvc/INotification.html">INotification</a></p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../puremvc/IView.html">IView</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="View">
+<span class="show-code">Code</span>
+new <strong>View</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#View"
+              title="Permalink to View.View">#</a></h4>
+<div class="doc">
+<p>Constructor.</p>
+<p>This <a class="crossref" href="../puremvc/IView.html">IView</a> implementation is a Multiton, so you should not call the constructor directly,
+but instead call the static <a class="crossref" href="../puremvc/View.html#getInstance">getInstance</a> method.</p><ul><li>Throws <a class="crossref" href="../puremvc/MultitonErrorViewExists.html">MultitonErrorViewExists</a> if instance for this Multiton key has already been constructed</li></ul>
+<pre class="source">
+View( String key )
+{
+  if (instanceMap[ key ] != null) throw new MultitonErrorViewExists();
+  multitonKey = key;
+  instanceMap[ multitonKey ] = this;
+  mediatorMap = new Map&lt;String,IMediator&gt;();
+  observerMap = new Map&lt;String,List&lt;IObserver&gt;&gt;();    
+  initializeView();    
+}
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getInstance">
+<span class="show-code">Code</span>
+<a href="../puremvc/IView.html">IView</a> <strong>getInstance</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#getInstance"
+              title="Permalink to View.getInstance">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../puremvc/IView.html">IView</a> Multiton Factory method.</p><ul><li>Returns the <a class="crossref" href="../puremvc/IView.html">IView</a> Multiton instance for the specified key.</li></ul>
+<pre class="source">
+static IView getInstance( String key )
+{
+  if ( key == null || key == "" ) return null;
+  if ( instanceMap == null ) instanceMap = new Map&lt;String,IView&gt;();
+  if ( instanceMap[ key ] == null ) instanceMap[ key ] = new View( key );
+  return instanceMap[ key ];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeView">
+<span class="show-code">Code</span>
+void <strong>removeView</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#removeView"
+              title="Permalink to View.removeView">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IView.html">IView</a> Multiton instance.</p><ul><li>Param 
+<span class="param">key</span> - the Multiton key of <a class="crossref" href="../puremvc/IView.html">IView</a> instance to remove.</li></ul>
+<pre class="source">
+static void removeView( String key )
+{
+    instanceMap[ key ] = null;
+}
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="instanceMap">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../puremvc/IView.html">IView</a>&gt;         <strong>instanceMap</strong> <a class="anchor-link"
+            href="#instanceMap"
+            title="Permalink to View.instanceMap">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static Map&lt;String,IView&gt; instanceMap;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hasMediator">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasMediator</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> mediatorName) <a class="anchor-link" href="#hasMediator"
+              title="Permalink to View.hasMediator">#</a></h4>
+<div class="doc">
+<p>Check if an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> is registered with the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p><ul><li>Param 
+<span class="param">mediatorName</span> - the name of the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> you're looking for.</li><li>Returns <code>bool</code> - whether an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> is registered in this core with the given 
+<span class="param">mediatorName</span>.</li></ul>
+<pre class="source">
+bool hasMediator( String mediatorName )
+{
+    return mediatorMap[ mediatorName ] != null;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeView">
+<span class="show-code">Code</span>
+void <strong>initializeView</strong>() <a class="anchor-link" href="#initializeView"
+              title="Permalink to View.initializeView">#</a></h4>
+<div class="doc">
+<p>Initialize the Multiton View instance.</p>
+<p>Called automatically by the constructor, this is your opportunity to initialize the Multiton
+instance in your subclass without overriding the constructor.</p>
+<pre class="source">
+void initializeView(  ){}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="notifyObservers">
+<span class="show-code">Code</span>
+void <strong>notifyObservers</strong>(<a href="../puremvc/INotification.html">INotification</a> note) <a class="anchor-link" href="#notifyObservers"
+              title="Permalink to View.notifyObservers">#</a></h4>
+<div class="doc">
+<p>Notify the <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s for a particular <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</p>
+<p>All previously attached <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s for this <a class="crossref" href="../puremvc/INotification.html">INotification</a>'s
+list are notified and are passed a reference to the <a class="crossref" href="../puremvc/INotification.html">INotification</a> in
+the order in which they were registered.</p><ul><li>Param 
+<span class="param">note</span> - the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to notify <code>IObservers</code> of.</li></ul>
+<pre class="source">
+void notifyObservers( INotification note )
+{
+  // Get a reference to the observers list for this notification name
+  List&lt;IObserver&gt; observers_ref = observerMap[ note.getName() ];
+  if( observers_ref != null ) 
+  {
+    // Copy observers from reference array to working array, 
+    // since the reference array may change during the notification loop
+    List&lt;IObserver&gt; observers = new List&lt;IObserver&gt;(); 
+    IObserver observer;
+    for (var i = 0; i &lt; observers_ref.length; i++) { 
+      observer = observers_ref[ i ];
+      observers.add( observer );
+    }
+      
+    // Notify Observers from the working array                
+    for (var i = 0; i &lt; observers.length; i++) {
+        observer = observers[ i ];
+        observer.notifyObserver( note );
+    }
+  }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerMediator">
+<span class="show-code">Code</span>
+void <strong>registerMediator</strong>(<a href="../puremvc/IMediator.html">IMediator</a> mediator) <a class="anchor-link" href="#registerMediator"
+              title="Permalink to View.registerMediator">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance with the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p>
+<p>Registers the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> so that it can be retrieved by name,
+and interrogates the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> for its <a class="crossref" href="../puremvc/INotification.html">INotification</a> interests.</p>
+<p>If the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> returns a list of <a class="crossref" href="../puremvc/INotification.html">INotification</a>
+names to be notified about, an <a class="crossref" href="../puremvc/Observer.html">Observer</a> is created encapsulating
+the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance's <code>handleNotification</code> method
+and registering it as an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> for all <a class="crossref" href="../puremvc/INotification.html">INotification</a>s the
+<a class="crossref" href="../puremvc/IMediator.html">IMediator</a> is interested in.</p><ul><li>Param 
+<span class="param">mediator</span> - a reference to the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance.</li></ul>
+<pre class="source">
+void registerMediator( IMediator mediator )
+{
+  // do not allow re-registration (you must call removeMediator first)
+  if ( mediatorMap[ mediator.getName() ] != null ) return;
+  
+  // Initialize with multiton key
+  mediator.initializeNotifier( multitonKey );
+
+  // Register the Mediator for retrieval by name
+  mediatorMap[ mediator.getName() ] = mediator;
+  
+  // Get Notification interests, if any.
+  List&lt;String&gt; interests = mediator.listNotificationInterests();
+
+  // Register Mediator as an observer for each notification of interests
+  if ( interests.length &gt; 0 ) 
+  {
+    // Create Observer referencing this mediator's handlNotification method
+    IObserver observer = new Observer( mediator.handleNotification, mediator );
+
+    // Register Mediator as Observer for its list of Notification interests
+    for ( var i=0;  i&lt;interests.length; i++ ) {
+        registerObserver( interests[i],  observer );
+    }            
+  }
+  
+  // alert the mediator that it has been registered
+  mediator.onRegister();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerObserver">
+<span class="show-code">Code</span>
+void <strong>registerObserver</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName, <a href="../puremvc/IObserver.html">IObserver</a> observer) <a class="anchor-link" href="#registerObserver"
+              title="Permalink to View.registerObserver">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> to be notified of <a class="crossref" href="../puremvc/INotification.html">INotification</a>s with a given name.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to notify this <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> of.</li><li>Param 
+<span class="param">observer</span> - the <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> to register.</li></ul>
+<pre class="source">
+void registerObserver( String noteName, IObserver observer )
+{
+  if( observerMap[ noteName ] == null ) {
+    observerMap[ noteName ] = new List&lt;IObserver&gt;();
+  }
+  observerMap[ noteName ].add( observer );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeMediator">
+<span class="show-code">Code</span>
+<a href="../puremvc/IMediator.html">IMediator</a> <strong>removeMediator</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> mediatorName) <a class="anchor-link" href="#removeMediator"
+              title="Permalink to View.removeMediator">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> from the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p><ul><li>Param 
+<span class="param">mediatorName</span> - name of the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance to be removed.</li><li>Returns <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> - the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> that was removed from this core's <a class="crossref" href="../puremvc/IView.html">IView</a>.</li></ul>
+<pre class="source">
+IMediator removeMediator( String mediatorName )
+{
+    // Retrieve the named mediator
+    IMediator mediator = mediatorMap[ mediatorName ];
+    
+    if ( mediator != null ) 
+    {
+      // for every notification this mediator is interested in...
+      List&lt;String&gt; interests = mediator.listNotificationInterests();
+      for ( var i=0; i&lt;interests.length; i++ ) 
+      {
+        // remove the observer linking the mediator 
+        // to the notification interest
+        removeObserver( interests[i], mediator );
+      }    
+      
+      // remove the mediator from the map        
+      mediatorMap[ mediatorName ] = null;
+
+      // alert the mediator that it has been removed
+      mediator.onRemove();
+    }
+    
+    return mediator;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeObserver">
+<span class="show-code">Code</span>
+void <strong>removeObserver</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName, <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> notifyContext) <a class="anchor-link" href="#removeObserver"
+              title="Permalink to View.removeObserver">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> from the list for a given <a class="crossref" href="../puremvc/INotification.html">INotification</a> name.</p><ul><li>Param 
+<span class="param">noteName</span> - which <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> list to remove from.</li><li>Param 
+<span class="param">notifyContext</span> - remove <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s with this object as the 
+<span class="param">notifyContext</span>.</li></ul>
+<pre class="source">
+void removeObserver( String noteName, Object notifyContext )
+{
+    // the observer list for the notification under inspection
+    List&lt;IObserver&gt; observers = observerMap[ noteName ];
+
+    // find the observer for the notifyContext
+    for ( var i=0; i&lt;observers.length; i++ ) 
+    {
+        if ( observers[i].compareNotifyContext( notifyContext ) == true ) 
+        {
+            // there can only be one Observer for a given notifyContext 
+            // in any given Observer list, so remove it and break
+            observers.removeRange(i, 1);
+            break;
+        }
+    }
+
+    // Also, when a Notification's Observer list length falls to 
+    // zero, delete the notification key from the observer map
+    if ( observers.length == 0 ) {
+        observerMap[ noteName ] = null;        
+    }
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="retrieveMediator">
+<span class="show-code">Code</span>
+<a href="../puremvc/IMediator.html">IMediator</a> <strong>retrieveMediator</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> mediatorName) <a class="anchor-link" href="#retrieveMediator"
+              title="Permalink to View.retrieveMediator">#</a></h4>
+<div class="doc">
+<p>Retrieve an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> from the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p><ul><li>Param 
+<span class="param">mediatorName</span> - the name of the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance to retrieve.</li><li>Returns <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> - the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance previously registered in this core with the given 
+<span class="param">mediatorName</span>.</li></ul>
+<pre class="source">
+IMediator retrieveMediator( String mediatorName )
+{
+    return mediatorMap[ mediatorName ];
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="mediatorMap">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../puremvc/IMediator.html">IMediator</a>&gt;         <strong>mediatorMap</strong> <a class="anchor-link"
+            href="#mediatorMap"
+            title="Permalink to View.mediatorMap">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+Map&lt;String,IMediator&gt; mediatorMap;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="multitonKey">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>multitonKey</strong> <a class="anchor-link"
+            href="#multitonKey"
+            title="Permalink to View.multitonKey">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+String multitonKey;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="observerMap">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="http://api.dartlang.org/dart_core/List.html">List</a>&lt;<a href="../puremvc/IObserver.html">IObserver</a>&gt;&gt;         <strong>observerMap</strong> <a class="anchor-link"
+            href="#observerMap"
+            title="Permalink to View.observerMap">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+Map&lt;String,List&lt;IObserver&gt;&gt; observerMap;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-09-29 20:40:10.177</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

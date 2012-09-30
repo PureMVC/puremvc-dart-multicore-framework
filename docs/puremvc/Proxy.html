@@ -1,0 +1,192 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Proxy Class / puremvc Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="puremvc" data-type="Proxy">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../puremvc.html">puremvc</a> &rsaquo; <a href="../puremvc/Proxy.html">Proxy</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../puremvc.html">puremvc</a></h2><ul class="icon">
+<li><a href="../puremvc/Controller.html"><div class="icon-class"></div>Controller</a></li>
+<li><a href="../puremvc/Facade.html"><div class="icon-class"></div>Facade</a></li>
+<li><a href="../puremvc/ICommand.html"><div class="icon-interface"></div>ICommand</a></li>
+<li><a href="../puremvc/IController.html"><div class="icon-interface"></div>IController</a></li>
+<li><a href="../puremvc/IFacade.html"><div class="icon-interface"></div>IFacade</a></li>
+<li><a href="../puremvc/IMediator.html"><div class="icon-interface"></div>IMediator</a></li>
+<li><a href="../puremvc/IModel.html"><div class="icon-interface"></div>IModel</a></li>
+<li><a href="../puremvc/INotification.html"><div class="icon-interface"></div>INotification</a></li>
+<li><a href="../puremvc/INotifier.html"><div class="icon-interface"></div>INotifier</a></li>
+<li><a href="../puremvc/IObserver.html"><div class="icon-interface"></div>IObserver</a></li>
+<li><a href="../puremvc/IProxy.html"><div class="icon-interface"></div>IProxy</a></li>
+<li><a href="../puremvc/IView.html"><div class="icon-interface"></div>IView</a></li>
+<li><a href="../puremvc/MacroCommand.html"><div class="icon-class"></div>MacroCommand</a></li>
+<li><a href="../puremvc/Mediator.html"><div class="icon-class"></div>Mediator</a></li>
+<li><a href="../puremvc/Model.html"><div class="icon-class"></div>Model</a></li>
+<li><a href="../puremvc/MultitonErrorControllerExists.html"><div class="icon-class"></div>MultitonErrorControllerExists</a></li>
+<li><a href="../puremvc/MultitonErrorFacadeExists.html"><div class="icon-class"></div>MultitonErrorFacadeExists</a></li>
+<li><a href="../puremvc/MultitonErrorModelExists.html"><div class="icon-class"></div>MultitonErrorModelExists</a></li>
+<li><a href="../puremvc/MultitonErrorNotifierLacksKey.html"><div class="icon-class"></div>MultitonErrorNotifierLacksKey</a></li>
+<li><a href="../puremvc/MultitonErrorViewExists.html"><div class="icon-class"></div>MultitonErrorViewExists</a></li>
+<li><a href="../puremvc/Notification.html"><div class="icon-class"></div>Notification</a></li>
+<li><a href="../puremvc/Notifier.html"><div class="icon-class"></div>Notifier</a></li>
+<li><a href="../puremvc/Observer.html"><div class="icon-class"></div>Observer</a></li>
+<li><div class="icon-class"></div><strong>Proxy</strong></li>
+<li><a href="../puremvc/SimpleCommand.html"><div class="icon-class"></div>SimpleCommand</a></li>
+<li><a href="../puremvc/View.html"><div class="icon-class"></div>View</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Proxy</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>A base <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> implementation.</p>
+<p>In PureMVC, <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> implementors assume these responsibilities:</p><ul><li>Implement a common method which returns the name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>.</li><li>Provide methods for setting and getting a Data Object.</li></ul>
+<p>Additionally, <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>s typically:</p><ul><li>Provide methods for manipulating the Data Object and referencing it by type.</li><li>Generate <a class="crossref" href="../puremvc/INotification.html">INotification</a>s when their Data Object changes.</li><li>Expose their name as a <code>static final String</code> called <code>NAME</code>.</li><li>Encapsulate interaction with local or remote services used to fetch and persist data.</li></ul>
+<p>See <a class="crossref" href="../puremvc/IModel.html">IModel</a></p>
+</div>
+<h3>Extends</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../puremvc/Notifier.html">Notifier</a></span>&nbsp;&gt;&nbsp;<span class="type-box"><span class="icon-class"></span><strong>Proxy</strong></span></p>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../puremvc/IProxy.html">IProxy</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Proxy">
+<span class="show-code">Code</span>
+new <strong>Proxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> name, [data]) <a class="anchor-link" href="#Proxy"
+              title="Permalink to Proxy.Proxy">#</a></h4>
+<div class="doc">
+<p>Constructor</p><ul><li>Param 
+<span class="param">name</span> - the 
+<span class="param">name</span> this <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> will be registered with.</li><li>Param 
+<span class="param">data</span> - the Data Object (optional)</li></ul>
+<pre class="source">
+Proxy( String this.name, [Dynamic this.data] ){ }
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="getData">
+<span class="show-code">Code</span>
+<strong>getData</strong>() <a class="anchor-link" href="#getData"
+              title="Permalink to Proxy.getData">#</a></h4>
+<div class="doc">
+<p>Get the <code>dataObject</code>.</p><ul><li>Returns <code>Dynamic</code> - the <code>dataObject</code>.</li></ul>
+<pre class="source">
+Dynamic getData() 
+{
+    return data;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="getName">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>getName</strong>() <a class="anchor-link" href="#getName"
+              title="Permalink to Proxy.getName">#</a></h4>
+<div class="doc">
+<p>Get the [IProxy] [name].</p><ul><li>Returns <code>String</code> - the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance <a class="crossref" href="../puremvc/Proxy.html#name">name</a>.</li></ul>
+<pre class="source">
+String getName()
+{
+    return name;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onRegister">
+<span class="show-code">Code</span>
+void <strong>onRegister</strong>() <a class="anchor-link" href="#onRegister"
+              title="Permalink to Proxy.onRegister">#</a></h4>
+<div class="doc">
+<p>Called by the <a class="crossref" href="../puremvc/IModel.html">IModel</a> when the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> is registered.</p>
+<p>Override in your subclass and add code to be run at registration time.</p>
+<pre class="source">
+void onRegister(){}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="onRemove">
+<span class="show-code">Code</span>
+void <strong>onRemove</strong>() <a class="anchor-link" href="#onRemove"
+              title="Permalink to Proxy.onRemove">#</a></h4>
+<div class="doc">
+<p>Called by the <a class="crossref" href="../puremvc/IModel.html">IModel</a> when the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> is removed</p>
+<pre class="source">
+void onRemove(){}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="setData">
+<span class="show-code">Code</span>
+void <strong>setData</strong>(dataObject) <a class="anchor-link" href="#setData"
+              title="Permalink to Proxy.setData">#</a></h4>
+<div class="doc">
+<p>Set the 
+<span class="param">dataObject</span>.</p><ul><li>Param <code>Dynamic</code> - the 
+<span class="param">dataObject</span> this <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> will tend.</li></ul>
+<pre class="source">
+void setData( Dynamic dataObject )
+{
+   data = dataObject;
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="data">
+<span class="show-code">Code</span>
+var         <strong>data</strong> <a class="anchor-link"
+            href="#data"
+            title="Permalink to Proxy.data">#</a>
+        </h4>
+        <div class="doc">
+<p>This <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>'s <code>dataObject</code>.</p>
+<pre class="source">
+Dynamic data;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="name">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>name</strong> <a class="anchor-link"
+            href="#name"
+            title="Permalink to Proxy.name">#</a>
+        </h4>
+        <div class="doc">
+<p>This <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>'s <a class="crossref" href="../puremvc/Proxy.html#name">name</a>.</p>
+<pre class="source">
+String name;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-09-29 20:40:10.316</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

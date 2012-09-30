@@ -1,6 +1,6 @@
 /**
- * The interface definition for a PureMVC MultiCore Notification.
- *
+ * A base [INotification] implementation.
+ * 
  * The Observer Pattern as implemented within PureMVC exists 
  * to support publish/subscribe communication between actors.
  * 
@@ -15,63 +15,82 @@
  * the usual way, and may lead to the broadcast of [INotification]s 
  * that trigger [ICommand]s or notify [IMediator]s. 
  * 
- * See [IView], [IObserver] 
+ * See [IView], [IObserver], [Notification] 
  */
-interface INotification
+class Notification implements INotification
 {
+    /**
+     * Constructor. 
+     * 
+     * -  Param [name] - name of the [INotification].
+     * -  Param [body] - the [INotification] body. (optional)
+     * -  Param [type] - the type of the [INotification] (optional)
+     */
+    Notification( String this.name, [Dynamic this.body, String this.type] ){}
     
     /**
      * Get the [name] of the [INotification].
      * 
      * -  Returns [String] - the name of the [INotification].
      */
-    String getName();
-
+    String getName()
+    {
+        return name;
+    }
+    
     /**
      * Set the [body] of the [INotification].
      * 
      * -  Param [body] - the body of the [INotification].
      */
-    void setBody( Object body );
+    void setBody( Dynamic bodyObject )
+    {
+        body = bodyObject;
+    }
     
     /**
      * Get the [body] of the [INotification].
      * 
      * -  Returns [Dynamic] - the body of the [INotification]. 
      */
-    Dynamic getBody();
+    Dynamic getBody()
+    {
+        return body;
+    }
     
     /**
      * Set the [type] of the [INotification].
      * 
      * -  Param [type] - the type of the [INotification].
      */
-    void setType( String type );
+    void setType( String noteType )
+    {
+        type = noteType;
+    }
     
     /**
      * Get the [type] of the [INotification].
      * 
      * -  Returns [String] - the type of the [INotification].  
      */
-    String getType();
-
-    /**
-     * This [INotifications]'s [body]
-     */
-    void set body( Dynamic bodyObject );
-    Dynamic get body();
+    String getType()
+    {
+        return type;
+    }
     
     /**
      * This [INotifications]'s [name]
      */
-    void set name( String noteName );
-    String get name();
+    String name;
     
     /**
      * This [INotifications]'s [type]
      */
-    void set type( String noteType );
-    String get type();
+    String type;
     
+    /**
+     * This [INotifications]'s [body]
+     */
+    Dynamic body;
     
 }

@@ -1,8 +1,8 @@
 /**
  * The interface definition for a PureMVC [Notifier].
  * 
- * [MacroCommand], [Command], [Mediator] and [Proxy]
- * all have a need to send [Notifications].
+ * [MacroCommand], [SimpleCommand], [Mediator] and [Proxy]
+ * all have a need to send [Notification]s.
  * 
  * The [INotifier] interface provides a common method called
  * [sendNotification] that relieves implementation code of 

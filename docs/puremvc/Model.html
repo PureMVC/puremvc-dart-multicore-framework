@@ -1,0 +1,264 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Model Class / puremvc Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="puremvc" data-type="Model">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../puremvc.html">puremvc</a> &rsaquo; <a href="../puremvc/Model.html">Model</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../puremvc.html">puremvc</a></h2><ul class="icon">
+<li><a href="../puremvc/Controller.html"><div class="icon-class"></div>Controller</a></li>
+<li><a href="../puremvc/Facade.html"><div class="icon-class"></div>Facade</a></li>
+<li><a href="../puremvc/ICommand.html"><div class="icon-interface"></div>ICommand</a></li>
+<li><a href="../puremvc/IController.html"><div class="icon-interface"></div>IController</a></li>
+<li><a href="../puremvc/IFacade.html"><div class="icon-interface"></div>IFacade</a></li>
+<li><a href="../puremvc/IMediator.html"><div class="icon-interface"></div>IMediator</a></li>
+<li><a href="../puremvc/IModel.html"><div class="icon-interface"></div>IModel</a></li>
+<li><a href="../puremvc/INotification.html"><div class="icon-interface"></div>INotification</a></li>
+<li><a href="../puremvc/INotifier.html"><div class="icon-interface"></div>INotifier</a></li>
+<li><a href="../puremvc/IObserver.html"><div class="icon-interface"></div>IObserver</a></li>
+<li><a href="../puremvc/IProxy.html"><div class="icon-interface"></div>IProxy</a></li>
+<li><a href="../puremvc/IView.html"><div class="icon-interface"></div>IView</a></li>
+<li><a href="../puremvc/MacroCommand.html"><div class="icon-class"></div>MacroCommand</a></li>
+<li><a href="../puremvc/Mediator.html"><div class="icon-class"></div>Mediator</a></li>
+<li><div class="icon-class"></div><strong>Model</strong></li>
+<li><a href="../puremvc/MultitonErrorControllerExists.html"><div class="icon-class"></div>MultitonErrorControllerExists</a></li>
+<li><a href="../puremvc/MultitonErrorFacadeExists.html"><div class="icon-class"></div>MultitonErrorFacadeExists</a></li>
+<li><a href="../puremvc/MultitonErrorModelExists.html"><div class="icon-class"></div>MultitonErrorModelExists</a></li>
+<li><a href="../puremvc/MultitonErrorNotifierLacksKey.html"><div class="icon-class"></div>MultitonErrorNotifierLacksKey</a></li>
+<li><a href="../puremvc/MultitonErrorViewExists.html"><div class="icon-class"></div>MultitonErrorViewExists</a></li>
+<li><a href="../puremvc/Notification.html"><div class="icon-class"></div>Notification</a></li>
+<li><a href="../puremvc/Notifier.html"><div class="icon-class"></div>Notifier</a></li>
+<li><a href="../puremvc/Observer.html"><div class="icon-class"></div>Observer</a></li>
+<li><a href="../puremvc/Proxy.html"><div class="icon-class"></div>Proxy</a></li>
+<li><a href="../puremvc/SimpleCommand.html"><div class="icon-class"></div>SimpleCommand</a></li>
+<li><a href="../puremvc/View.html"><div class="icon-class"></div>View</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Model</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>A PureMVC MultiCore <a class="crossref" href="../puremvc/IModel.html">IModel</a> implementation.</p>
+<p>In PureMVC, <a class="crossref" href="../puremvc/IModel.html">IModel</a> implementors provide
+access to <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> objects by named lookup.</p>
+<p>An <a class="crossref" href="../puremvc/IModel.html">IModel</a> assumes these responsibilities:</p><ul><li>Maintain a cache of <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instances.</li><li>Provide methods for registering, retrieving, and removing <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instances.</li></ul>
+<p>Your application must register <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instances
+with the <a class="crossref" href="../puremvc/IModel.html">IModel</a>. Typically, you use an
+<a class="crossref" href="../puremvc/ICommand.html">ICommand</a> to create and register <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>
+instances once the <a class="crossref" href="../puremvc/IFacade.html">IFacade</a> has initialized the core
+actors.</p>
+<p>See <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>, <a class="crossref" href="../puremvc/IFacade.html">IFacade</a></p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../puremvc/IModel.html">IModel</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Model">
+<span class="show-code">Code</span>
+new <strong>Model</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#Model"
+              title="Permalink to Model.Model">#</a></h4>
+<div class="doc">
+<p>Constructor.</p>
+<p>This <a class="crossref" href="../puremvc/IModel.html">IModel</a> implementation is a Multiton, so you should not call the constructor directly,
+but instead call the static <a class="crossref" href="../puremvc/Model.html#getInstance">getInstance</a> method.</p><ul><li>Throws <a class="crossref" href="../puremvc/MultitonErrorModelExists.html">MultitonErrorModelExists</a> if instance for this Multiton key instance has already been constructed.</li></ul>
+<pre class="source">
+Model( String key )
+{      
+  if ( instanceMap[ key ] != null ) throw new MultitonErrorModelExists();
+  multitonKey = key;
+  instanceMap[ multitonKey ] = this;
+  proxyMap = new Map&lt;String,IProxy&gt;();    
+  initializeModel();    
+}
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getInstance">
+<span class="show-code">Code</span>
+<a href="../puremvc/IModel.html">IModel</a> <strong>getInstance</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#getInstance"
+              title="Permalink to Model.getInstance">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../puremvc/IModel.html">IModel</a> Multiton Factory method.</p><ul><li>Returns the <a class="crossref" href="../puremvc/IModel.html">IModel</a> Multiton instance for the specified key.</li></ul>
+<pre class="source">
+static IModel getInstance( String key ) 
+{
+  if ( key == null || key == "" ) return null;
+  if ( instanceMap == null ) instanceMap = new Map&lt;String,IModel&gt;();
+  if ( instanceMap[ key ] == null ) instanceMap[ key ] = new Model( key );
+  return instanceMap[ key ];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeModel">
+<span class="show-code">Code</span>
+void <strong>removeModel</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#removeModel"
+              title="Permalink to Model.removeModel">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IModel.html">IModel</a> instance.</p><ul><li>Param 
+<span class="param">key</span> - the multitonKey of <a class="crossref" href="../puremvc/IModel.html">IModel</a> instance to remove</li></ul>
+<pre class="source">
+static void removeModel( String key )
+{
+  instanceMap[ key ] = null;
+}
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="instanceMap">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../puremvc/IModel.html">IModel</a>&gt;         <strong>instanceMap</strong> <a class="anchor-link"
+            href="#instanceMap"
+            title="Permalink to Model.instanceMap">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static Map&lt;String,IModel&gt; instanceMap;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hasProxy">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasProxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> proxyName) <a class="anchor-link" href="#hasProxy"
+              title="Permalink to Model.hasProxy">#</a></h4>
+<div class="doc">
+<p>Check if an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> is registered with the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxyName</span> - the name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance you're looking for.</li><li>Returns <code>bool</code> - whether an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> is currently registered with the given 
+<span class="param">proxyName</span>.</li></ul>
+<pre class="source">
+bool hasProxy( String proxyName )
+{
+  return proxyMap[ proxyName ] != null;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeModel">
+<span class="show-code">Code</span>
+void <strong>initializeModel</strong>() <a class="anchor-link" href="#initializeModel"
+              title="Permalink to Model.initializeModel">#</a></h4>
+<div class="doc">
+<p>Initialize the <a class="crossref" href="../puremvc/IModel.html">IModel</a> instance.</p>
+<p>Called automatically by the constructor, this is your opportunity to initialize the Singleton
+instance in your subclass without overriding the constructor.</p>
+<pre class="source">
+void initializeModel(  ){ }
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerProxy">
+<span class="show-code">Code</span>
+void <strong>registerProxy</strong>(<a href="../puremvc/IProxy.html">IProxy</a> proxy) <a class="anchor-link" href="#registerProxy"
+              title="Permalink to Model.registerProxy">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance with the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxy</span> - an object reference to be held by the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</li></ul>
+<pre class="source">
+void registerProxy( IProxy proxy )
+{
+  proxy.initializeNotifier( multitonKey );
+  proxyMap[ proxy.getName() ] = proxy;
+  proxy.onRegister();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeProxy">
+<span class="show-code">Code</span>
+<a href="../puremvc/IProxy.html">IProxy</a> <strong>removeProxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> proxyName) <a class="anchor-link" href="#removeProxy"
+              title="Permalink to Model.removeProxy">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance from the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxyName</span> - name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance to be removed.</li><li>Returns <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> - the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> that was removed from the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</li></ul>
+<pre class="source">
+IProxy removeProxy( String proxyName )
+{
+  IProxy proxy = proxyMap[ proxyName ];
+  if ( proxy != null ) 
+  {
+    proxyMap[ proxyName ] = null;
+    proxy.onRemove();
+  }
+  return proxy;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="retrieveProxy">
+<span class="show-code">Code</span>
+<a href="../puremvc/IProxy.html">IProxy</a> <strong>retrieveProxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> proxyName) <a class="anchor-link" href="#retrieveProxy"
+              title="Permalink to Model.retrieveProxy">#</a></h4>
+<div class="doc">
+<p>Retrieve an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance from the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxyName</span> - the name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance to retrieve.</li><li>Returns the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance previously registered with the given 
+<span class="param">proxyName</span>.</li></ul>
+<pre class="source">
+IProxy retrieveProxy( String proxyName )
+{
+  return proxyMap[ proxyName ];
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="multitonKey">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>multitonKey</strong> <a class="anchor-link"
+            href="#multitonKey"
+            title="Permalink to Model.multitonKey">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+String multitonKey;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="proxyMap">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../puremvc/IProxy.html">IProxy</a>&gt;         <strong>proxyMap</strong> <a class="anchor-link"
+            href="#proxyMap"
+            title="Permalink to Model.proxyMap">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+Map&lt;String,IProxy&gt; proxyMap;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-09-29 20:40:10.376</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

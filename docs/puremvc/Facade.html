@@ -1,0 +1,577 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>Facade Class / puremvc Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="puremvc" data-type="Facade">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../puremvc.html">puremvc</a> &rsaquo; <a href="../puremvc/Facade.html">Facade</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../puremvc.html">puremvc</a></h2><ul class="icon">
+<li><a href="../puremvc/Controller.html"><div class="icon-class"></div>Controller</a></li>
+<li><div class="icon-class"></div><strong>Facade</strong></li>
+<li><a href="../puremvc/ICommand.html"><div class="icon-interface"></div>ICommand</a></li>
+<li><a href="../puremvc/IController.html"><div class="icon-interface"></div>IController</a></li>
+<li><a href="../puremvc/IFacade.html"><div class="icon-interface"></div>IFacade</a></li>
+<li><a href="../puremvc/IMediator.html"><div class="icon-interface"></div>IMediator</a></li>
+<li><a href="../puremvc/IModel.html"><div class="icon-interface"></div>IModel</a></li>
+<li><a href="../puremvc/INotification.html"><div class="icon-interface"></div>INotification</a></li>
+<li><a href="../puremvc/INotifier.html"><div class="icon-interface"></div>INotifier</a></li>
+<li><a href="../puremvc/IObserver.html"><div class="icon-interface"></div>IObserver</a></li>
+<li><a href="../puremvc/IProxy.html"><div class="icon-interface"></div>IProxy</a></li>
+<li><a href="../puremvc/IView.html"><div class="icon-interface"></div>IView</a></li>
+<li><a href="../puremvc/MacroCommand.html"><div class="icon-class"></div>MacroCommand</a></li>
+<li><a href="../puremvc/Mediator.html"><div class="icon-class"></div>Mediator</a></li>
+<li><a href="../puremvc/Model.html"><div class="icon-class"></div>Model</a></li>
+<li><a href="../puremvc/MultitonErrorControllerExists.html"><div class="icon-class"></div>MultitonErrorControllerExists</a></li>
+<li><a href="../puremvc/MultitonErrorFacadeExists.html"><div class="icon-class"></div>MultitonErrorFacadeExists</a></li>
+<li><a href="../puremvc/MultitonErrorModelExists.html"><div class="icon-class"></div>MultitonErrorModelExists</a></li>
+<li><a href="../puremvc/MultitonErrorNotifierLacksKey.html"><div class="icon-class"></div>MultitonErrorNotifierLacksKey</a></li>
+<li><a href="../puremvc/MultitonErrorViewExists.html"><div class="icon-class"></div>MultitonErrorViewExists</a></li>
+<li><a href="../puremvc/Notification.html"><div class="icon-class"></div>Notification</a></li>
+<li><a href="../puremvc/Notifier.html"><div class="icon-class"></div>Notifier</a></li>
+<li><a href="../puremvc/Observer.html"><div class="icon-class"></div>Observer</a></li>
+<li><a href="../puremvc/Proxy.html"><div class="icon-class"></div>Proxy</a></li>
+<li><a href="../puremvc/SimpleCommand.html"><div class="icon-class"></div>SimpleCommand</a></li>
+<li><a href="../puremvc/View.html"><div class="icon-class"></div>View</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>Facade</strong>
+          Class
+        </h2>
+        
+<div class="doc">
+<p>A base Multiton <a class="crossref" href="../puremvc/IFacade.html">IFacade</a> implementation.</p>
+<p>The Facade Pattern suggests providing a single
+class to act as a central point of communication
+for a subsystem.</p>
+<p>In PureMVC, the <a class="crossref" href="../puremvc/IFacade.html">IFacade</a> acts as an interface between
+the core MVC actors <a class="crossref" href="../puremvc/IModel.html">IModel</a>, <a class="crossref" href="../puremvc/IView.html">IView</a>, <a class="crossref" href="../puremvc/IController.html">IController</a>, and
+the rest of your application, which (aside from view components
+and data objects) is mostly expressed with <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>s,
+<a class="crossref" href="../puremvc/IMediator.html">IMediator</a>s, and <a class="crossref" href="../puremvc/IProxy.html">IProxy</a>s.</p>
+<p>This means you don't need to communicate with the <a class="crossref" href="../puremvc/IModel.html">IModel</a>,
+<a class="crossref" href="../puremvc/IView.html">IView</a>, <a class="crossref" href="../puremvc/IController.html">IController</a> instances directly, you can just go through
+the <a class="crossref" href="../puremvc/IFacade.html">IFacade</a>. And conveniently, <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>s, <a class="crossref" href="../puremvc/IMediator.html">IMediator</a>s, and
+<a class="crossref" href="../puremvc/IProxy.html">IProxy</a>s all have a built-in reference to their <a class="crossref" href="../puremvc/IFacade.html">IFacade</a> after
+initialization, so they're all plugged in and ready to communicate
+with each other.</p>
+<p>See <a class="crossref" href="../puremvc/Model.html">Model</a>, <a class="crossref" href="../puremvc/View.html">View</a>, <a class="crossref" href="../puremvc/Controller.html">Controller</a>, <a class="crossref" href="../puremvc/INotification.html">INotification</a>, <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>, <a class="crossref" href="../puremvc/IMediator.html">IMediator</a>, <a class="crossref" href="../puremvc/IProxy.html">IProxy</a></p>
+</div>
+<h3>Implements</h3>
+<p>
+<span class="type-box"><span class="icon-interface"></span><a href="../puremvc/IFacade.html">IFacade</a></span></p>
+<h3>Constructors</h3>
+<div class="method"><h4 id="Facade">
+<span class="show-code">Code</span>
+new <strong>Facade</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#Facade"
+              title="Permalink to Facade.Facade">#</a></h4>
+<div class="doc">
+<p>Constructor.</p>
+<p>This <a class="crossref" href="../puremvc/IFacade.html">IFacade</a> implementation is a Multiton,  so you should not call the constructor directly,
+but instead call the static <a class="crossref" href="../puremvc/Facade.html#getInstance">getInstance</a> method.</p><ul><li>Throws <a class="crossref" href="../puremvc/MultitonErrorFacadeExists.html">MultitonErrorFacadeExists</a> if instance for this Multiton key has already been constructed.</li></ul>
+<pre class="source">
+Facade( String key ) 
+{
+  if ( instanceMap[ key ] != null ) throw new MultitonErrorFacadeExists();
+  initializeNotifier( key );
+  instanceMap[ multitonKey ] = this;
+  initializeFacade();    
+}
+</pre>
+</div>
+</div>
+<h3>Static Methods</h3>
+<div class="method"><h4 id="getInstance">
+<span class="show-code">Code</span>
+<a href="../puremvc/IFacade.html">IFacade</a> <strong>getInstance</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#getInstance"
+              title="Permalink to Facade.getInstance">#</a></h4>
+<div class="doc">
+<p><a class="crossref" href="../puremvc/IFacade.html">IFacade</a> Multiton Factory method</p><ul><li>Returns the <a class="crossref" href="../puremvc/IFacade.html">IFacade</a> Multiton instance for the specified key.</li></ul>
+<pre class="source">
+static IFacade getInstance( String key )
+{
+  if ( key == null || key == "" ) return null;
+  if ( instanceMap == null ) instanceMap = new Map&lt;String,IFacade&gt;();
+  if ( instanceMap[ key ] == null ) instanceMap[ key ] = new Facade( key );
+  return instanceMap[ key ];
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasCore">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasCore</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#hasCore"
+              title="Permalink to Facade.hasCore">#</a></h4>
+<div class="doc">
+<p>Check if a Core is registered or not.</p><ul><li>Param 
+<span class="param">key</span> - the Multiton key for the Core.</li><li>Returns <code>bool</code> - whether a Core is registered with the given 
+<span class="param">key</span>.</li></ul>
+<pre class="source">
+static bool hasCore( String key ) 
+{
+  return ( instanceMap[ key ] != null );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeCore">
+<span class="show-code">Code</span>
+void <strong>removeCore</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#removeCore"
+              title="Permalink to Facade.removeCore">#</a></h4>
+<div class="doc">
+<p>Remove a Core.</p>
+<p>Remove the <a class="crossref" href="../puremvc/IModel.html">IModel</a>, <a class="crossref" href="../puremvc/IView.html">IView</a>, <a class="crossref" href="../puremvc/IController.html">IController</a>, and <a class="crossref" href="../puremvc/IFacade.html">IFacade</a>
+instances for the given key.&lt;/P></p><ul><li>Param 
+<span class="param">key</span> - the Multiton key of the Core to remove.</li></ul>
+<pre class="source">
+static void removeCore( String key )
+{
+  if ( instanceMap[ key ] == null ) return;
+  Model.removeModel( key ); 
+  View.removeView( key );
+  Controller.removeController( key );
+  instanceMap[ key ] = null;
+}
+</pre>
+</div>
+</div>
+<h3>Static Fields</h3>
+<div class="field"><h4 id="instanceMap">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/Map.html">Map</a>&lt;<a href="http://api.dartlang.org/dart_core/String.html">String</a>, <a href="../puremvc/IFacade.html">IFacade</a>&gt;         <strong>instanceMap</strong> <a class="anchor-link"
+            href="#instanceMap"
+            title="Permalink to Facade.instanceMap">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+static Map&lt;String,IFacade&gt; instanceMap;
+</pre>
+</div>
+</div>
+<h3>Methods</h3>
+<div class="method"><h4 id="hasCommand">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasCommand</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName) <a class="anchor-link" href="#hasCommand"
+              title="Permalink to Facade.hasCommand">#</a></h4>
+<div class="doc">
+<p>Check if an <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> is registered for a given <a class="crossref" href="../puremvc/INotification.html">INotification</a> name with the <a class="crossref" href="../puremvc/IController.html">IController</a>.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</li><li>Returns <code>bool</code> - whether an <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> is currently registered for the given 
+<span class="param">noteName</span>.</li></ul>
+<pre class="source">
+bool hasCommand( String noteName )
+{
+  return controller.hasCommand( noteName );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasMediator">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasMediator</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> mediatorName) <a class="anchor-link" href="#hasMediator"
+              title="Permalink to Facade.hasMediator">#</a></h4>
+<div class="doc">
+<p>Check if a Mediator is registered or not</p>
+<p>Param 
+<span class="param">mediatorName</span>
+Returns <code>bool</code> - whether an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> is registered in this core with the given 
+<span class="param">mediatorName</span>.</p>
+<pre class="source">
+bool hasMediator( String mediatorName )
+{
+  return view.hasMediator( mediatorName );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasProxy">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasProxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> proxyName) <a class="anchor-link" href="#hasProxy"
+              title="Permalink to Facade.hasProxy">#</a></h4>
+<div class="doc">
+<p>Check if an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> is registered with the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxyName</span> - the name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance you're looking for.</li><li>Returns <code>bool</code> - whether an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> is currently registered with the given 
+<span class="param">proxyName</span>.</li></ul>
+<pre class="source">
+bool hasProxy( String proxyName )
+{
+  return model.hasProxy( proxyName );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeController">
+<span class="show-code">Code</span>
+void <strong>initializeController</strong>() <a class="anchor-link" href="#initializeController"
+              title="Permalink to Facade.initializeController">#</a></h4>
+<div class="doc">
+<p>Initialize the <a class="crossref" href="../puremvc/IController.html">IController</a>.</p>
+<p>Called by the <a class="crossref" href="../puremvc/Facade.html#initializeFacade">initializeFacade</a> method.</p>
+<p>Override this method in a subclass of <a class="crossref" href="../puremvc/Facade.html#Facade">Facade</a> if you want to provide a different <a class="crossref" href="../puremvc/IController.html">IController</a>.</p>
+<pre class="source">
+void initializeController( )
+{
+  if ( controller != null ) return;
+  controller = Controller.getInstance( multitonKey );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeFacade">
+<span class="show-code">Code</span>
+void <strong>initializeFacade</strong>() <a class="anchor-link" href="#initializeFacade"
+              title="Permalink to Facade.initializeFacade">#</a></h4>
+<div class="doc">
+<p>Initialize the Multiton <a class="crossref" href="../puremvc/Facade.html#Facade">Facade</a> instance.</p>
+<p>Called automatically by the constructor. Override in your
+subclass to do any subclass specific initializations. Be
+sure to call <code>super.initializeFacade()</code>, though.</p>
+<pre class="source">
+void initializeFacade(  )
+{
+  initializeModel();
+  initializeController();
+  initializeView();
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeModel">
+<span class="show-code">Code</span>
+void <strong>initializeModel</strong>() <a class="anchor-link" href="#initializeModel"
+              title="Permalink to Facade.initializeModel">#</a></h4>
+<div class="doc">
+<p>Initialize the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p>
+<p>Called by the <a class="crossref" href="../puremvc/Facade.html#initializeFacade">initializeFacade</a> method.</p>
+<p>Override this method in a subclass of <a class="crossref" href="../puremvc/Facade.html#Facade">Facade</a> if you wish to initialize a different <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p>
+<pre class="source">
+void initializeModel( )
+{
+  if ( model != null ) return;
+  model = Model.getInstance( multitonKey );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeNotifier">
+<span class="show-code">Code</span>
+void <strong>initializeNotifier</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#initializeNotifier"
+              title="Permalink to Facade.initializeNotifier">#</a></h4>
+<div class="doc">
+<p>Initialize this <a class="crossref" href="../puremvc/INotifier.html">INotifier</a>.</p>
+<p>This is how an <a class="crossref" href="../puremvc/INotifier.html">INotifier</a> gets its <a class="crossref" href="../puremvc/Facade.html#multitonKey">multitonKey</a>.
+Calls to <a class="crossref" href="../puremvc/Facade.html#sendNotification">sendNotification</a> or to access the
+<code>facade</code> will fail until after this method
+has been called.</p><ul><li>Param 
+<span class="param">key</span> - the <a class="crossref" href="../puremvc/Facade.html#multitonKey">multitonKey</a> for this <a class="crossref" href="../puremvc/INotifier.html">INotifier</a> to use.</li></ul>
+<pre class="source">
+void initializeNotifier( String key )
+{
+  multitonKey = key;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="initializeView">
+<span class="show-code">Code</span>
+void <strong>initializeView</strong>() <a class="anchor-link" href="#initializeView"
+              title="Permalink to Facade.initializeView">#</a></h4>
+<div class="doc">
+<p>Initialize the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p>
+<p>Called by the <a class="crossref" href="../puremvc/Facade.html#initializeFacade">initializeFacade</a> method.</p>
+<p>Override this method in a subclass of <a class="crossref" href="../puremvc/Facade.html#Facade">Facade</a> if you wish to initialize a different <a class="crossref" href="../puremvc/IView.html">IView</a>.</p>
+<pre class="source">
+void initializeView( )
+{
+  if ( view != null ) return;
+  view = View.getInstance( multitonKey );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="notifyObservers">
+<span class="show-code">Code</span>
+void <strong>notifyObservers</strong>(<a href="../puremvc/INotification.html">INotification</a> note) <a class="anchor-link" href="#notifyObservers"
+              title="Permalink to Facade.notifyObservers">#</a></h4>
+<div class="doc">
+<p>Notify <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s.</p>
+<p>This method allows you to send custom <a class="crossref" href="../puremvc/INotification.html">INotification</a> classes using the <a class="crossref" href="../puremvc/IFacade.html">IFacade</a>.</p>
+<p>Usually you should just call <a class="crossref" href="../puremvc/Facade.html#sendNotification">sendNotification</a> and pass the parameters,
+never having to construct an <a class="crossref" href="../puremvc/INotification.html">INotification</a> yourself.</p><ul><li>Param 
+<span class="param">note</span> the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to have the <a class="crossref" href="../puremvc/View.html">View</a> notify <code>Observers</code> of.</li></ul>
+<pre class="source">
+void notifyObservers( INotification note )
+{
+  if ( view != null ) view.notifyObservers( note );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerCommand">
+<span class="show-code">Code</span>
+void <strong>registerCommand</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName, <a href="http://api.dartlang.org/dart_core/Function.html">Function</a> commandFactory) <a class="anchor-link" href="#registerCommand"
+              title="Permalink to Facade.registerCommand">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/INotification.html">INotification</a> to <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping with the <a class="crossref" href="../puremvc/Controller.html">Controller</a>.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to associate the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> with.</li><li>Param 
+<span class="param">commandFactory</span> - a function that creates a new instance of the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>.</li></ul>
+<pre class="source">
+void registerCommand( String noteName, Function commandFactory ) 
+{
+  controller.registerCommand( noteName, commandFactory );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerMediator">
+<span class="show-code">Code</span>
+void <strong>registerMediator</strong>(<a href="../puremvc/IMediator.html">IMediator</a> mediator) <a class="anchor-link" href="#registerMediator"
+              title="Permalink to Facade.registerMediator">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance with the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p>
+<p>Registers the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> so that it can be retrieved by name,
+and interrogates the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> for its <a class="crossref" href="../puremvc/INotification.html">INotification</a> interests.</p>
+<p>If the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> returns a list of <a class="crossref" href="../puremvc/INotification.html">INotification</a>
+names to be notified about, an <a class="crossref" href="../puremvc/Observer.html">Observer</a> is created encapsulating
+the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance's <code>handleNotification</code> method
+and registering it as an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> for all <a class="crossref" href="../puremvc/INotification.html">INotification</a>s the
+<a class="crossref" href="../puremvc/IMediator.html">IMediator</a> is interested in.</p><ul><li>Param 
+<span class="param">mediator</span> - a reference to the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance.</li></ul>
+<pre class="source">
+void registerMediator( IMediator mediator ) 
+{
+  if ( view != null ) view.registerMediator( mediator );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerObserver">
+<span class="show-code">Code</span>
+void <strong>registerObserver</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName, <a href="../puremvc/IObserver.html">IObserver</a> observer) <a class="anchor-link" href="#registerObserver"
+              title="Permalink to Facade.registerObserver">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> to be notified of <a class="crossref" href="../puremvc/INotification.html">INotification</a>s with a given name.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to notify this <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> of.</li><li>Param 
+<span class="param">observer</span> - the <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> to register.</li></ul>
+<pre class="source">
+void registerObserver( String noteName, IObserver observer )
+{
+  view.registerObserver(noteName, observer);
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerProxy">
+<span class="show-code">Code</span>
+void <strong>registerProxy</strong>(<a href="../puremvc/IProxy.html">IProxy</a> proxy) <a class="anchor-link" href="#registerProxy"
+              title="Permalink to Facade.registerProxy">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance with the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxy</span> - an object reference to be held by the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</li></ul>
+<pre class="source">
+void registerProxy( IProxy proxy )
+{
+  model.registerProxy( proxy );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeCommand">
+<span class="show-code">Code</span>
+void <strong>removeCommand</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName) <a class="anchor-link" href="#removeCommand"
+              title="Permalink to Facade.removeCommand">#</a></h4>
+<div class="doc">
+<p>Remove a previously registered <a class="crossref" href="../puremvc/INotification.html">INotification</a> to <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping from the <a class="crossref" href="../puremvc/IController.html">IController</a>.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to remove the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping for</li></ul>
+<pre class="source">
+void removeCommand( String noteName )
+{
+  controller.removeCommand( noteName );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeMediator">
+<span class="show-code">Code</span>
+<a href="../puremvc/IMediator.html">IMediator</a> <strong>removeMediator</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> mediatorName) <a class="anchor-link" href="#removeMediator"
+              title="Permalink to Facade.removeMediator">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> from the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p><ul><li>Param 
+<span class="param">mediatorName</span> - name of the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance to be removed.</li><li>Returns <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> - the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> that was removed from this core's <a class="crossref" href="../puremvc/IView.html">IView</a>.</li></ul>
+<pre class="source">
+IMediator removeMediator( String mediatorName ) 
+{
+  IMediator mediator;
+  if ( view != null ) mediator = view.removeMediator( mediatorName );            
+  return mediator;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeObserver">
+<span class="show-code">Code</span>
+void <strong>removeObserver</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName, <a href="http://api.dartlang.org/dart_core/Object.html">Object</a> notifyContext) <a class="anchor-link" href="#removeObserver"
+              title="Permalink to Facade.removeObserver">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> from the list for a given <a class="crossref" href="../puremvc/INotification.html">INotification</a> name.</p><ul><li>Param 
+<span class="param">noteName</span> - which <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> list to remove from.</li><li>Param 
+<span class="param">notifyContext</span> - remove <a class="crossref" href="../puremvc/IObserver.html">IObserver</a>s with this object as the 
+<span class="param">notifyContext</span>.</li></ul>
+<pre class="source">
+void removeObserver( String noteName, Object notifyContext )
+{
+  view.removeObserver( noteName, notifyContext );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeProxy">
+<span class="show-code">Code</span>
+<a href="../puremvc/IProxy.html">IProxy</a> <strong>removeProxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> proxyName) <a class="anchor-link" href="#removeProxy"
+              title="Permalink to Facade.removeProxy">#</a></h4>
+<div class="doc">
+<p>Remove an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance from the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxyName</span> - name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance to be removed.</li><li>Returns <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> - the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> that was removed from the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</li></ul>
+<pre class="source">
+IProxy removeProxy( String proxyName ) 
+{
+  IProxy proxy;
+  if ( model != null ) proxy = model.removeProxy ( proxyName );    
+  return proxy;
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="retrieveMediator">
+<span class="show-code">Code</span>
+<a href="../puremvc/IMediator.html">IMediator</a> <strong>retrieveMediator</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> mediatorName) <a class="anchor-link" href="#retrieveMediator"
+              title="Permalink to Facade.retrieveMediator">#</a></h4>
+<div class="doc">
+<p>Retrieve an <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> from the <a class="crossref" href="../puremvc/IView.html">IView</a>.</p><ul><li>Param 
+<span class="param">mediatorName</span> - the name of the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance to retrieve.</li><li>Returns  <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> - the <a class="crossref" href="../puremvc/IMediator.html">IMediator</a> instance previously registered in this core with the given 
+<span class="param">mediatorName</span>.</li></ul>
+<pre class="source">
+IMediator retrieveMediator( String mediatorName ) 
+{
+  return view.retrieveMediator( mediatorName );
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="retrieveProxy">
+<span class="show-code">Code</span>
+<a href="../puremvc/IProxy.html">IProxy</a> <strong>retrieveProxy</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> proxyName) <a class="anchor-link" href="#retrieveProxy"
+              title="Permalink to Facade.retrieveProxy">#</a></h4>
+<div class="doc">
+<p>Retrieve an <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance from the <a class="crossref" href="../puremvc/IModel.html">IModel</a>.</p><ul><li>Param 
+<span class="param">proxyName</span> - the name of the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance to retrieve.</li><li>Returns the <a class="crossref" href="../puremvc/IProxy.html">IProxy</a> instance previously registered with the given 
+<span class="param">proxyName</span>.</li></ul>
+<pre class="source">
+IProxy retrieveProxy( String proxyName ) 
+{
+  return model.retrieveProxy( proxyName );    
+}
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="sendNotification">
+<span class="show-code">Code</span>
+void <strong>sendNotification</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName, [body, <a href="http://api.dartlang.org/dart_core/String.html">String</a> type]) <a class="anchor-link" href="#sendNotification"
+              title="Permalink to Facade.sendNotification">#</a></h4>
+<div class="doc">
+<p>Send an <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</p>
+<p>Convenience method to prevent having to construct new
+<a class="crossref" href="../puremvc/INotification.html">INotification</a> instances in our implementation code.</p><ul><li>Param 
+<span class="param">noteName</span> the name of the note to send</li><li>Param 
+<span class="param">body</span> - the body of the note (optional)</li><li>Param 
+<span class="param">type</span> - the type of the note (optional)</li></ul>
+<pre class="source">
+void sendNotification( String noteName, [Dynamic body, String type] )
+{
+  notifyObservers( new Notification( noteName, body, type ) );
+}
+</pre>
+</div>
+</div>
+<h3>Fields</h3>
+<div class="field"><h4 id="controller">
+<span class="show-code">Code</span>
+<a href="../puremvc/IController.html">IController</a>         <strong>controller</strong> <a class="anchor-link"
+            href="#controller"
+            title="Permalink to Facade.controller">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+IController controller;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="model">
+<span class="show-code">Code</span>
+<a href="../puremvc/IModel.html">IModel</a>         <strong>model</strong> <a class="anchor-link"
+            href="#model"
+            title="Permalink to Facade.model">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+IModel model;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="multitonKey">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a>         <strong>multitonKey</strong> <a class="anchor-link"
+            href="#multitonKey"
+            title="Permalink to Facade.multitonKey">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+String multitonKey;
+</pre>
+</div>
+</div>
+<div class="field"><h4 id="view">
+<span class="show-code">Code</span>
+<a href="../puremvc/IView.html">IView</a>         <strong>view</strong> <a class="anchor-link"
+            href="#view"
+            title="Permalink to Facade.view">#</a>
+        </h4>
+        <div class="doc">
+
+<pre class="source">
+IView view;
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-09-29 20:40:10.508</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        

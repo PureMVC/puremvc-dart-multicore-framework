@@ -1,0 +1,153 @@
+        <!DOCTYPE html>
+        <html>
+        <head>
+                <meta charset="utf-8">
+        <title>IController Interface / puremvc Library / Dart Documentation</title>
+        <link rel="stylesheet" type="text/css"
+            href="../styles.css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="../favicon.ico">
+        
+        </head>
+        <body data-library="puremvc" data-type="IController">
+        <div class="page">
+        <div class="header">
+          <a href="../index.html"><div class="logo"></div></a>
+          <a href="../index.html">Dart Documentation</a>
+         &rsaquo; <a href="../puremvc.html">puremvc</a> &rsaquo; <a href="../puremvc/IController.html">IController</a>        <div id="search-box">
+          <input type="search" name="q" id="q" autocomplete="off"
+              class="search-input" placeholder="Search API">
+        </div>
+        
+      </div>
+      <div class="drop-down" id="drop-down"></div>
+      
+        <div class="nav">
+        
+<h2><div class="icon-library"></div><a href="../puremvc.html">puremvc</a></h2><ul class="icon">
+<li><a href="../puremvc/Controller.html"><div class="icon-class"></div>Controller</a></li>
+<li><a href="../puremvc/Facade.html"><div class="icon-class"></div>Facade</a></li>
+<li><a href="../puremvc/ICommand.html"><div class="icon-interface"></div>ICommand</a></li>
+<li><div class="icon-interface"></div><strong>IController</strong></li>
+<li><a href="../puremvc/IFacade.html"><div class="icon-interface"></div>IFacade</a></li>
+<li><a href="../puremvc/IMediator.html"><div class="icon-interface"></div>IMediator</a></li>
+<li><a href="../puremvc/IModel.html"><div class="icon-interface"></div>IModel</a></li>
+<li><a href="../puremvc/INotification.html"><div class="icon-interface"></div>INotification</a></li>
+<li><a href="../puremvc/INotifier.html"><div class="icon-interface"></div>INotifier</a></li>
+<li><a href="../puremvc/IObserver.html"><div class="icon-interface"></div>IObserver</a></li>
+<li><a href="../puremvc/IProxy.html"><div class="icon-interface"></div>IProxy</a></li>
+<li><a href="../puremvc/IView.html"><div class="icon-interface"></div>IView</a></li>
+<li><a href="../puremvc/MacroCommand.html"><div class="icon-class"></div>MacroCommand</a></li>
+<li><a href="../puremvc/Mediator.html"><div class="icon-class"></div>Mediator</a></li>
+<li><a href="../puremvc/Model.html"><div class="icon-class"></div>Model</a></li>
+<li><a href="../puremvc/MultitonErrorControllerExists.html"><div class="icon-class"></div>MultitonErrorControllerExists</a></li>
+<li><a href="../puremvc/MultitonErrorFacadeExists.html"><div class="icon-class"></div>MultitonErrorFacadeExists</a></li>
+<li><a href="../puremvc/MultitonErrorModelExists.html"><div class="icon-class"></div>MultitonErrorModelExists</a></li>
+<li><a href="../puremvc/MultitonErrorNotifierLacksKey.html"><div class="icon-class"></div>MultitonErrorNotifierLacksKey</a></li>
+<li><a href="../puremvc/MultitonErrorViewExists.html"><div class="icon-class"></div>MultitonErrorViewExists</a></li>
+<li><a href="../puremvc/Notification.html"><div class="icon-class"></div>Notification</a></li>
+<li><a href="../puremvc/Notifier.html"><div class="icon-class"></div>Notifier</a></li>
+<li><a href="../puremvc/Observer.html"><div class="icon-class"></div>Observer</a></li>
+<li><a href="../puremvc/Proxy.html"><div class="icon-class"></div>Proxy</a></li>
+<li><a href="../puremvc/SimpleCommand.html"><div class="icon-class"></div>SimpleCommand</a></li>
+<li><a href="../puremvc/View.html"><div class="icon-class"></div>View</a></li>
+</ul>
+</div>
+<div class="content">
+        <h2><strong>IController</strong>
+          Interface
+        </h2>
+        
+<div class="doc">
+<p>The interface definition for a PureMVC MultiCore Controller.</p>
+<p>In PureMVC, an <a class="crossref" href="../puremvc/IController.html">IController</a> implementor
+follows the 'Command and Controller' strategy, and
+assumes these responsibilities:</p><ul><li>Remembering which <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>s are intended to handle which <a class="crossref" href="../puremvc/INotification.html">INotification</a>s.</li><li>Registering itself as an <a class="crossref" href="../puremvc/IObserver.html">IObserver</a> with the <a class="crossref" href="../puremvc/View.html">View</a> for each <a class="crossref" href="../puremvc/INotification.html">INotification</a> that it has an <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping for.</li><li>Creating a new instance of the proper <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> to handle a given <a class="crossref" href="../puremvc/INotification.html">INotification</a> when notified by the <a class="crossref" href="../puremvc/IView.html">IView</a>.</li><li>Calling the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>'s <code>execute</code> method, passing in the <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</li></ul>
+<p>See <a class="crossref" href="../puremvc/INotification.html">INotification</a>, <a class="crossref" href="../puremvc/ICommand.html">ICommand</a></p>
+</div>
+<h3>Implemented by</h3>
+<p>
+<span class="type-box"><span class="icon-class"></span><a href="../puremvc/Controller.html">Controller</a></span></p>
+<h3>Methods</h3>
+<div class="method"><h4 id="executeCommand">
+<span class="show-code">Code</span>
+void <strong>executeCommand</strong>(<a href="../puremvc/INotification.html">INotification</a> note) <a class="anchor-link" href="#executeCommand"
+              title="Permalink to IController.executeCommand">#</a></h4>
+<div class="doc">
+<p>Execute the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> previously registered as the
+handler for <a class="crossref" href="../puremvc/INotification.html">INotification</a>s with the given notification's name.</p><ul><li>Param 
+<span class="param">note</span> - the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to execute the associated <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> for</li></ul>
+<pre class="source">
+void executeCommand( INotification note );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="hasCommand">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/bool.html">bool</a> <strong>hasCommand</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName) <a class="anchor-link" href="#hasCommand"
+              title="Permalink to IController.hasCommand">#</a></h4>
+<div class="doc">
+<p>Check if an <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> is registered for a given <a class="crossref" href="../puremvc/INotification.html">INotification</a> name with the <a class="crossref" href="../puremvc/IController.html">IController</a>.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a>.</li><li>Returns <code>bool</code> - whether an <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> is currently registered for the given 
+<span class="param">noteName</span>.</li></ul>
+<pre class="source">
+bool hasCommand( String noteName );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="multitonKey">
+<span class="show-code">Code</span>
+<a href="http://api.dartlang.org/dart_core/String.html">String</a> <strong>get multitonKey</strong>() <a class="anchor-link" href="#multitonKey"
+              title="Permalink to IController.get multitonKey">#</a></h4>
+<div class="doc">
+
+<pre class="source">
+String get multitonKey();
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="multitonKey=">
+<span class="show-code">Code</span>
+void <strong>set multitonKey</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> key) <a class="anchor-link" href="#multitonKey="
+              title="Permalink to IController.set multitonKey">#</a></h4>
+<div class="doc">
+<p>This IController's Multiton Key</p>
+<pre class="source">
+void set multitonKey( String key );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="registerCommand">
+<span class="show-code">Code</span>
+void <strong>registerCommand</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> notificationName, <a href="http://api.dartlang.org/dart_core/Function.html">Function</a> commandFactory) <a class="anchor-link" href="#registerCommand"
+              title="Permalink to IController.registerCommand">#</a></h4>
+<div class="doc">
+<p>Register an <a class="crossref" href="../puremvc/INotification.html">INotification</a> to <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping with the <a class="crossref" href="../puremvc/IController.html">IController</a>.</p><ul><li>Param <code>noteName</code> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to associate the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> with.</li><li>Param 
+<span class="param">commandFactory</span> - a function that creates a new instance of the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a>.</li></ul>
+<pre class="source">
+void registerCommand( String notificationName, Function commandFactory );
+</pre>
+</div>
+</div>
+<div class="method"><h4 id="removeCommand">
+<span class="show-code">Code</span>
+void <strong>removeCommand</strong>(<a href="http://api.dartlang.org/dart_core/String.html">String</a> noteName) <a class="anchor-link" href="#removeCommand"
+              title="Permalink to IController.removeCommand">#</a></h4>
+<div class="doc">
+<p>Remove a previously registered <a class="crossref" href="../puremvc/INotification.html">INotification</a> to <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping from the <a class="crossref" href="../puremvc/IController.html">IController</a>.</p><ul><li>Param 
+<span class="param">noteName</span> - the name of the <a class="crossref" href="../puremvc/INotification.html">INotification</a> to remove the <a class="crossref" href="../puremvc/ICommand.html">ICommand</a> mapping for.</li></ul>
+<pre class="source">
+void removeCommand( String noteName );
+</pre>
+</div>
+</div>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="footer">
+          <div>This page was generated at 2012-09-29 20:40:10.824</div>
+        </div>
+        <script async src="../client-static.js"></script>
+        </body></html>
+        
