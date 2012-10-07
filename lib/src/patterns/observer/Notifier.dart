@@ -70,7 +70,7 @@ class Notifier implements INotifier
      */
     IFacade get facade()
     {
-        if ( multitonKey == null ) throw new MultitonNotifierLacksKey( );
+        if ( multitonKey == null ) throw new MultitonErrorNotifierLacksKey( );
         return Facade.getInstance( multitonKey );
     }
     
