@@ -37,12 +37,13 @@
 * The MacroCommand executes a given set of ICommands in order, passing the Notification to each 'SubCommand' in turn. Note that a SubCommand may modify the Notification body and type and the next SubCommand will receive the modified Notification.
 * The SimpleCommand executes some business logic which you define. It only stays in memory until its code has been executed unless some other actor keeps a reference to it, which usually isn't desirable, but there is a formal request pattern that can be implemented that makes sense (See the O'Reilly book for info).
 
-## The Facade Multiton provides one-stop access to the functionality of the Model, View, and Controller Multitons.
+## The Facade Multiton provides one-stop access to the Model, View, and Controller.
 
 * This keeps the developer from needing to interact with all the Multitons separately.
 * The Facade Multiton implements all the methods of the the Model, View, and Controller Multitons and manages their creation.
 * Calling Facade.getInstance('someMultitonKey') for the first time, creates each of the Model, View, and Controller Multitons for that key automatically. After that, the same instance will always be returned for a given key.
 * All Proxy, Mediator, and ICommand instances already have a reference to their Facade instance when their onRegister() or execute() methods are called. Thus you never have to retrieve the Facade except when the Core is created.
+* Q: Why not just build all the MVC functionality into the Facade in the first place? A: Because it allows the developer to replace just part of the system with a custom version if they wish, leaving the other parts untouched.
 
 ## Bootstrapping your Application:
 
