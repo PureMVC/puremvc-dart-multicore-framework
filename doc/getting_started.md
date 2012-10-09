@@ -2,14 +2,14 @@
 
 PureMVC is a lightweight framework for creating applications based upon the classic Model-View-Controller design meta-pattern. It supports modular programming through the use of Multiton Core actors.
 
-## General Overview:
+## General Overview
 
 * To separate coding concerns, an application (or a module in an application) is divided into three 'tiers': Model, View, and Controller.
 * PureMVC implements these tiers as Multiton classes which register and manage communications between the workhorse actors that operate within those tiers.
 * PureMVC also provides a handy frontend to the whole system called a Facade.
 * Since methods for message passing vary from platform to platform, PureMVC implements its own internal Observer Notification system for its actors to communicate with each other. These are not an alternative for Events. Your application's boundary classes will still interact with the DOM and services and PureMVC via Events.
 
-## The Model Tier is handled by the Model Multiton.
+## The Model Tier is handled by the Model Multiton
 
 * In the Model tier, you usually create some Value Object classes. These aren't tied to the framework and shouldn't know anything about the framework classes, they just hold data for the rest of the program to use.
 * The Model registers and holds instances of the Proxy class (or your subclasses)
@@ -18,7 +18,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * Proxy classes do not respond to Notifications. They can be directly updated by Mediators and ICommands.
 * Proxy classes should not send Notification names defined elsewhere in the application. They should define their own notification names, so that the classes of the Model tier remain portable and may be unit tested or reused in other applications.
 
-## The View Tier is handled by the View Multiton.
+## The View Tier is handled by the View Multiton
 
 * Within the View Tier, you will usually create one or more view components, which you will write to interact directly with the Browser/DOM, listening for button presses, etc. These do not use any PureMVC framework classes and should only know about your Value Object classes in order to display, create, and modify data used by the rest of the app. They will hide the implementation of the DOM from the rest of the app, translating the button clicks and keystrokes into higher-level events that represent user intentions for initiating use-cases.
 * The View Multiton registers and holds instances of Mediator subclasses.
@@ -27,7 +27,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * A Mediator also may assert an interest in certain Notification names, which it will be notified about if sent by other actors or itself.
 * A Mediator may also retrieve a Proxy and call a method on it, bypassing the Controller tier.
 
-## The Controller Tier is handled by the Controller Multiton.
+## The Controller Tier is handled by the Controller Multiton
 
 * Within the Controller tier, you will usually create any Notification name constants that are shared by the View and Controller tiers. Remember that Notification names sent from Proxys should be defined on the Proxys themselves for portability.
 * The Controller Multiton registers Notification name to ICommand mappings.
@@ -36,7 +36,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * The MacroCommand executes a given set of ICommands in order, passing the Notification to each 'SubCommand' in turn. Note that a SubCommand may modify the Notification body and type and the next SubCommand will receive the modified Notification.
 * The SimpleCommand executes some business logic which you define. It only stays in memory until its code has been executed unless some other actor keeps a reference to it, which usually isn't desirable, but there is a formal request pattern that can be implemented that makes sense (See the O'Reilly book for info).
 
-## The Facade Multiton provides one-stop access to the Model, View, and Controller.
+## The Facade Multiton provides one-stop access to Model, View, and Controller
 
 * This keeps the developer from needing to interact with all the Multitons separately.
 * The Facade Multiton implements all the methods of the the Model, View, and Controller Multitons and manages their creation.
@@ -44,7 +44,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * All Proxy, Mediator, and ICommand instances already have a reference to their Facade instance when their onRegister() or execute() methods are called. Thus you never have to retrieve the Facade except when the Core is created.
 * Q: Why not just build all the MVC functionality into the Facade in the first place? A: Because it allows the developer to replace just part of the system with a custom version if they wish, leaving the other parts untouched.
 
-## Bootstrapping your Application:
+## Bootstrapping your Application
 
 * Usually, your main application class will retrieve the Facade instance, register a StartupCommand, and trigger it by sending a STARTUP notification.
 * The StartupCommand may be a SimpleCommand or a MacroCommand that breaks the startup process into several SimpleCommands.
@@ -54,7 +54,7 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * The View is prepared by registering all the Mediator instances needed.
 * When the Mediators are registered, they usually retrieve the Proxy instances required to supply their view components with data and potentially make Proxy method calls that result in service calls. Those service calls, when they return will usually result in Notifications that trigger ICommands and/or one or more Mediators are interested in.
 
-## MultiCore Functionality:
+## MultiCore Functionality
 
 * Applications are composed of one or more 'Core's. A Core is a group of Multitons that share the same multiton key, an arbitrary, but unique name you provide (such as the name of your application).
 * Although most programs only need one 'Core', you can request more Facade instances using different multiton keys, in order to get multiple, isolated sets of Model, View, and Controller actors.
@@ -62,3 +62,4 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 
 ## Learn More About PureMVC
 * [http://puremvc.org](Official Site)
+* 
