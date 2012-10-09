@@ -61,5 +61,4 @@ PureMVC is a lightweight framework for creating applications based upon the clas
 * This allows you to do modular programming. Each 'Core' is like a separate program. It has its own group of Multitons, its own startup process, and all the workhorse classes communicate with each other through the set of Multitons they were registered with.
 
 ## Learn More About PureMVC
-* [http://puremvc.org](Official Site)
-* 
+* [Official Site](http://puremvc.org)
