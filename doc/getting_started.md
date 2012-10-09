@@ -1,7 +1,6 @@
 ## The PureMVC MultiCore Framework for Dart.
 
-* PureMVC is a lightweight framework for creating applications based upon the classic Model-View-Controller design meta-pattern.
-* It supports modular programming through the use of Multiton Core actors.
+PureMVC is a lightweight framework for creating applications based upon the classic Model-View-Controller design meta-pattern. It supports modular programming through the use of Multiton Core actors.
 
 ## General Overview:
 
