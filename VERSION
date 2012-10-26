@@ -6,7 +6,6 @@ Release Date: 9/29/12
     Revision: 0
        Minor: 0
      Authors: Cliff Hall <cliff@puremvc.org>
-     License: BSD 3-Clause
 --------------------------------------------------------------------------
 2.0   Refactor to meet standards for Dart PubSpec. 
       - library layout changes.
