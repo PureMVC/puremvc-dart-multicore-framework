@@ -1,44 +1,47 @@
+// PureMVC Unit Test Library
+library puremvc_unit_tests;
+
 // DART HTML Library
-#import('dart:html');
+import 'dart:html';
 
 // The Unit Testing Framework for Dart
-#import('package:unittest/unittest.dart');
+import 'package:unittest/unittest.dart';
 
 // PureMVC Framework for Dart
-#import('package:puremvc/puremvc.dart', prefix:'mvc');
+import 'package:puremvc/puremvc.dart' as mvc;
 
 // PureMVC Unit Tests
-#source('Unit_Tests_Config.dart');
-#source('Test_Notification.dart');
-#source('Test_Observer.dart');
-#source('Test_SimpleCommand.dart');
-#source('Test_MacroCommand.dart');
-#source('Test_Proxy.dart');
-#source('Test_Mediator.dart');
-#source('Test_Model.dart');
-#source('Test_View.dart');
-#source('Test_Controller.dart');
-#source('Test_Facade.dart');
+part 'Unit_Tests_Config.dart';
+part 'Test_Notification.dart';
+part 'Test_Observer.dart';
+part 'Test_SimpleCommand.dart';
+part 'Test_MacroCommand.dart';
+part 'Test_Proxy.dart';
+part 'Test_Mediator.dart';
+part 'Test_Model.dart';
+part 'Test_View.dart';
+part 'Test_Controller.dart';
+part 'Test_Facade.dart';
 
-class Unit_Tests 
+class Unit_Tests
 {
   Unit_Tests()
-  {  
+  {
     Configuration config = new Unit_Tests_Config();
     configure( config );
   }
-  
+
   void onTestResult( TestCase testCase ) {
     write( "${testCase.result}  ${testCase.currentGroup}" );
-    
+
   }
-  
+
   void write(String message) {
     document.query('#status').innerHTML = message;
   }
-  
+
   void run() {
-    
+
     // Now, run the PureMVC Tests
     new Test_Notification().run();
     new Test_Observer().run();
@@ -51,14 +54,14 @@ class Unit_Tests
     new Test_Controller().run();
     new Test_Facade().run();
   }
-} 
+}
 
 
-/** 
+/**
  * Application entry point.
  */
-void main() 
+void main()
 {
   // Unit test program, reporting for duty!
-  new Unit_Tests().run();  
+  new Unit_Tests().run();
 }

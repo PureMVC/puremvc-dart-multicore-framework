@@ -1,12 +1,19 @@
 PureMVC MultiCore Framework for Dart
 --------------------------------------------------------------------------
-Release Date: 9/29/12
+Release Date: 11/07/12
     Platform: Google Dart
      Version: 2
     Revision: 0
-       Minor: 0
+       Minor: 1
      Authors: Cliff Hall <cliff@puremvc.org>
 --------------------------------------------------------------------------
+2.0.1 Code cleanup to keep up with changes in 
+	  Dart SDK version 0.2.2.1_r14458. Includes:
+	  - Fixed missing 'part of' directives
+      - New library and import syntax
+      - new getter syntax
+      - other minor things like whitespace cleanup
+      
 2.0   Refactor to meet standards for Dart PubSpec. 
       - library layout changes.
       - inclusion of unit tests (was in a separate project)

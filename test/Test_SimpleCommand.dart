@@ -1,6 +1,8 @@
+part of puremvc_unit_tests;
+
 class Test_SimpleCommand
 {
-  _tests() 
+  _tests()
   {
     group('SimpleCommand', ()
     {
@@ -9,18 +11,18 @@ class Test_SimpleCommand
         mvc.ICommand simpleCommand = new SimpleCommandTestDoubleInputCommand();
         expect( simpleCommand, isNotNull  );
       });
-      
+
       test('execute()', () {
         // Create a SimpeCommand
         mvc.ICommand simpleCommand = new SimpleCommandTestDoubleInputCommand();
-        
-        // Crete a VO and a Notification to pass it to the Command with  
+
+        // Crete a VO and a Notification to pass it to the Command with
         SimpleCommandTestVO vo = new SimpleCommandTestVO( 5 );
         mvc.INotification note = new mvc.Notification( "SimpleCommandTestNote", vo );
 
         // Execute the SimpleCommand with the note
         simpleCommand.execute( note );
-        
+
         // Make sure the SimpleCommand logic was executed
         expect( vo.result, equals(10) );
       });
@@ -32,7 +34,7 @@ class Test_SimpleCommand
         // call initializeNotifier()
         String multitonKey = "SimpleCommandTest";
         notifier.initializeNotifier( multitonKey );
-        
+
         // Make sure the SimpleCommand's multitonKey was set
         expect( notifier.multitonKey, isNotNull );
       });
@@ -44,11 +46,11 @@ class Test_SimpleCommand
   }
 }
 
-class SimpleCommandTestVO 
+class SimpleCommandTestVO
 {
   SimpleCommandTestVO( int this.input ) {
   }
-    
+
   int input;
   int result;
 }
@@ -59,7 +61,7 @@ class SimpleCommandTestDoubleInputCommand extends mvc.SimpleCommand
   {
     // Get the VO from the note
     SimpleCommandTestVO vo = note.getBody();
-    
+
     // Fabricate a result
     vo.result = 2 * vo.input;
   }

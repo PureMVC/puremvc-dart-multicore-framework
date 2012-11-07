@@ -1,6 +1,8 @@
+part of puremvc_unit_tests;
+
 class Test_Model
 {
-  _tests() 
+  _tests()
   {
     group('Model', ()
     {
@@ -9,12 +11,12 @@ class Test_Model
         String multitonKey = "ModelTest1";
         mvc.IModel model = mvc.Model.getInstance( multitonKey );
         expect( model, isNotNull );
-        
-        // Same instance retrieved again 
+
+        // Same instance retrieved again
         mvc.IModel again = mvc.Model.getInstance( multitonKey );
-        expect( model, same(again) );        
+        expect( model, same(again) );
       });
-      
+
       test('registerProxy(), hasProxy()', () {
         // Unique multiton instance of Model
         String multitonKey = "ModelTest2";
@@ -24,11 +26,11 @@ class Test_Model
         String proxyName = "ModelTest2Proxy";
         mvc.IProxy proxy = new mvc.Proxy( proxyName );
         model.registerProxy( proxy );
-        
+
         // Make sure it's there
         expect( model.hasProxy( proxyName ), isTrue );
       });
-      
+
       test('retrieveProxy()', () {
         // Unique multiton instance of Model
         String multitonKey = "ModelTest3";
@@ -38,11 +40,11 @@ class Test_Model
         String proxyName = "ModelTest3Proxy";
         mvc.IProxy proxy = new mvc.Proxy( proxyName );
         model.registerProxy( proxy );
-        
-        // Make sure same Proxy is retrieved 
+
+        // Make sure same Proxy is retrieved
         expect( model.retrieveProxy( proxyName ), same(proxy) );
       });
-      
+
       test('removeProxy(), hasProxy()', () {
         // Unique multiton instance of Model
         String multitonKey = "ModelTest4";
@@ -55,11 +57,11 @@ class Test_Model
 
         // Make sure it is returned when removed
         expect( model.removeProxy( proxyName ), same(proxy) );
-        
+
         // Make sure Model doesn't know about it anymore
         expect( model.hasProxy( proxyName ), isFalse );
       });
-      
+
       test('Model calls onRegister()', () {
         // Unique multiton instance of Model
         String multitonKey = "ModelTest5";
@@ -69,10 +71,10 @@ class Test_Model
         mvc.IProxy proxy = new ModelTestProxy();
         model.registerProxy( proxy );
 
-        // Make sure the Model calls the Proxy's onRegister() method 
+        // Make sure the Model calls the Proxy's onRegister() method
         expect( proxy.getData(), equals(ModelTestProxy.ON_REGISTER_CALLED) );
       });
-      
+
       test('Model calls onRemove()', () {
         // Unique multiton instance of Model
         String multitonKey = "ModelTest6";
@@ -85,7 +87,7 @@ class Test_Model
         // Remove the Proxy
         model.removeProxy( ModelTestProxy.NAME );
 
-        // Make sure the Model calls the Proxy's onRemove() method 
+        // Make sure the Model calls the Proxy's onRemove() method
         expect( proxy.getData(), equals(ModelTestProxy.ON_REMOVE_CALLED) );
       });
     });
@@ -102,11 +104,11 @@ class ModelTestProxy extends mvc.Proxy
   static String FRESH = "Fresh Instance";
   static String ON_REGISTER_CALLED = "onRegister() Called";
   static String ON_REMOVE_CALLED = "onRemove() Called";
-  
+
   ModelTestProxy():super( NAME ){
     setData( FRESH );
   }
-  
+
   void onRegister()
   {
     setData( ON_REGISTER_CALLED );
@@ -115,5 +117,5 @@ class ModelTestProxy extends mvc.Proxy
   void onRemove()
   {
     setData( ON_REMOVE_CALLED );
-  }  
+  }
 }

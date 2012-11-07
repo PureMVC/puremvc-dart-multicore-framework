@@ -13,7 +13,7 @@ Unit Tests are included in this repository.
 * [Reverse Text](https://github.com/PureMVC/puremvc-dart-demo-reversetext/wiki)
 
 ## Status
-Production - [Version 2.0.0](https://github.com/PureMVC/puremvc-dart-multicore-framework/blob/master/VERSION)
+Production - [Version 2.0.1](https://github.com/PureMVC/puremvc-dart-multicore-framework/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [Google Dart](http://www.dartlang.org)

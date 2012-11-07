@@ -1,6 +1,6 @@
 /**
- * A base [IProxy] implementation. 
- * 
+ * A base [IProxy] implementation.
+ *
  * In PureMVC, [IProxy] implementors assume these responsibilities:
  *
  * -  Implement a common method which returns the name of the [IProxy].
@@ -19,7 +19,7 @@ class Proxy extends Notifier implements IProxy
 {
     /**
      * Constructor
-     * 
+     *
      * -  Param [name] - the [name] this [IProxy] will be registered with.
      * -  Param [data] - the Data Object (optional)
      */
@@ -27,54 +27,54 @@ class Proxy extends Notifier implements IProxy
 
     /**
      * Get the [IProxy] [name].
-     * 
+     *
      * -  Returns [String] - the [IProxy] instance [name].
      */
     String getName()
     {
         return name;
-    }        
-    
+    }
+
     /**
      * Set the [dataObject].
-     * 
+     *
      * -  Param [Dynamic] - the [dataObject] this [IProxy] will tend.
      */
     void setData( Dynamic dataObject )
     {
        data = dataObject;
     }
-    
+
     /**
      * Get the [dataObject].
-     * 
+     *
      * -  Returns [Dynamic] - the [dataObject].
      */
-    Dynamic getData() 
+    Dynamic getData()
     {
         return data;
-    }        
-    
+    }
+
     /**
      * Called by the [IModel] when the [IProxy] is registered.
-     * 
+     *
      * Override in your subclass and add code to be run at registration time.
-     */ 
+     */
     void onRegister(){}
 
     /**
      * Called by the [IModel] when the [IProxy] is removed
-     */ 
+     */
     void onRemove(){}
-    
+
     /**
      * This [IProxy]'s [name].
      */
     String name;
-    
+
     /**
      * This [IProxy]'s [dataObject].
      */
     Dynamic data;
-    
+
 }

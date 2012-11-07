@@ -1,6 +1,6 @@
 /**
- * A base [IMediator] implementation. 
- * 
+ * A base [IMediator] implementation.
+ *
  * In PureMVC, [IMediator] implementors assume these responsibilities:
  *
  * -  Implement a common method which returns a list of all [INotification]s the [IMediator] has interest in.
@@ -12,13 +12,13 @@
  * -  Act as an intermediary between one or more view components and the rest of the application.
  * -  Place [Event] listeners on view components, and implement handlers which often send [INotification]s or interact with [IProxy]s to post or retrieve data.
  * -  Receive [INotification]s, (typically containing data) and updating view components in response.
- *  
- * When an [IMediator] is registered with the [IView], the [IMediator]'s [listNotificationInterests] method is called 
+ *
+ * When an [IMediator] is registered with the [IView], the [IMediator]'s [listNotificationInterests] method is called
  * The [IMediator] will return a [List] of [INotification] names which it wishes to be notified about.
- * 
+ *
  * The [IView] will then create an [IObserver] object encapsulating that [IMediator]'s and its [handleNotification] method
  * and register the [IObserver] for each [INotification] name returned by the [IMediator]'s [listNotificationInterests] method.
- * 
+ *
  * See [INotification], [IView]
  */
 class Mediator extends Notifier implements IMediator
@@ -26,45 +26,45 @@ class Mediator extends Notifier implements IMediator
 
   /**
    * Constructor
-   * 
+   *
    * -  Param [name] - the [name] this [IMediator] will be registered with.
    * -  Param [viewComponent] - the View Component (optional)
    */
   Mediator( String this.name, [Dynamic this.viewComponent] ){ }
-  
+
   /**
    * Get the [IMediator] instance's [name].
-   * 
+   *
    * -  Returns [String] - the [IMediator] instance's [name].
    */
-  String getName() 
-  {    
+  String getName()
+  {
     return name;
   }
 
   /**
    * Set the [IMediator]'s [viewComponent].
-   * 
+   *
    * -  Param [Dynamic] - the [viewComponent].
    */
-  void setViewComponent( Dynamic component ) 
+  void setViewComponent( Dynamic component )
   {
     viewComponent = component;
   }
 
   /**
    * Get the [IMediator]'s [viewComponent].
-   * 
+   *
    * -  Returns [Dynamic] - the View Component
    */
   Dynamic getViewComponent()
-  {    
+  {
     return viewComponent;
   }
 
   /**
    * List [INotification] interests.
-   * 
+   *
    * -  Returns [List] - a [List] of the [INotification] names this [IMediator] has an interest in.
    */
   List<String> listNotificationInterests( )
@@ -74,19 +74,19 @@ class Mediator extends Notifier implements IMediator
 
   /**
    * Handle an [INotification].
-   * 
+   *
    * -  Param [note] - the [INotification] to be handled.
    */
   void handleNotification( INotification note ) {}
-  
+
   /**
    * Called by the [IView] when the [IMediator] is registered.
-   */ 
+   */
   void onRegister( ) {}
 
   /**
    * Called by the [IView] when the [IMediator] is removed.
-   */ 
+   */
   void onRemove( ) {}
 
   /**

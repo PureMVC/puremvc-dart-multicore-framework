@@ -1,5 +1,5 @@
-#import('dart:html');
-#import('package:puremvc/puremvc.dart', prefix:'mvc');
+import 'dart:html';
+import 'package:puremvc/puremvc.dart' as mvc;
 
 class Framework_Verify {
 
@@ -17,7 +17,7 @@ class Framework_Verify {
 
     try {
       write ("<UL>");
-      
+
       // Get a Facade
       mvc.IFacade facade = mvc.Facade.getInstance( multitonKey );
       write ("<LI>Facade created for ${multitonKey}.");
