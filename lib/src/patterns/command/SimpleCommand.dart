@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base [ICommand] implementation for executing a block of business logic.
  *

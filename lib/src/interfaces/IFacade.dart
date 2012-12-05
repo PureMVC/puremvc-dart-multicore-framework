@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Facade.
  *
@@ -20,7 +22,7 @@
  *
  * See [IModel], [IView], [IController], [IProxy], [IMediator], [ICommand], [INotification]
  */
-interface IFacade extends INotifier
+abstract class IFacade extends INotifier
 {
 
 	/**

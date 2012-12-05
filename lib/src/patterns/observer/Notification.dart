@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base [INotification] implementation.
  *
@@ -26,7 +28,7 @@ class Notification implements INotification
      * -  Param [body] - the [INotification] body. (optional)
      * -  Param [type] - the type of the [INotification] (optional)
      */
-    Notification( String this.name, [Dynamic this.body, String this.type] ){}
+    Notification( String this.name, [dynamic this.body, String this.type] ){}
 
     /**
      * Get the [name] of the [INotification].
@@ -43,7 +45,7 @@ class Notification implements INotification
      *
      * -  Param [body] - the body of the [INotification].
      */
-    void setBody( Dynamic bodyObject )
+    void setBody( dynamic bodyObject )
     {
         body = bodyObject;
     }
@@ -53,7 +55,7 @@ class Notification implements INotification
      *
      * -  Returns [Dynamic] - the body of the [INotification].
      */
-    Dynamic getBody()
+    dynamic getBody()
     {
         return body;
     }
@@ -91,6 +93,6 @@ class Notification implements INotification
     /**
      * This [INotifications]'s [body]
      */
-    Dynamic body;
+    dynamic body;
 
 }

@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Observer.
  *
@@ -23,7 +25,7 @@
  *
  * See [IView], [INotification]
  */
-interface IObserver
+abstract class IObserver
 {
     /**
      * Set the notification method.

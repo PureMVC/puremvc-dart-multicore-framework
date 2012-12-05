@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base [ICommand] implementation that synchronously executes other [ICommand]s.
  *

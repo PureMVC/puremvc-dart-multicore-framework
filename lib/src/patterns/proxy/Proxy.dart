@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base [IProxy] implementation.
  *
@@ -23,7 +25,7 @@ class Proxy extends Notifier implements IProxy
      * -  Param [name] - the [name] this [IProxy] will be registered with.
      * -  Param [data] - the Data Object (optional)
      */
-    Proxy( String this.name, [Dynamic this.data] ){ }
+    Proxy( String this.name, [dynamic this.data] ){ }
 
     /**
      * Get the [IProxy] [name].
@@ -40,7 +42,7 @@ class Proxy extends Notifier implements IProxy
      *
      * -  Param [Dynamic] - the [dataObject] this [IProxy] will tend.
      */
-    void setData( Dynamic dataObject )
+    void setData( dynamic dataObject )
     {
        data = dataObject;
     }
@@ -50,7 +52,7 @@ class Proxy extends Notifier implements IProxy
      *
      * -  Returns [Dynamic] - the [dataObject].
      */
-    Dynamic getData()
+    dynamic getData()
     {
         return data;
     }
@@ -75,6 +77,6 @@ class Proxy extends Notifier implements IProxy
     /**
      * This [IProxy]'s [dataObject].
      */
-    Dynamic data;
+    dynamic data;
 
 }

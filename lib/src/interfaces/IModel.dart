@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Model.
  *
@@ -16,7 +18,7 @@
  *
  * See [IProxy], [IFacade]
  */
-interface IModel
+abstract class IModel
 {
     /**
      * Register an [IProxy] instance with the [IModel].

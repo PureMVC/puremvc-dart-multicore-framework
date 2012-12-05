@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Notification.
  *
@@ -17,7 +19,7 @@
  *
  * See [IView], [IObserver]
  */
-interface INotification
+abstract class INotification
 {
 
     /**
@@ -39,7 +41,7 @@ interface INotification
      *
      * -  Returns [Dynamic] - the body of the [INotification].
      */
-    Dynamic getBody();
+    dynamic getBody();
 
     /**
      * Set the [type] of the [INotification].
@@ -58,8 +60,8 @@ interface INotification
     /**
      * This [INotifications]'s [body]
      */
-    void set body( Dynamic bodyObject );
-    Dynamic get body;
+    void set body( dynamic bodyObject );
+    dynamic get body;
 
     /**
      * This [INotifications]'s [name]

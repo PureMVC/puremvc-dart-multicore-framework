@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base [IMediator] implementation.
  *
@@ -30,7 +32,7 @@ class Mediator extends Notifier implements IMediator
    * -  Param [name] - the [name] this [IMediator] will be registered with.
    * -  Param [viewComponent] - the View Component (optional)
    */
-  Mediator( String this.name, [Dynamic this.viewComponent] ){ }
+  Mediator( String this.name, [dynamic this.viewComponent] ){ }
 
   /**
    * Get the [IMediator] instance's [name].
@@ -47,7 +49,7 @@ class Mediator extends Notifier implements IMediator
    *
    * -  Param [Dynamic] - the [viewComponent].
    */
-  void setViewComponent( Dynamic component )
+  void setViewComponent( dynamic component )
   {
     viewComponent = component;
   }
@@ -57,7 +59,7 @@ class Mediator extends Notifier implements IMediator
    *
    * -  Returns [Dynamic] - the View Component
    */
-  Dynamic getViewComponent()
+  dynamic getViewComponent()
   {
     return viewComponent;
   }
@@ -97,5 +99,5 @@ class Mediator extends Notifier implements IMediator
   /**
    * This [IMediator]'s [viewComponent].
    */
-  Dynamic viewComponent;
+  dynamic viewComponent;
 }
