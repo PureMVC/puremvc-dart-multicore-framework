@@ -4,9 +4,10 @@ Release Date: 01/09/13
     Platform: Google Dart
      Version: 2
     Revision: 0
-       Minor: 2
+       Minor: 3
      Authors: Cliff Hall <cliff@puremvc.org>
 --------------------------------------------------------------------------
+2.0.3 Modify pubspec.yaml again to bump the version number. Doh!
 2.0.2 Modify pubspec.yaml to pull in the unit test framework from pub
 
 2.0.1 Code cleanup to keep up with changes in 
