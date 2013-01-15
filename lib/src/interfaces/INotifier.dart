@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC [Notifier].
  *
@@ -17,7 +19,7 @@
  *
  * See [IFacade], [INotification]
  */
-interface INotifier {
+abstract class INotifier {
 
   /**
    * Send an [INotification].
@@ -29,7 +31,7 @@ interface INotifier {
    * -  Param [body] - the body of the note (optional)
    * -  Param [type] - the type of the note (optional)
    */
-  void sendNotification( String noteName, [Dynamic body, String type] );
+  void sendNotification( String noteName, [dynamic body, String type] );
 
   /**
    * Initialize this [INotifier] instance.

@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A PureMVC MultiCore [IModel] implementation.
  *

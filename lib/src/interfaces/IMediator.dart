@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Mediator.
  *
@@ -21,7 +23,7 @@
  *
  * See [INotification], [IView]
  */
-interface IMediator extends INotifier
+abstract class IMediator extends INotifier
 {
 
   /**
@@ -36,14 +38,14 @@ interface IMediator extends INotifier
    *
    * -  Returns [Dynamic] - the View Component
    */
-  Dynamic getViewComponent();
+  dynamic getViewComponent();
 
   /**
    * Set the [IMediator]'s [viewComponent].
    *
    * -  Param [Dynamic] - the [viewComponent].
    */
-  void setViewComponent( Dynamic viewComponent );
+  void setViewComponent( dynamic viewComponent );
 
   /**
    * List [INotification] interests.
@@ -73,8 +75,8 @@ interface IMediator extends INotifier
   /**
    * This [IMediator]'s [viewComponent].
    */
-  void set viewComponent( Dynamic viewComponent );
-  Dynamic get viewComponent;
+  void set viewComponent( dynamic viewComponent );
+  dynamic get viewComponent;
 
   /**
    * This [IMediator]'s [name].

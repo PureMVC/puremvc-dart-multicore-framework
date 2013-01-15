@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Proxy.
  *
@@ -15,7 +17,7 @@
  *
  * See [IModel]
  */
-interface IProxy extends INotifier
+abstract class IProxy extends INotifier
 {
     /**
      * Get the [IProxy] [name].
@@ -29,14 +31,14 @@ interface IProxy extends INotifier
      *
      * -  Param [Dynamic] - the [dataObject] this [IProxy] will tend.
      */
-    void setData( Dynamic dataObject );
+    void setData( dynamic dataObject );
 
     /**
      * Get the [dataObject].
      *
      * -  Returns [Dynamic] - the [dataObject].
      */
-    Dynamic getData();
+    dynamic getData();
 
     /**
      * Called by the [IModel] when the [IProxy] is registered.
@@ -51,8 +53,8 @@ interface IProxy extends INotifier
     /**
      * This [IProxy]'s [dataObject].
      */
-    void set data( Dynamic dataObject );
-    Dynamic get data;
+    void set data( dynamic dataObject );
+    dynamic get data;
 
     /**
      * This [IProxy]'s [name].

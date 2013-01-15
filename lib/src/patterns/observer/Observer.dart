@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base [IObserver] implementation.
  *
