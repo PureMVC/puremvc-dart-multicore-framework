@@ -15,7 +15,7 @@ To use in your app, you can simply [add it to your project's pubspec.yaml as a d
 * [Reverse Text](https://github.com/PureMVC/puremvc-dart-demo-reversetext/wiki)
 
 ## Status
-Production - [Version 2.0.3](https://github.com/PureMVC/puremvc-dart-multicore-framework/blob/master/VERSION)
+Production - [Version 2.0.4](https://github.com/PureMVC/puremvc-dart-multicore-framework/blob/master/VERSION)
 
 ## Platforms / Technologies
 * [Google Dart](http://www.dartlang.org)
