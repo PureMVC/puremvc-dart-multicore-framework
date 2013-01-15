@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore View.
  *
@@ -12,7 +14,7 @@
  *
  * See [IMediator], [IObserver], [INotification]
  */
-interface IView
+abstract class IView
 {
   /**
    * Register an [IObserver] to be notified of [INotification]s with a given name.

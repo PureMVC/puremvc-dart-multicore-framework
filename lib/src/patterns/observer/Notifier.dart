@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A Base [INotifier] implementation.
  *
@@ -43,7 +45,7 @@ class Notifier implements INotifier
      * -  Param [body] - the body of the note (optional)
      * -  Param [type] - the type of the note (optional)
      */
-    void sendNotification( String noteName, [Dynamic body, String type] )
+    void sendNotification( String noteName, [dynamic body, String type] )
     {
         if (facade != null) {
             facade.sendNotification( noteName, body, type );

@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * A base Multiton [IFacade] implementation.
  *
@@ -246,7 +248,7 @@ class Facade implements IFacade
    * -  Param [body] - the body of the note (optional)
    * -  Param [type] - the type of the note (optional)
    */
-  void sendNotification( String noteName, [Dynamic body, String type] )
+  void sendNotification( String noteName, [dynamic body, String type] )
   {
     notifyObservers( new Notification( noteName, body, type ) );
   }

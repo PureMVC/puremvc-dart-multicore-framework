@@ -1,3 +1,5 @@
+part of puremvc;
+
 /**
  * The interface definition for a PureMVC MultiCore Controller.
  *
@@ -12,7 +14,7 @@
  *
  * See [INotification], [ICommand]
  */
-interface IController
+abstract class IController
 {
   /**
    * Register an [INotification] to [ICommand] mapping with the [IController].
