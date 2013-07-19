@@ -88,7 +88,7 @@ class Test_Controller
         controller.registerCommand( noteName, () => new ControllerTestMacroCommand() );
 
         // Make sure it's registered
-        Expect.isTrue( controller.hasCommand( noteName ) );
+        expect( controller.hasCommand( noteName ), isTrue );
 
         // Remove the Command
         controller.removeCommand( noteName );

@@ -1,12 +1,24 @@
 PureMVC MultiCore Framework for Dart
 --------------------------------------------------------------------------
-Release Date: 01/15/2013
+Release Date: 07/18/2013
     Platform: Google Dart
      Version: 2
     Revision: 0
-       Minor: 4
+       Minor: 5
      Authors: Cliff Hall <cliff@puremvc.org>
 --------------------------------------------------------------------------
+2.0.5 Update pubspec.yaml 
+      - Use browser:any 
+      - Make unitest:any a dev dependency.
+	  Replace Expect with expect() in unit test classes.
+	  Modify Framework_Verify.html / Unit_Tests.html to
+	  - Reference packages/browser/dart.js.
+	  - Use innerHtml instead of innerHTML
+	  Modify Unit_Tests.html / Unit_Tests.dart
+	  - Set unittestConfiguration with the config
+	  - Reference packages/browser/dart.js.
+	  - Use innerHtml instead of innerHTML 
+
 2.0.4 Replace interface keyword with abstract class for M2
       Add part keywords
       Change Dynamic to dynamic

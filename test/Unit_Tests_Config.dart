@@ -19,19 +19,19 @@ class Unit_Tests_Config extends Configuration
     super.onTestResult(testCase);
   }
 
-  void onDone(int passed, int failed, int errors, List results, String uncaughtError)
+  void onDone(bool passed)
   {
-    writeResult("<TH COLSPAN='4' ALIGN='left' BGCOLOR=${(failed == 0)?'33FF00':'FF3333'}>PASSED: ${passed} ... FAILED: ${failed}</TH>");
+    writeResult("<TH COLSPAN='4' ALIGN='left' BGCOLOR=${(passed)?'33FF00':'FF3333'}>${(passed)?'PASSED':'FAILED'}</TH>");
   }
   void writeStatus(String message) {
-    document.query('#status').innerHTML = message;
+    document.query('#status').innerHtml = message;
   }
 
   void appendRow(String tableRow) {
-    document.query('#outputTable').innerHTML = "${document.query('#outputTable').innerHTML}${tableRow}";
+    document.query('#outputTable').innerHtml  = "${document.query('#outputTable').innerHtml}${tableRow}";
   }
 
   void writeResult(String result) {
-    document.query('#result').innerHTML = result;
+    document.query('#result').innerHtml = result;
   }
 }

@@ -5,4 +5,5 @@ description: PureMVC is a lightweight framework for creating applications based 
 homepage: http://www.puremvc.org
 dependencies:
   browser: any
+dev_dependencies:
   unittest: any

@@ -70,7 +70,7 @@ class Framework_Verify {
 
   void write(String message) {
     // the HTML library defines a global "document" variable
-    document.query('#text').innerHTML = "${document.query('#text').innerHTML}${message}";
+    document.query('#text').innerHtml = "${document.query('#text').innerHtml}${message}";
   }
 }
 

@@ -120,7 +120,7 @@ class View implements IView
           {
               // there can only be one Observer for a given notifyContext
               // in any given Observer list, so remove it and break
-              observers.removeRange(i, 1);
+              observers.remove(observers[i]);
               break;
           }
       }

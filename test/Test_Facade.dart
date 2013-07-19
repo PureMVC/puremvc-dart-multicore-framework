@@ -47,13 +47,13 @@ class Test_Facade
 
         // Make sure it's not reported as registered first
         String multitonKey = "FacadeTest0";
-        Expect.isFalse( mvc.Facade.hasCore( multitonKey ) );
+        expect( mvc.Facade.hasCore( multitonKey ), isFalse );
 
         // Get a unique multiton instance of Facade
         mvc.IFacade facade = mvc.Facade.getInstance( multitonKey );
 
         // Make sure it's registered
-        Expect.isTrue( mvc.Facade.hasCore( multitonKey ) );
+        expect( mvc.Facade.hasCore( multitonKey ), isTrue );
       });
 
       test('removeCore(), hasCore()', () {

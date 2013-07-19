@@ -27,8 +27,7 @@ class Unit_Tests
 {
   Unit_Tests()
   {
-    Configuration config = new Unit_Tests_Config();
-    configure( config );
+    unittestConfiguration = new Unit_Tests_Config();
   }
 
   void onTestResult( TestCase testCase ) {
@@ -37,7 +36,7 @@ class Unit_Tests
   }
 
   void write(String message) {
-    document.query('#status').innerHTML = message;
+    document.query('#status').innerHtml = message;
   }
 
   void run() {
