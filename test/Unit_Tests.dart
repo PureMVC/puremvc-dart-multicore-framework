@@ -6,12 +6,12 @@ import 'dart:html';
 
 // The Unit Testing Framework for Dart
 import 'package:unittest/unittest.dart';
+import 'package:unittest/html_enhanced_config.dart';
 
 // PureMVC Framework for Dart
 import 'package:puremvc/puremvc.dart' as mvc;
 
 // PureMVC Unit Tests
-part 'Unit_Tests_Config.dart';
 part 'Test_Notification.dart';
 part 'Test_Observer.dart';
 part 'Test_SimpleCommand.dart';
@@ -27,7 +27,8 @@ class Unit_Tests
 {
   Unit_Tests()
   {
-    unittestConfiguration = new Unit_Tests_Config();
+   // unittestConfiguration = new Unit_Tests_Config();
+   useHtmlEnhancedConfiguration();
   }
 
   void onTestResult( TestCase testCase ) {
@@ -36,7 +37,7 @@ class Unit_Tests
   }
 
   void write(String message) {
-    document.query('#status').innerHtml = message;
+    document.querySelector('#status').innerHtml = message;
   }
 
   void run() {

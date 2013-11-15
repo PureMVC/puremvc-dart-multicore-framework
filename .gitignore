@@ -1,3 +1,4 @@
 pubspec.lock
 *.dart.js*
 *.dart.js.deps*
+*.dart.precompiled.js

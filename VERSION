@@ -1,23 +1,33 @@
 PureMVC MultiCore Framework for Dart
 --------------------------------------------------------------------------
-Release Date: 07/18/2013
+Release Date: 11/14/2013
     Platform: Google Dart
      Version: 2
     Revision: 0
-       Minor: 5
+       Minor: 6
      Authors: Cliff Hall <cliff@puremvc.org>
 --------------------------------------------------------------------------
+2.0.6 Update pubspec.yaml 
+      - environment: sdk: '>=0.8.10+6 <2.0.0'
+      - dependencies:
+        analyzer: '>=0.10.1 <0.11.0'
+        browser: '>=0.9.0 <0.10.0'
+      - dev_dependencies:
+        unittest: '>=0.9.0 <0.10.0'
+      Replace query() with querySelector() in Framework Test Page.
+      Remove Unit_Tests_Config.dart and use framework enhanceed config.
+    
 2.0.5 Update pubspec.yaml 
       - Use browser:any 
       - Make unitest:any a dev dependency.
-	  Replace Expect with expect() in unit test classes.
-	  Modify Framework_Verify.html / Unit_Tests.html to
-	  - Reference packages/browser/dart.js.
-	  - Use innerHtml instead of innerHTML
-	  Modify Unit_Tests.html / Unit_Tests.dart
-	  - Set unittestConfiguration with the config
-	  - Reference packages/browser/dart.js.
-	  - Use innerHtml instead of innerHTML 
+      Replace Expect with expect() in unit test classes.
+      Modify Framework_Verify.html / Unit_Tests.html to
+      - Reference packages/browser/dart.js.
+      - Use innerHtml instead of innerHTML
+      Modify Unit_Tests.html / Unit_Tests.dart
+      - Set unittestConfiguration with the config
+      - Reference packages/browser/dart.js.
+      - Use innerHtml instead of innerHTML 
 
 2.0.4 Replace interface keyword with abstract class for M2
       Add part keywords
@@ -27,9 +37,9 @@ Release Date: 07/18/2013
 
 2.0.2 Modify pubspec.yaml to pull in the unit test framework from pub
 
-2.0.1 Code cleanup to keep up with changes in 
-	  Dart SDK version 0.2.2.1_r14458. Includes:
-	  - Fixed missing 'part of' directives
+2.0.1 Code cleanup to keep up with changes in Dart SDK version 0.2.2.1_r14458. 
+      Includes:
+      - Fixed missing 'part of' directives
       - New library and import syntax
       - new getter syntax
       - other minor things like whitespace cleanup
@@ -46,23 +56,23 @@ Release Date: 07/18/2013
       No changes to the framework itself.
 
 1.2   Included .project and .children so that Dart Editor can
-	  run the framework verification page (PureMVC_Dart.dart).
-	  The need for these files should be eliminated in a future
-	  version of the editor, but they are required now.
+      run the framework verification page (PureMVC_Dart.dart).
+      The need for these files should be eliminated in a future
+      version of the editor, but they are required now.
 	  
 1.1   Lots of updates and corrections to the documentation.
 
-	  Moved classes and interfaces into the folder locations of the 
-	  reference implementation.
+      Moved classes and interfaces into the folder locations of the 
+      reference implementation.
 	  
-	  Updated the Framework Verification Page (PureMVC_Dart.dart/html)
-	  to detect errors and give a definitive statement about the 
-	  framework's operational status.
+      Updated the Framework Verification Page (PureMVC_Dart.dart/html)
+      to detect errors and give a definitive statement about the 
+      framework's operational status.
 	  
-	  Also we made the decision to disallow null multiton keys. In the 
-	  original ActionScript, this is never a problem, but in the final
-	  JavaScript Dart compiles to, contention could arise if multiple 
-	  apps by different vendors appear in the same page and both call 
-	  Facade.getInstance() without a multiton key. 
+      Also we made the decision to disallow null multiton keys. In the 
+      original ActionScript, this is never a problem, but in the final
+      JavaScript Dart compiles to, contention could arise if multiple 
+      apps by different vendors appear in the same page and both call 
+      Facade.getInstance() without a multiton key. 
 	  
 1.0   Initial version of Dart MultiCore port on PureMVC.org. 
