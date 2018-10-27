@@ -5,9 +5,9 @@ Unit Tests are included in this repository.
 
 To use in your app, you can simply [add it to your project's pubspec.yaml as a dependency](http://pub.dartlang.org/packages/puremvc).
 
-* [API Docs](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/docs/Dart/multicore/puremvc.html&desc=PureMVC%20API%20Docs:%20PureMVC%20MultiCore%20for%20Dart)
+* [API Docs](http://puremvc.org/pages/docs/Dart/multicore/puremvc.html)
 * [Discussion](http://forums.puremvc.org/index.php?board=98.0)
-* [Live Unit Test Runner](http://darkstar.puremvc.org/content_header.html?url=http://puremvc.org/pages/demos/Dart/PureMVC_Dart_Unit_Tests/Unit_Tests.html&desc=PureMVC%20MultiCore%20for%20Dart:%20Unit%20Tests)
+* [Live Unit Test Runner](http://puremvc.org/pages/demos/Dart/PureMVC_Dart_Unit_Tests/Unit_Tests.html)
 * [Overview Presentation](http://puremvc.tv/#P002)
 * [Circle us on Google Plus](http://google.com/+puremvc)
 
