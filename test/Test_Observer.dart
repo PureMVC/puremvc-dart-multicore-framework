@@ -5,7 +5,7 @@ class Test_Observer {
     group('Observer', () {
       test('Constructor null args', () {
         // Create a blind Observer
-        mvc.IObserver observer = new mvc.Observer(() {}, null);
+        mvc.IObserver observer = mvc.Observer(() {}, null);
 
         // Make sure Observer was created
         expect(observer, isNotNull);
@@ -13,7 +13,7 @@ class Test_Observer {
 
       test('Constructor complete args', () {
         // Create an observer with callback method and caller instance defined
-        mvc.IObserver observer = new mvc.Observer(this.observerTestMethod, this);
+        mvc.IObserver observer = mvc.Observer(this.observerTestMethod, this);
 
         // Make sure the Observer was created
         expect(observer, isNotNull);
@@ -25,7 +25,7 @@ class Test_Observer {
 
       test('Constructor minimum args', () {
         // Create an Observer with callback only
-        mvc.IObserver observer = new mvc.Observer(this.observerTestMethod);
+        mvc.IObserver observer = mvc.Observer(this.observerTestMethod);
 
         // Make sure Observer was created
         expect(observer, isNotNull);
@@ -36,7 +36,7 @@ class Test_Observer {
 
       test('setNotifyMethod()', () {
         // Create an Observer
-        mvc.IObserver observer = new mvc.Observer(null);
+        mvc.IObserver observer = mvc.Observer(null);
 
         // Call setNotifyMethod()
         observer.setNotifyMethod(observerTestMethod);
@@ -47,7 +47,7 @@ class Test_Observer {
 
       test('setNotifyContext()', () {
         // Create an Observer
-        mvc.IObserver observer = new mvc.Observer(null);
+        mvc.IObserver observer = mvc.Observer(null);
 
         // Call setNotifyContext()
         observer.setNotifyContext(this);
@@ -59,7 +59,7 @@ class Test_Observer {
 
       test('compareNotifyContext()', () {
         // Create an Observer with only a caller
-        mvc.IObserver observer = new mvc.Observer(null, this);
+        mvc.IObserver observer = mvc.Observer(null, this);
 
         // Make sure the caller was set
         expect(observer.compareNotifyContext(this), isTrue);
@@ -67,11 +67,11 @@ class Test_Observer {
 
       test('notifyObserver()', () {
         // Create an Observer with this test instance's observerTestMethod() as the callback
-        mvc.IObserver observer = new mvc.Observer(this.observerTestMethod, this);
+        mvc.IObserver observer = mvc.Observer(this.observerTestMethod, this);
 
         // Create a Notification
         String name = "Test";
-        mvc.INotification note = new mvc.Notification(name);
+        mvc.INotification note = mvc.Notification(name);
 
         // Notify the Observer
         observer.notifyObserver(note);

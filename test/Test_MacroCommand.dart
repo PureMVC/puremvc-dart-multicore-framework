@@ -5,17 +5,17 @@ class Test_MacroCommand {
     group('MacroCommand', () {
       test('Constructor', () {
         // Create a MacroCommand
-        mvc.ICommand macroCommand = new MacroCommandTestCommand();
+        mvc.ICommand macroCommand = MacroCommandTestCommand();
         expect(macroCommand, isNotNull);
       });
 
       test('execute()', () {
         // Create a MacroCommand
-        mvc.ICommand macroCommand = new MacroCommandTestCommand();
+        mvc.ICommand macroCommand = MacroCommandTestCommand();
 
         // Create a VO and a Notification to pass it to the Command with
-        MacroCommandTestVO vo = new MacroCommandTestVO(5);
-        mvc.INotification note = new mvc.Notification("MacroCommandTest", vo);
+        MacroCommandTestVO vo = MacroCommandTestVO(5);
+        mvc.INotification note = mvc.Notification("MacroCommandTest", vo);
 
         // Execute the MacroCommand execute the note
         macroCommand.execute(note);
@@ -25,7 +25,7 @@ class Test_MacroCommand {
 
       test('initializeNotifier()', () {
         // Create a MacroCommand
-        mvc.INotifier notifier = new MacroCommandTestCommand();
+        mvc.INotifier notifier = MacroCommandTestCommand();
 
         // Call initializeNotifier()
         String multitonKey = "MacroCommandTest";
@@ -53,8 +53,8 @@ class MacroCommandTestVO {
 class MacroCommandTestCommand extends mvc.MacroCommand {
   void initializeMacroCommand() {
     // Add the subcommands
-    addSubCommand(() => new MacroCommandTestDoubleInputCommand());
-    addSubCommand(() => new MacroCommandTestSquareInputCommand());
+    addSubCommand(() => MacroCommandTestDoubleInputCommand());
+    addSubCommand(() => MacroCommandTestSquareInputCommand());
   }
 }
 

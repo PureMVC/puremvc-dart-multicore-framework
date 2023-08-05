@@ -25,7 +25,7 @@ class Test_Controller {
 
         // Register a Command
         String noteName = "ControllerTest2Note";
-        controller.registerCommand(noteName, () => new ControllerTestMacroCommand());
+        controller.registerCommand(noteName, () => ControllerTestMacroCommand());
 
         // Make sure it's registered
         expect(controller.hasCommand(noteName), isTrue);
@@ -38,11 +38,11 @@ class Test_Controller {
 
         // Register a Command
         String noteName = "ControllerTest3Note";
-        controller.registerCommand(noteName, () => new ControllerTestDoubleInputCommand());
+        controller.registerCommand(noteName, () => ControllerTestDoubleInputCommand());
 
         // Create a Notification
-        ControllerTestVO vo = new ControllerTestVO(5);
-        mvc.INotification note = new mvc.Notification(noteName, vo);
+        ControllerTestVO vo = ControllerTestVO(5);
+        mvc.INotification note = mvc.Notification(noteName, vo);
 
         // Have the Controller execute the Command
         controller.executeCommand(note);
@@ -59,11 +59,11 @@ class Test_Controller {
 
         // Register a Command
         String noteName = "ControllerTest4Note";
-        controller.registerCommand(noteName, () => new ControllerTestMacroCommand());
+        controller.registerCommand(noteName, () => ControllerTestMacroCommand());
 
         // Create a Notification
-        ControllerTestVO vo = new ControllerTestVO(5);
-        mvc.INotification note = new mvc.Notification(noteName, vo);
+        ControllerTestVO vo = ControllerTestVO(5);
+        mvc.INotification note = mvc.Notification(noteName, vo);
 
         // Have the Controller execute the Command
         controller.executeCommand(note);
@@ -80,7 +80,7 @@ class Test_Controller {
 
         // Register a Command
         String noteName = "ControllerTest5Note";
-        controller.registerCommand(noteName, () => new ControllerTestMacroCommand());
+        controller.registerCommand(noteName, () => ControllerTestMacroCommand());
 
         // Make sure it's registered
         expect(controller.hasCommand(noteName), isTrue);
@@ -110,8 +110,8 @@ class ControllerTestVO {
 class ControllerTestMacroCommand extends mvc.MacroCommand {
   void initializeMacroCommand() {
     // add the subcommands
-    addSubCommand(() => new ControllerTestDoubleInputCommand());
-    addSubCommand(() => new ControllerTestSquareInputCommand());
+    addSubCommand(() => ControllerTestDoubleInputCommand());
+    addSubCommand(() => ControllerTestSquareInputCommand());
   }
 }
 

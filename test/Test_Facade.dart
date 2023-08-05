@@ -77,7 +77,7 @@ class Test_Facade {
 
         // Register a Command
         String noteName = "FacadeTest2Note";
-        facade.registerCommand(noteName, () => new FacadeTestMacroCommand());
+        facade.registerCommand(noteName, () => FacadeTestMacroCommand());
 
         // Make sure it's registered
         expect(facade.hasCommand(noteName), isTrue);
@@ -90,10 +90,10 @@ class Test_Facade {
 
         // Register a Command
         String noteName = "FacadeTest3Note";
-        facade.registerCommand(noteName, () => new FacadeTestDoubleInputCommand());
+        facade.registerCommand(noteName, () => FacadeTestDoubleInputCommand());
 
         // Create a value object
-        FacadeTestVO vo = new FacadeTestVO(5);
+        FacadeTestVO vo = FacadeTestVO(5);
 
         // Have the Facade send the note, triggering the Command
         facade.sendNotification(noteName, vo);
@@ -110,10 +110,10 @@ class Test_Facade {
 
         // Register a Command
         String noteName = "FacadeTest4Note";
-        facade.registerCommand(noteName, () => new FacadeTestMacroCommand());
+        facade.registerCommand(noteName, () => FacadeTestMacroCommand());
 
         // Create a value object
-        FacadeTestVO vo = new FacadeTestVO(5);
+        FacadeTestVO vo = FacadeTestVO(5);
 
         // Have the Facade execute the Command
         facade.sendNotification(noteName, vo);
@@ -130,7 +130,7 @@ class Test_Facade {
 
         // Register a Command
         String noteName = "FacadeTest5Note";
-        facade.registerCommand(noteName, () => new FacadeTestMacroCommand());
+        facade.registerCommand(noteName, () => FacadeTestMacroCommand());
 
         // Make sure it's registered
         expect(facade.hasCommand(noteName), isTrue);
@@ -152,7 +152,7 @@ class Test_Facade {
 
         // Register a Mediator
         String mediatorName = "FacadeTest6Mediator";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
         facade.registerMediator(mediator);
 
         // Make sure it's registered
@@ -166,7 +166,7 @@ class Test_Facade {
 
         // Register a Mediator
         String mediatorName = "FacadeTest7Mediator";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
         facade.registerMediator(mediator);
 
         // Make sure same mediator is retrieved
@@ -180,7 +180,7 @@ class Test_Facade {
 
         // Register a Mediator
         String mediatorName = "FacadeTest8Mediator";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
         facade.registerMediator(mediator);
 
         // Make sure it's registered
@@ -201,11 +201,11 @@ class Test_Facade {
         // Register an Observer using this test
         // instance's facadeTestMethod as the callback
         String noteName = "FacadeTest8Note";
-        mvc.IObserver observer = new mvc.Observer(facadeTestMethod, this);
+        mvc.IObserver observer = mvc.Observer(facadeTestMethod, this);
         facade.registerObserver(noteName, observer);
 
         // Create a notification
-        mvc.INotification note = new mvc.Notification(noteName);
+        mvc.INotification note = mvc.Notification(noteName);
 
         // Have the Facade notify the Observer
         facade.notifyObservers(note);
@@ -220,10 +220,10 @@ class Test_Facade {
         final facade = mvc.Facade.getInstance(multitonKey) as mvc.IFacade;
 
         // Create a view component
-        FacadeTestViewComponent vc = new FacadeTestViewComponent();
+        FacadeTestViewComponent vc = FacadeTestViewComponent();
 
         // Register a FacadeTestMediator
-        mvc.IMediator mediator = new FacadeTestMediator(vc);
+        mvc.IMediator mediator = FacadeTestMediator(vc);
         facade.registerMediator(mediator);
 
         // Make sure it's registered
@@ -239,10 +239,10 @@ class Test_Facade {
         final facade = mvc.Facade.getInstance(multitonKey) as mvc.IFacade;
 
         // Create a view component
-        FacadeTestViewComponent vc = new FacadeTestViewComponent();
+        FacadeTestViewComponent vc = FacadeTestViewComponent();
 
         // Register a FacadeTestMediator
-        mvc.IMediator mediator = new FacadeTestMediator(vc);
+        mvc.IMediator mediator = FacadeTestMediator(vc);
         facade.registerMediator(mediator);
 
         // Make sure it's registered
@@ -261,10 +261,10 @@ class Test_Facade {
         final facade = mvc.Facade.getInstance(multitonKey) as mvc.IFacade;
 
         // Create a view component
-        FacadeTestViewComponent vc = new FacadeTestViewComponent();
+        FacadeTestViewComponent vc = FacadeTestViewComponent();
 
         // Register a FacadeTestMediator
-        mvc.IMediator mediator = new FacadeTestMediator(vc);
+        mvc.IMediator mediator = FacadeTestMediator(vc);
         facade.registerMediator(mediator);
 
         // Make sure the Mediator's listNotificationInterests() method was called
@@ -277,10 +277,10 @@ class Test_Facade {
         final facade = mvc.Facade.getInstance(multitonKey) as mvc.IFacade;
 
         // Create a view component
-        FacadeTestViewComponent vc = new FacadeTestViewComponent();
+        FacadeTestViewComponent vc = FacadeTestViewComponent();
 
         // Register a FacadeTestMediator
-        mvc.IMediator mediator = new FacadeTestMediator(vc);
+        mvc.IMediator mediator = FacadeTestMediator(vc);
         facade.registerMediator(mediator);
 
         // Send the Notification
@@ -300,7 +300,7 @@ class Test_Facade {
 
         // Register a Proxy
         String proxyName = "FacadeTest13Proxy";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         facade.registerProxy(proxy);
 
         // Make sure it's there
@@ -314,7 +314,7 @@ class Test_Facade {
 
         // Register a Proxy
         String proxyName = "FacadeTest14Proxy";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         facade.registerProxy(proxy);
 
         // Make sure same Proxy is retrieved
@@ -328,7 +328,7 @@ class Test_Facade {
 
         // Register a Proxy
         String proxyName = "FacadeTest15Proxy";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         facade.registerProxy(proxy);
 
         // Make sure it is returned when removed
@@ -344,7 +344,7 @@ class Test_Facade {
         final facade = mvc.Facade.getInstance(multitonKey) as mvc.IFacade;
 
         // Register a Proxy
-        mvc.IProxy proxy = new FacadeTestProxy();
+        mvc.IProxy proxy = FacadeTestProxy();
         facade.registerProxy(proxy);
 
         // Make sure the Proxy's onRegister() method is called
@@ -357,7 +357,7 @@ class Test_Facade {
         final facade = mvc.Facade.getInstance(multitonKey) as mvc.IFacade;
 
         // Register a Proxy
-        mvc.IProxy proxy = new FacadeTestProxy();
+        mvc.IProxy proxy = FacadeTestProxy();
         facade.registerProxy(proxy);
 
         // Remove the Proxy
@@ -462,8 +462,8 @@ class FacadeTestVO {
 class FacadeTestMacroCommand extends mvc.MacroCommand {
   void initializeMacroCommand() {
     // add the subcommands
-    addSubCommand(() => new FacadeTestDoubleInputCommand());
-    addSubCommand(() => new FacadeTestSquareInputCommand());
+    addSubCommand(() => FacadeTestDoubleInputCommand());
+    addSubCommand(() => FacadeTestSquareInputCommand());
   }
 }
 

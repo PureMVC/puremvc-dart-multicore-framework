@@ -5,14 +5,14 @@ class Test_Proxy {
     group('ProxyTest', () {
       test('Constructor +name', () {
         String proxyName = "TestProxy1";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         expect(proxy, isNotNull);
       });
 
       test('getName(), .name', () {
         // Create a Proxy
         String proxyName = "TestProxy2";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
 
         // Make sure the Proxy name was set
         expect(proxy.getName(), equals(proxyName));
@@ -25,7 +25,7 @@ class Test_Proxy {
 
         // Create a Proxy with that data
         String proxyName = "TestProxy3";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName, data);
+        mvc.IProxy proxy = mvc.Proxy(proxyName, data);
 
         // Make sure the Proxy was created
         expect(proxy, isNotNull);
@@ -41,7 +41,7 @@ class Test_Proxy {
 
         // Create a Proxy
         String proxyName = "TestProxy4";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
 
         // Call setData()
         proxy.setData(data);
@@ -54,7 +54,7 @@ class Test_Proxy {
       test('initializeNotifier()', () {
         // Create a Proxy
         String proxyName = "TestProxy5";
-        mvc.INotifier notifier = new mvc.Proxy(proxyName);
+        mvc.INotifier notifier = mvc.Proxy(proxyName);
 
         // Call initializeNotifier()
         String multitonKey = "ProxyTestKey";

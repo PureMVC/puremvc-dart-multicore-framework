@@ -62,7 +62,7 @@ class Facade implements IFacade {
     if (instanceMap.containsKey(key)) {
       return instanceMap[key];
     } else {
-      return instanceMap[key] = new Facade(key);
+      return instanceMap[key] = Facade(key);
     }
   }
 
@@ -106,14 +106,14 @@ class Facade implements IFacade {
    * Register an [INotification] to [ICommand] mapping with the [Controller].
    *
    * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
-   * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
+   * -  Param [commandFactory] - a function that creates a instance of the [ICommand].
    */
   void registerCommand(String noteName, Function commandFactory) {
     controller!.registerCommand(noteName, commandFactory);
   }
 
   void executeCommand(String name, [dynamic body = null, String? type]) {
-    controller!.executeCommand(new Notification(name, body, type));
+    controller!.executeCommand(Notification(name, body, type));
   }
 
   /**
@@ -237,7 +237,7 @@ class Facade implements IFacade {
    * -  Param [type] - the type of the note (optional)
    */
   void sendNotification(String noteName, [dynamic body, String? type]) {
-    notifyObservers(new Notification(noteName, body, type));
+    notifyObservers(Notification(noteName, body, type));
   }
 
   /**

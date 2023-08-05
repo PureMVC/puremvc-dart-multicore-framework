@@ -34,16 +34,16 @@ class Unit_Tests {
 
   void run() {
     // Now, run the PureMVC Tests
-    new Test_Notification().run();
-    new Test_Observer().run();
-    new Test_SimpleCommand().run();
-    new Test_MacroCommand().run();
-    new Test_Proxy().run();
-    new Test_Mediator().run();
-    new Test_Model().run();
-    new Test_View().run();
-    new Test_Controller().run();
-    new Test_Facade().run();
+    Test_Notification().run();
+    Test_Observer().run();
+    Test_SimpleCommand().run();
+    Test_MacroCommand().run();
+    Test_Proxy().run();
+    Test_Mediator().run();
+    Test_Model().run();
+    Test_View().run();
+    Test_Controller().run();
+    Test_Facade().run();
   }
 }
 
@@ -52,5 +52,5 @@ class Unit_Tests {
  */
 void main() {
   // Unit test program, reporting for duty!
-  new Unit_Tests().run();
+  Unit_Tests().run();
 }

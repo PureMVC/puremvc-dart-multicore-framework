@@ -25,7 +25,7 @@ class Test_View {
 
         // Register a Mediator
         String mediatorName = "ViewTest3Mediator";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
         view.registerMediator(mediator);
 
         // Make sure it's registered
@@ -39,7 +39,7 @@ class Test_View {
 
         // Register a Mediator
         String mediatorName = "ViewTest3Mediator";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
         view.registerMediator(mediator);
 
         // Make sure same mediator is retrieved
@@ -53,7 +53,7 @@ class Test_View {
 
         // Register a Mediator
         String mediatorName = "ViewTest4Mediator";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
         view.registerMediator(mediator);
 
         // Make sure it's registered
@@ -74,11 +74,11 @@ class Test_View {
         // Register an Observer using this test
         // instance's viewTestMethod as the callback
         String noteName = "ViewTest5Note";
-        mvc.IObserver observer = new mvc.Observer(viewTestMethod, this);
+        mvc.IObserver observer = mvc.Observer(viewTestMethod, this);
         view.registerObserver(noteName, observer);
 
         // Create a notification
-        mvc.INotification note = new mvc.Notification(noteName);
+        mvc.INotification note = mvc.Notification(noteName);
 
         // Have the View notify the Observer
         view.notifyObservers(note);
@@ -93,10 +93,10 @@ class Test_View {
         final view = mvc.View.getInstance(multitonKey) as mvc.IView;
 
         // Create a view component
-        ViewTestViewComponent vc = new ViewTestViewComponent();
+        ViewTestViewComponent vc = ViewTestViewComponent();
 
         // Register a ViewTestMediator
-        mvc.IMediator mediator = new ViewTestMediator(vc);
+        mvc.IMediator mediator = ViewTestMediator(vc);
         view.registerMediator(mediator);
 
         // Make sure it's registered
@@ -112,10 +112,10 @@ class Test_View {
         final view = mvc.View.getInstance(multitonKey) as mvc.IView;
 
         // Create a view component
-        ViewTestViewComponent vc = new ViewTestViewComponent();
+        ViewTestViewComponent vc = ViewTestViewComponent();
 
         // Register a ViewTestMediator
-        mvc.IMediator mediator = new ViewTestMediator(vc);
+        mvc.IMediator mediator = ViewTestMediator(vc);
         view.registerMediator(mediator);
 
         // Make sure it's registered
@@ -134,10 +134,10 @@ class Test_View {
         final view = mvc.View.getInstance(multitonKey) as mvc.IView;
 
         // Create a view component
-        ViewTestViewComponent vc = new ViewTestViewComponent();
+        ViewTestViewComponent vc = ViewTestViewComponent();
 
         // Register a ViewTestMediator
-        mvc.IMediator mediator = new ViewTestMediator(vc);
+        mvc.IMediator mediator = ViewTestMediator(vc);
         view.registerMediator(mediator);
 
         // Make sure the Mediator's listNotificationInterests() method was called
@@ -150,14 +150,14 @@ class Test_View {
         final view = mvc.View.getInstance(multitonKey) as mvc.IView;
 
         // Create a view component
-        ViewTestViewComponent vc = new ViewTestViewComponent();
+        ViewTestViewComponent vc = ViewTestViewComponent();
 
         // Register a ViewTestMediator
-        mvc.IMediator mediator = new ViewTestMediator(vc);
+        mvc.IMediator mediator = ViewTestMediator(vc);
         view.registerMediator(mediator);
 
         // Create a Notification
-        mvc.INotification note = new mvc.Notification(ViewTestNotes.NOTE_2);
+        mvc.INotification note = mvc.Notification(ViewTestNotes.NOTE_2);
 
         // Send the Notification
         view.notifyObservers(note);

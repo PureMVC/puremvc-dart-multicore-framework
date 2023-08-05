@@ -5,17 +5,17 @@ class Test_SimpleCommand {
     group('SimpleCommand', () {
       test('Constructor', () {
         // Create a SimpleCommand
-        mvc.ICommand simpleCommand = new SimpleCommandTestDoubleInputCommand();
+        mvc.ICommand simpleCommand = SimpleCommandTestDoubleInputCommand();
         expect(simpleCommand, isNotNull);
       });
 
       test('execute()', () {
         // Create a SimpleCommand
-        mvc.ICommand simpleCommand = new SimpleCommandTestDoubleInputCommand();
+        mvc.ICommand simpleCommand = SimpleCommandTestDoubleInputCommand();
 
         // Crete a VO and a Notification to pass it to the Command with
-        SimpleCommandTestVO vo = new SimpleCommandTestVO(5);
-        mvc.INotification note = new mvc.Notification("SimpleCommandTestNote", vo);
+        SimpleCommandTestVO vo = SimpleCommandTestVO(5);
+        mvc.INotification note = mvc.Notification("SimpleCommandTestNote", vo);
 
         // Execute the SimpleCommand with the note
         simpleCommand.execute(note);
@@ -26,7 +26,7 @@ class Test_SimpleCommand {
 
       test('initializeNotifier()', () {
         // Create a SimpleCommand
-        mvc.INotifier notifier = new SimpleCommandTestDoubleInputCommand();
+        mvc.INotifier notifier = SimpleCommandTestDoubleInputCommand();
 
         // call initializeNotifier()
         String multitonKey = "SimpleCommandTest";

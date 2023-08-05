@@ -21,7 +21,7 @@ class Test_Model {
 
         // Register a Proxy
         String proxyName = "ModelTest2Proxy";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         model.registerProxy(proxy);
 
         // Make sure it's there
@@ -35,7 +35,7 @@ class Test_Model {
 
         // Register a Proxy
         String proxyName = "ModelTest3Proxy";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         model.registerProxy(proxy);
 
         // Make sure same Proxy is retrieved
@@ -49,7 +49,7 @@ class Test_Model {
 
         // Register a Proxy
         String proxyName = "ModelTest4Proxy";
-        mvc.IProxy proxy = new mvc.Proxy(proxyName);
+        mvc.IProxy proxy = mvc.Proxy(proxyName);
         model.registerProxy(proxy);
 
         // Make sure it is returned when removed
@@ -65,7 +65,7 @@ class Test_Model {
         final model = mvc.Model.getInstance(multitonKey) as mvc.IModel;
 
         // Register a Proxy
-        mvc.IProxy proxy = new ModelTestProxy();
+        mvc.IProxy proxy = ModelTestProxy();
         model.registerProxy(proxy);
 
         // Make sure the Model calls the Proxy's onRegister() method
@@ -78,7 +78,7 @@ class Test_Model {
         final model = mvc.Model.getInstance(multitonKey) as mvc.IModel;
 
         // Register a Proxy
-        mvc.IProxy proxy = new ModelTestProxy();
+        mvc.IProxy proxy = ModelTestProxy();
         model.registerProxy(proxy);
 
         // Remove the Proxy

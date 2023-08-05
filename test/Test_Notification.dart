@@ -6,7 +6,7 @@ class Test_Notification {
       test('Constructor minimum args', () {
         // Create a Notification with a name only
         String name = "Test";
-        mvc.INotification note = new mvc.Notification(name);
+        mvc.INotification note = mvc.Notification(name);
 
         // Make sure the note was created
         expect(note, isNotNull);
@@ -15,7 +15,7 @@ class Test_Notification {
       test('.name, getName()', () {
         // Create a Notification with name only
         String name = "Test";
-        mvc.INotification note = new mvc.Notification(name);
+        mvc.INotification note = mvc.Notification(name);
 
         // Make sure the name was set
         expect(name, equals(note.getName()));
@@ -25,7 +25,7 @@ class Test_Notification {
         // Create a Notification with name and type only
         String name = "Test";
         String type = "Type";
-        mvc.INotification note = new mvc.Notification(name, null, type);
+        mvc.INotification note = mvc.Notification(name, null, type);
 
         // Make Sure the type was set
         expect(type, equals(note.getType()));
@@ -35,7 +35,7 @@ class Test_Notification {
         // Create a Notification with a body
         String name = "Test";
         List<String> body = List<String>.empty(growable: true);
-        mvc.INotification note = new mvc.Notification(name, body);
+        mvc.INotification note = mvc.Notification(name, body);
 
         // Make sure the body was set
         expect(body, equals(note.getBody()));

@@ -6,7 +6,7 @@ class Test_Mediator {
       test('Constructor', () {
         // Create a Mediator
         String mediatorName = "TestMediator1";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
 
         // Make sure it was created
         expect(mediator, isNotNull);
@@ -15,7 +15,7 @@ class Test_Mediator {
       test('getMediatorName()', () {
         // Create a Mediator
         String mediatorName = "TestMediator2";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
 
         // Make sure the Mediator's name was set
         expect(mediator.getName(), equals(mediatorName));
@@ -24,11 +24,11 @@ class Test_Mediator {
 
       test('Constructor +viewComponent, getViewComponent(), .viewComponent', () {
         // Create a view component
-        Object viewComponent = new Object();
+        Object viewComponent = Object();
 
         // Create a Mediator with the view component
         String mediatorName = "TestMediator3";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName, viewComponent);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName, viewComponent);
 
         // Make sure the view component was set
         expect(mediator.getViewComponent(), same(viewComponent));
@@ -37,11 +37,11 @@ class Test_Mediator {
 
       test('setViewComponent(), getViewComponent()', () {
         // Create a view component
-        Object viewComponent = new Object();
+        Object viewComponent = Object();
 
         // Create a Mediator
         String mediatorName = "TestMediator4";
-        mvc.IMediator mediator = new mvc.Mediator(mediatorName);
+        mvc.IMediator mediator = mvc.Mediator(mediatorName);
 
         // Call setViewComponent()
         mediator.setViewComponent(viewComponent);
@@ -54,7 +54,7 @@ class Test_Mediator {
       test('initializeNotifier()', () {
         // Create a Mediator
         String mediatorName = "TestMediator5";
-        mvc.INotifier notifier = new mvc.Mediator(mediatorName);
+        mvc.INotifier notifier = mvc.Mediator(mediatorName);
 
         // Call initializeNotifier()
         String multitonKey = "MediatorTestKey";

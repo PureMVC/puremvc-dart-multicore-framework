@@ -29,7 +29,7 @@ class Framework_Verify {
       write("<LI>Data point added '${dataPoint2}'.</LI>");
 
       // Register a Proxy to hold the data
-      mvc.IProxy proxy = new mvc.Proxy(proxyName, dataObject);
+      mvc.IProxy proxy = mvc.Proxy(proxyName, dataObject);
       write("<LI>Proxy '${proxyName}' created with for Data Object.</LI>");
       facade.registerProxy(proxy);
       write("<LI>Proxy '${proxyName}' registered with Model, via Facade.</LI>");
@@ -71,5 +71,5 @@ class Framework_Verify {
 }
 
 void main() {
-  new Framework_Verify().verify();
+  Framework_Verify().verify();
 }
