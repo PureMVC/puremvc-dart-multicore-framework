@@ -81,7 +81,7 @@ class Controller implements IController {
    * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
   void registerCommand(String noteName, Function commandFactory) {
-    if (commandMap[noteName] == null) {
+    if (!hasCommand(noteName)) {
       view.registerObserver(noteName, new Observer(executeCommand, this));
     }
     commandMap[noteName] = commandFactory;
@@ -94,7 +94,7 @@ class Controller implements IController {
    * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
    */
   bool hasCommand(String noteName) {
-    return commandMap[noteName] != null;
+    return commandMap.containsKey(noteName);
   }
 
   /**
