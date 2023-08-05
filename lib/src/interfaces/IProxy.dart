@@ -17,50 +17,47 @@ part of puremvc;
  *
  * See [IModel]
  */
-abstract class IProxy extends INotifier
-{
-    /**
+abstract class IProxy extends INotifier {
+  /**
      * Get the [IProxy] [name].
      *
      * -  Returns [String] - the [IProxy] instance [name].
      */
-    String getName();
+  String getName();
 
-    /**
+  /**
      * Set the [dataObject].
      *
      * -  Param [Dynamic] - the [dataObject] this [IProxy] will tend.
      */
-    void setData( dynamic dataObject );
+  void setData(dynamic dataObject);
 
-    /**
+  /**
      * Get the [dataObject].
      *
      * -  Returns [Dynamic] - the [dataObject].
      */
-    dynamic getData();
+  dynamic getData();
 
-    /**
+  /**
      * Called by the [IModel] when the [IProxy] is registered.
      */
-    void onRegister( );
+  void onRegister();
 
-    /**
+  /**
      * Called by the [IModel] when the [IProxy] is removed.
      */
-    void onRemove( );
+  void onRemove();
 
-    /**
+  /**
      * This [IProxy]'s [dataObject].
      */
-    void set data( dynamic dataObject );
-    dynamic get data;
+  void set data(dynamic dataObject);
+  dynamic get data;
 
-    /**
+  /**
      * This [IProxy]'s [name].
      */
-    void set name( String proxyName );
-    String get name;
-
-
+  void set name(String proxyName);
+  String get name;
 }

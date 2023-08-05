@@ -25,18 +25,16 @@ part of puremvc;
  *
  * See [IView], [INotification]
  */
-class Observer implements IObserver
-{
-
+class Observer implements IObserver {
   /**
    * This [IObserver]'s [notifyMethod] (i.e., callback)
    */
-  Function notifyMethod;
+  Function? _notifyMethod;
 
   /**
    * This [IObserver]'s [notifyContext] (i.e., caller)
    */
-  Object notifyContext;
+  Object? _notifyContext;
 
   /**
    * Constructor.
@@ -47,7 +45,7 @@ class Observer implements IObserver
    * Param [notifyMethod] the callback method
    * Param [notifyContext] the caller object
    */
-  Observer( Function this.notifyMethod, [Object this.notifyContext] ){}
+  Observer([this._notifyMethod, this._notifyContext]) {}
 
   /**
    * Set the notification method.
@@ -56,9 +54,8 @@ class Observer implements IObserver
    *
    * -  Param [notifyMethod] - the notification (callback) method of the interested object.
    */
-  void setNotifyMethod( Function callback )
-  {
-    notifyMethod = callback;
+  void setNotifyMethod(Function? callback) {
+    _notifyMethod = callback;
   }
 
   /**
@@ -66,9 +63,8 @@ class Observer implements IObserver
    *
    * -  Param [caller] - a reference to the object to be notified.
    */
-  void setNotifyContext( Object caller )
-  {
-    notifyContext = caller;
+  void setNotifyContext(Object? caller) {
+    _notifyContext = caller;
   }
 
   /**
@@ -76,29 +72,22 @@ class Observer implements IObserver
    *
    * -  Returns [Function] - the notification (callback) method of the interested object.
    */
-  Function getNotifyMethod()
-  {
-    return notifyMethod;
-  }
+  Function? getNotifyMethod() => _notifyMethod;
 
   /**
    * Get the notification context.
    *
    * -  Returns [Object] - the caller.
    */
-  Object getNotifyContext()
-  {
-      return notifyContext;
-  }
+  Object? getNotifyContext() => _notifyContext;
 
   /**
    * Notify the interested object.
    *
    * -  Param [note] - the [INotification] to pass to the caller's [notifyMethod].
    */
-  void notifyObserver( INotification notification )
-  {
-    if ( notifyContext != null ) getNotifyMethod()( notification );
+  void notifyObserver(INotification notification) {
+    if (_notifyContext != null) getNotifyMethod()!(notification);
   }
 
   /**
@@ -107,8 +96,11 @@ class Observer implements IObserver
    * -  Param [Object] - the object to compare.
    * -  Returns [bool] - whether the given object and the [notifyContext] (caller) are the same.
    */
-  bool compareNotifyContext( Object object )
-  {
-       return identical(object, notifyContext);
+  bool compareNotifyContext(Object object) {
+    return identical(object, _notifyContext);
+  }
+
+  set notifyContext(Object? caller) {
+    notifyContext = caller;
   }
 }

@@ -17,66 +17,61 @@ part of puremvc;
  *
  * See [IModel]
  */
-class Proxy extends Notifier implements IProxy
-{
-    /**
+class Proxy extends Notifier implements IProxy {
+  /**
      * Constructor
      *
      * -  Param [name] - the [name] this [IProxy] will be registered with.
      * -  Param [data] - the Data Object (optional)
      */
-    Proxy( String this.name, [dynamic this.data] ){ }
+  Proxy(String this.name, [dynamic this.data]) {}
 
-    /**
+  /**
      * Get the [IProxy] [name].
      *
      * -  Returns [String] - the [IProxy] instance [name].
      */
-    String getName()
-    {
-        return name;
-    }
+  String getName() {
+    return name;
+  }
 
-    /**
+  /**
      * Set the [dataObject].
      *
      * -  Param [Dynamic] - the [dataObject] this [IProxy] will tend.
      */
-    void setData( dynamic dataObject )
-    {
-       data = dataObject;
-    }
+  void setData(dynamic dataObject) {
+    data = dataObject;
+  }
 
-    /**
+  /**
      * Get the [dataObject].
      *
      * -  Returns [Dynamic] - the [dataObject].
      */
-    dynamic getData()
-    {
-        return data;
-    }
+  dynamic getData() {
+    return data;
+  }
 
-    /**
+  /**
      * Called by the [IModel] when the [IProxy] is registered.
      *
      * Override in your subclass and add code to be run at registration time.
      */
-    void onRegister(){}
+  void onRegister() {}
 
-    /**
+  /**
      * Called by the [IModel] when the [IProxy] is removed
      */
-    void onRemove(){}
+  void onRemove() {}
 
-    /**
+  /**
      * This [IProxy]'s [name].
      */
-    String name;
+  String name;
 
-    /**
+  /**
      * This [IProxy]'s [dataObject].
      */
-    dynamic data;
-
+  dynamic data;
 }

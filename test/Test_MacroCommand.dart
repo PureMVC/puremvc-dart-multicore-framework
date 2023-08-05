@@ -1,15 +1,12 @@
 part of puremvc_unit_tests;
 
-class Test_MacroCommand
-{
-  _tests()
-  {
-    group('MacroCommand', ()
-    {
+class Test_MacroCommand {
+  _tests() {
+    group('MacroCommand', () {
       test('Constructor', () {
         // Create a MacroCommand
         mvc.ICommand macroCommand = new MacroCommandTestCommand();
-        expect( macroCommand, isNotNull );
+        expect(macroCommand, isNotNull);
       });
 
       test('execute()', () {
@@ -17,13 +14,13 @@ class Test_MacroCommand
         mvc.ICommand macroCommand = new MacroCommandTestCommand();
 
         // Create a VO and a Notification to pass it to the Command with
-        MacroCommandTestVO vo = new MacroCommandTestVO( 5 );
-        mvc.INotification note = new mvc.Notification( "MacroCommandTest", vo );
+        MacroCommandTestVO vo = new MacroCommandTestVO(5);
+        mvc.INotification note = new mvc.Notification("MacroCommandTest", vo);
 
         // Execute the MacroCommand execute the note
         macroCommand.execute(note);
-        expect( vo.doubled, equals(10) );
-        expect( vo.squared, equals(25) );
+        expect(vo.doubled, equals(10));
+        expect(vo.squared, equals(25));
       });
 
       test('initializeNotifier()', () {
@@ -32,10 +29,10 @@ class Test_MacroCommand
 
         // Call initializeNotifier()
         String multitonKey = "MacroCommandTest";
-        notifier.initializeNotifier( multitonKey );
+        notifier.initializeNotifier(multitonKey);
 
         // Make sure MacroCommand's multitonKey was set
-        expect( notifier.multitonKey, isNotNull );
+        expect(notifier.multitonKey, isNotNull);
       });
     });
   }
@@ -45,28 +42,24 @@ class Test_MacroCommand
   }
 }
 
-class MacroCommandTestVO
-{
-  int input;
-  int doubled;
-  int squared;
+class MacroCommandTestVO {
+  final int input;
+  int? doubled;
+  int? squared;
 
-  MacroCommandTestVO( int this.input ) {}
+  MacroCommandTestVO(this.input) {}
 }
 
-class MacroCommandTestCommand extends mvc.MacroCommand
-{
+class MacroCommandTestCommand extends mvc.MacroCommand {
   void initializeMacroCommand() {
     // Add the subcommands
-    addSubCommand( () => new MacroCommandTestDoubleInputCommand() );
-    addSubCommand( () => new MacroCommandTestSquareInputCommand() );
+    addSubCommand(() => new MacroCommandTestDoubleInputCommand());
+    addSubCommand(() => new MacroCommandTestSquareInputCommand());
   }
 }
 
-class MacroCommandTestDoubleInputCommand extends mvc.SimpleCommand
-{
-  void execute( mvc.INotification note )
-  {
+class MacroCommandTestDoubleInputCommand extends mvc.SimpleCommand {
+  void execute(mvc.INotification note) {
     // Get the VO from the note body
     MacroCommandTestVO vo = note.getBody();
 
@@ -75,10 +68,8 @@ class MacroCommandTestDoubleInputCommand extends mvc.SimpleCommand
   }
 }
 
-class MacroCommandTestSquareInputCommand extends mvc.SimpleCommand
-{
-  void execute( mvc.INotification note )
-  {
+class MacroCommandTestSquareInputCommand extends mvc.SimpleCommand {
+  void execute(mvc.INotification note) {
     // Get the VO from the note body
     MacroCommandTestVO vo = note.getBody();
 

@@ -23,9 +23,7 @@ part of puremvc;
  *
  * See [INotification], [IView]
  */
-abstract class IMediator extends INotifier
-{
-
+abstract class IMediator extends INotifier {
   /**
    * Get the [IMediator] instance's [name].
    *
@@ -45,43 +43,41 @@ abstract class IMediator extends INotifier
    *
    * -  Param [Dynamic] - the [viewComponent].
    */
-  void setViewComponent( dynamic viewComponent );
+  void setViewComponent(dynamic viewComponent);
 
   /**
    * List [INotification] interests.
    *
    * -  Returns [List] - a [List] of the [INotification] names this [IMediator] has an interest in.
    */
-  List<String> listNotificationInterests( );
+  List<String> listNotificationInterests();
 
   /**
    * Handle an [INotification].
    *
    * -  Param [note] - the [INotification] to be handled.
    */
-  void handleNotification( INotification note );
+  void handleNotification(INotification note);
 
   /**
    * Called by the [IView] when the [IMediator] is registered.
    */
-  void onRegister( );
+  void onRegister();
 
   /**
    * Called by the [IView] when the [IMediator] is removed.
    */
-  void onRemove( );
-
+  void onRemove();
 
   /**
    * This [IMediator]'s [viewComponent].
    */
-  void set viewComponent( dynamic viewComponent );
+  void set viewComponent(dynamic viewComponent);
   dynamic get viewComponent;
 
   /**
    * This [IMediator]'s [name].
    */
-  void set name( String mediatorName );
+  void set name(String mediatorName);
   String get name;
-
 }

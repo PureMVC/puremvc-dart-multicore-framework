@@ -25,64 +25,49 @@ part of puremvc;
  *
  * See [IView], [INotification]
  */
-abstract class IObserver
-{
-    /**
-     * Set the notification method.
-     *
-     * The notification method should take one parameter of type [INotification].
-     *
-     * -  Param [notifyMethod] - the notification (callback) method of the interested object.
-     */
-    void setNotifyMethod( Function callback );
+abstract class IObserver {
+  /**
+   * Set the notification method.
+   *
+   * The notification method should take one parameter of type [INotification].
+   *
+   * -  Param [notifyMethod] - the notification (callback) method of the interested object.
+   */
+  void setNotifyMethod(Function? callback);
 
-    /**
-     * Set the notification context.
-     *
-     * -  Param [caller] - a reference to the object to be notified.
-     */
-    void setNotifyContext( Object caller );
+  /**
+   * Set the notification context.
+   *
+   * -  Param [caller] - a reference to the object to be notified.
+   */
+  void setNotifyContext(Object? caller);
 
-    /**
-     * Get the notification method.
-     *
-     * -  Returns [Function] - the notification (callback) method of the interested object.
-     */
-    Function getNotifyMethod();
+  /**
+   * Get the notification method.
+   *
+   * -  Returns [Function] - the notification (callback) method of the interested object.
+   */
+  Function? getNotifyMethod();
 
-    /**
-     * Get the notification context.
-     *
-     * -  Returns [Object] - the caller.
-     */
-    Object getNotifyContext();
+  /**
+   * Get the notification context.
+   *
+   * -  Returns [Object] - the caller.
+   */
+  Object? getNotifyContext();
 
-    /**
-     * Compare a given object to the [notifyContext] (caller) object.
-     *
-     * -  Param [Object] - the object to compare.
-     * -  Returns [bool] - whether the given object and the [notifyContext] (caller) are the same.
-     */
-    bool compareNotifyContext( Object object );
+  /**
+   * Compare a given object to the [notifyContext] (caller) object.
+   *
+   * -  Param [Object] - the object to compare.
+   * -  Returns [bool] - whether the given object and the [notifyContext] (caller) are the same.
+   */
+  bool compareNotifyContext(Object object);
 
-    /**
-     * Notify the interested object.
-     *
-     * -  Param [note] - the [INotification] to pass to the caller's [notifyMethod].
-     */
-    void notifyObserver( INotification note );
-
-    /**
-     * This [IObserver]'s [notifyMethod] (i.e., callback)
-     */
-    void set notifyMethod( Function callback );
-    Function get notifyMethod;
-
-    /**
-     * This [IObserver]'s [notifyContext] (i.e., caller)
-     */
-    void set notifyContext( Object caller );
-    Object get notifyContext;
-
+  /**
+   * Notify the interested object.
+   *
+   * -  Param [note] - the [INotification] to pass to the caller's [notifyMethod].
+   */
+  void notifyObserver(INotification note);
 }
-

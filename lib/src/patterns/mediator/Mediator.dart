@@ -23,24 +23,21 @@ part of puremvc;
  *
  * See [INotification], [IView]
  */
-class Mediator extends Notifier implements IMediator
-{
-
+class Mediator extends Notifier implements IMediator {
   /**
    * Constructor
    *
    * -  Param [name] - the [name] this [IMediator] will be registered with.
    * -  Param [viewComponent] - the View Component (optional)
    */
-  Mediator( String this.name, [dynamic this.viewComponent] ){ }
+  Mediator(String this.name, [dynamic this.viewComponent]) {}
 
   /**
    * Get the [IMediator] instance's [name].
    *
    * -  Returns [String] - the [IMediator] instance's [name].
    */
-  String getName()
-  {
+  String getName() {
     return name;
   }
 
@@ -49,8 +46,7 @@ class Mediator extends Notifier implements IMediator
    *
    * -  Param [Dynamic] - the [viewComponent].
    */
-  void setViewComponent( dynamic component )
-  {
+  void setViewComponent(dynamic component) {
     viewComponent = component;
   }
 
@@ -59,8 +55,7 @@ class Mediator extends Notifier implements IMediator
    *
    * -  Returns [Dynamic] - the View Component
    */
-  dynamic getViewComponent()
-  {
+  dynamic getViewComponent() {
     return viewComponent;
   }
 
@@ -69,9 +64,8 @@ class Mediator extends Notifier implements IMediator
    *
    * -  Returns [List] - a [List] of the [INotification] names this [IMediator] has an interest in.
    */
-  List<String> listNotificationInterests( )
-  {
-    return new List<String>();
+  List<String> listNotificationInterests() {
+    return List<String>.empty(growable: true);
   }
 
   /**
@@ -79,17 +73,17 @@ class Mediator extends Notifier implements IMediator
    *
    * -  Param [note] - the [INotification] to be handled.
    */
-  void handleNotification( INotification note ) {}
+  void handleNotification(INotification note) {}
 
   /**
    * Called by the [IView] when the [IMediator] is registered.
    */
-  void onRegister( ) {}
+  void onRegister() {}
 
   /**
    * Called by the [IView] when the [IMediator] is removed.
    */
-  void onRemove( ) {}
+  void onRemove() {}
 
   /**
    * This [IMediator]'s [name].

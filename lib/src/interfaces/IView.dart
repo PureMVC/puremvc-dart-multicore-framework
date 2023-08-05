@@ -14,15 +14,14 @@ part of puremvc;
  *
  * See [IMediator], [IObserver], [INotification]
  */
-abstract class IView
-{
+abstract class IView {
   /**
    * Register an [IObserver] to be notified of [INotification]s with a given name.
    *
    * -  Param [noteName] - the name of the [INotification] to notify this [IObserver] of.
    * -  Param [observer] - the [IObserver] to register.
    */
-  void registerObserver( String noteName, IObserver observer);
+  void registerObserver(String noteName, IObserver observer);
 
   /**
    * Remove an [IObserver] from the list for a given [INotification] name.
@@ -30,7 +29,7 @@ abstract class IView
    * -  Param [noteName] - which [IObserver] list to remove from.
    * -  Param [notifyContext] - remove [IObserver]s with this object as the [notifyContext].
    */
-  void removeObserver( String noteName, Object notifyContext );
+  void removeObserver(String noteName, Object notifyContext);
 
   /**
    * Notify the [IObserver]s for a particular [INotification].
@@ -41,7 +40,7 @@ abstract class IView
    *
    * -  Param [note] - the [INotification] to notify [IObservers] of.
    */
-  void notifyObservers( INotification note );
+  void notifyObservers(INotification note);
 
   /**
    * Register an [IMediator] instance with the [IView].
@@ -57,7 +56,7 @@ abstract class IView
    *
    * -  Param [mediator] - a reference to the [IMediator] instance.
    */
-  void registerMediator( IMediator mediator );
+  void registerMediator(IMediator mediator);
 
   /**
    * Retrieve an [IMediator] from the [IView].
@@ -65,7 +64,7 @@ abstract class IView
    * -  Param [mediatorName] - the name of the [IMediator] instance to retrieve.
    * -  Returns [IMediator] - the [IMediator] instance previously registered in this core with the given [mediatorName].
    */
-  IMediator retrieveMediator( String mediatorName );
+  IMediator retrieveMediator(String mediatorName);
 
   /**
    * Remove an [IMediator] from the [IView].
@@ -73,7 +72,7 @@ abstract class IView
    * -  Param [mediatorName] - name of the [IMediator] instance to be removed.
    * -  Returns [IMediator] - the [IMediator] that was removed from this core's [IView].
    */
-  IMediator removeMediator( String mediatorName );
+  IMediator removeMediator(String mediatorName);
 
   /**
    * Check if an [IMediator] is registered with the [IView].
@@ -81,13 +80,10 @@ abstract class IView
    * -  Param [mediatorName] - the name of the [IMediator] you're looking for.
    * -  Returns [bool] - whether an [IMediator] is registered in this core with the given [mediatorName].
    */
-  bool hasMediator( String mediatorName );
+  bool hasMediator(String mediatorName);
 
   /**
    * This [IView]'s Multiton key
    */
-  void set multitonKey( String key );
   String get multitonKey;
-
 }
-

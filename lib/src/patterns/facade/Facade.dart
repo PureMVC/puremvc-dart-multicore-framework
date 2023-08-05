@@ -22,8 +22,7 @@ part of puremvc;
  *
  * See [Model], [View], [Controller], [INotification], [ICommand], [IMediator], [IProxy]
  */
-class Facade implements IFacade
-{
+class Facade implements IFacade {
   /**
    * Constructor.
    *
@@ -32,11 +31,11 @@ class Facade implements IFacade
    *
    * -  Throws [MultitonErrorFacadeExists] if instance for this Multiton key has already been constructed.
    */
-  Facade( String key )
-  {
-    if ( instanceMap[ key ] != null ) throw new MultitonErrorFacadeExists();
-    initializeNotifier( key );
-    instanceMap[ multitonKey ] = this;
+  Facade(String key) {
+    if (instanceMap.containsKey(key)) throw MultitonErrorFacadeExists();
+    _multitonKey = key;
+    initializeNotifier(key);
+    instanceMap[_multitonKey!] = this;
     initializeFacade();
   }
 
@@ -47,8 +46,7 @@ class Facade implements IFacade
    * subclass to do any subclass specific initializations. Be
    * sure to call [super.initializeFacade()], though.
    */
-  void initializeFacade(  )
-  {
+  void initializeFacade() {
     initializeModel();
     initializeController();
     initializeView();
@@ -59,12 +57,13 @@ class Facade implements IFacade
    *
    * -  Returns the [IFacade] Multiton instance for the specified key.
    */
-  static IFacade getInstance( String key )
-  {
-    if ( key == null || key == "" ) return null;
-    if ( instanceMap == null ) instanceMap = new Map<String,IFacade>();
-    if ( instanceMap[ key ] == null ) instanceMap[ key ] = new Facade( key );
-    return instanceMap[ key ];
+  static IFacade? getInstance(String? key) {
+    if (key == null || key == "") return null;
+    if (instanceMap.containsKey(key)) {
+      return instanceMap[key];
+    } else {
+      return instanceMap[key] = new Facade(key);
+    }
   }
 
   /**
@@ -74,10 +73,9 @@ class Facade implements IFacade
    *
    * Override this method in a subclass of [Facade] if you want to provide a different [IController].
    */
-  void initializeController( )
-  {
-    if ( controller != null ) return;
-    controller = Controller.getInstance( multitonKey );
+  void initializeController() {
+    if (controller != null) return;
+    controller = Controller.getInstance(_multitonKey)!;
   }
 
   /**
@@ -87,12 +85,10 @@ class Facade implements IFacade
    *
    * Override this method in a subclass of [Facade] if you wish to initialize a different [IModel].
    */
-  void initializeModel( )
-  {
-    if ( model != null ) return;
-    model = Model.getInstance( multitonKey );
+  void initializeModel() {
+    if (model != null) return;
+    model = Model.getInstance(_multitonKey)!;
   }
-
 
   /**
    * Initialize the [IView].
@@ -101,10 +97,9 @@ class Facade implements IFacade
    *
    * Override this method in a subclass of [Facade] if you wish to initialize a different [IView].
    */
-  void initializeView( )
-  {
-    if ( view != null ) return;
-    view = View.getInstance( multitonKey );
+  void initializeView() {
+    if (view != null) return;
+    view = View.getInstance(_multitonKey!);
   }
 
   /**
@@ -113,9 +108,12 @@ class Facade implements IFacade
    * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
    * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
-  void registerCommand( String noteName, Function commandFactory )
-  {
-    controller.registerCommand( noteName, commandFactory );
+  void registerCommand(String noteName, Function commandFactory) {
+    controller!.registerCommand(noteName, commandFactory);
+  }
+
+  void executeCommand(String name, [dynamic body = null, String? type]) {
+    controller!.executeCommand(new Notification(name, body, type));
   }
 
   /**
@@ -123,9 +121,8 @@ class Facade implements IFacade
    *
    * -  Param [noteName] - the name of the [INotification] to remove the [ICommand] mapping for
    */
-  void removeCommand( String noteName )
-  {
-    controller.removeCommand( noteName );
+  void removeCommand(String noteName) {
+    controller!.removeCommand(noteName);
   }
 
   /**
@@ -134,9 +131,8 @@ class Facade implements IFacade
    * -  Param [noteName] - the name of the [INotification].
    * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
    */
-  bool hasCommand( String noteName )
-  {
-    return controller.hasCommand( noteName );
+  bool hasCommand(String noteName) {
+    return controller!.hasCommand(noteName);
   }
 
   /**
@@ -144,9 +140,8 @@ class Facade implements IFacade
    *
    * -  Param [proxy] - an object reference to be held by the [IModel].
    */
-  void registerProxy( IProxy proxy )
-  {
-    model.registerProxy( proxy );
+  void registerProxy(IProxy proxy) {
+    model!.registerProxy(proxy);
   }
 
   /**
@@ -155,9 +150,8 @@ class Facade implements IFacade
    * -  Param [proxyName] - the name of the [IProxy] instance to retrieve.
    * -  Returns the [IProxy] instance previously registered with the given [proxyName].
    */
-  IProxy retrieveProxy( String proxyName )
-  {
-    return model.retrieveProxy( proxyName );
+  IProxy retrieveProxy(String proxyName) {
+    return model!.retrieveProxy(proxyName);
   }
 
   /**
@@ -166,10 +160,9 @@ class Facade implements IFacade
    * -  Param [proxyName] - name of the [IProxy] instance to be removed.
    * -  Returns [IProxy] - the [IProxy] that was removed from the [IModel].
    */
-  IProxy removeProxy( String proxyName )
-  {
-    IProxy proxy;
-    if ( model != null ) proxy = model.removeProxy ( proxyName );
+  IProxy? removeProxy(String proxyName) {
+    IProxy? proxy;
+    if (model != null) proxy = model!.removeProxy(proxyName);
     return proxy;
   }
 
@@ -179,9 +172,8 @@ class Facade implements IFacade
    * -  Param [proxyName] - the name of the [IProxy] instance you're looking for.
    * -  Returns [bool] - whether an [IProxy] is currently registered with the given [proxyName].
    */
-  bool hasProxy( String proxyName )
-  {
-    return model.hasProxy( proxyName );
+  bool hasProxy(String proxyName) {
+    return model!.hasProxy(proxyName);
   }
 
   /**
@@ -198,9 +190,8 @@ class Facade implements IFacade
    *
    * -  Param [mediator] - a reference to the [IMediator] instance.
    */
-  void registerMediator( IMediator mediator )
-  {
-    if ( view != null ) view.registerMediator( mediator );
+  void registerMediator(IMediator mediator) {
+    if (view != null) view!.registerMediator(mediator);
   }
 
   /**
@@ -209,9 +200,8 @@ class Facade implements IFacade
    * -  Param [mediatorName] - the name of the [IMediator] instance to retrieve.
    * -  Returns  [IMediator] - the [IMediator] instance previously registered in this core with the given [mediatorName].
    */
-  IMediator retrieveMediator( String mediatorName )
-  {
-    return view.retrieveMediator( mediatorName );
+  IMediator retrieveMediator(String mediatorName) {
+    return view!.retrieveMediator(mediatorName);
   }
 
   /**
@@ -220,10 +210,9 @@ class Facade implements IFacade
    * -  Param [mediatorName] - name of the [IMediator] instance to be removed.
    * -  Returns [IMediator] - the [IMediator] that was removed from this core's [IView].
    */
-  IMediator removeMediator( String mediatorName )
-  {
-    IMediator mediator;
-    if ( view != null ) mediator = view.removeMediator( mediatorName );
+  IMediator? removeMediator(String mediatorName) {
+    IMediator? mediator;
+    if (view != null) mediator = view!.removeMediator(mediatorName);
     return mediator;
   }
 
@@ -233,9 +222,8 @@ class Facade implements IFacade
    * Param [mediatorName]
    * Returns [bool] - whether an [IMediator] is registered in this core with the given [mediatorName].
    */
-  bool hasMediator( String mediatorName )
-  {
-    return view.hasMediator( mediatorName );
+  bool hasMediator(String mediatorName) {
+    return view!.hasMediator(mediatorName);
   }
 
   /**
@@ -248,9 +236,8 @@ class Facade implements IFacade
    * -  Param [body] - the body of the note (optional)
    * -  Param [type] - the type of the note (optional)
    */
-  void sendNotification( String noteName, [dynamic body, String type] )
-  {
-    notifyObservers( new Notification( noteName, body, type ) );
+  void sendNotification(String noteName, [dynamic body, String? type]) {
+    notifyObservers(new Notification(noteName, body, type));
   }
 
   /**
@@ -259,9 +246,8 @@ class Facade implements IFacade
    * -  Param [noteName] - the name of the [INotification] to notify this [IObserver] of.
    * -  Param [observer] - the [IObserver] to register.
    */
-  void registerObserver( String noteName, IObserver observer )
-  {
-    view.registerObserver(noteName, observer);
+  void registerObserver(String noteName, IObserver observer) {
+    view!.registerObserver(noteName, observer);
   }
 
   /**
@@ -270,9 +256,8 @@ class Facade implements IFacade
    * -  Param [noteName] - which [IObserver] list to remove from.
    * -  Param [notifyContext] - remove [IObserver]s with this object as the [notifyContext].
    */
-  void removeObserver( String noteName, Object notifyContext )
-  {
-    view.removeObserver( noteName, notifyContext );
+  void removeObserver(String noteName, Object notifyContext) {
+    view!.removeObserver(noteName, notifyContext);
   }
 
   /**
@@ -285,25 +270,21 @@ class Facade implements IFacade
    *
    * -  Param [note] the [INotification] to have the [View] notify [Observers] of.
    */
-  void notifyObservers( INotification note )
-  {
-    if ( view != null ) view.notifyObservers( note );
+  void notifyObservers(INotification note) {
+    if (view != null) view!.notifyObservers(note);
   }
 
   /**
    * Initialize this [INotifier].
    *
-   * This is how an [INotifier] gets its [multitonKey].
+   * This is how an [INotifier] gets its [_multitonKey].
    * Calls to [sendNotification] or to access the
    * [facade] will fail until after this method
    * has been called.
    *
-   * -  Param [key] - the [multitonKey] for this [INotifier] to use.
+   * -  Param [key] - the [_multitonKey] for this [INotifier] to use.
    */
-  void initializeNotifier( String key )
-  {
-    multitonKey = key;
-  }
+  void initializeNotifier(String? key) {}
 
   /**
    * Check if a Core is registered or not.
@@ -311,9 +292,8 @@ class Facade implements IFacade
    * -  Param [key] - the Multiton key for the Core.
    * -  Returns [bool] - whether a Core is registered with the given [key].
    */
-  static bool hasCore( String key )
-  {
-    return ( instanceMap[ key ] != null );
+  static bool hasCore(String key) {
+    return instanceMap.containsKey(key);
   }
 
   /**
@@ -324,32 +304,31 @@ class Facade implements IFacade
    *
    * -  Param [key] - the Multiton key of the Core to remove.
    */
-  static void removeCore( String key )
-  {
-    if ( instanceMap[ key ] == null ) return;
-    Model.removeModel( key );
-    View.removeView( key );
-    Controller.removeController( key );
-    instanceMap[ key ] = null;
+  static void removeCore(String key) {
+    if (!instanceMap.containsKey(key)) return;
+    Model.removeModel(key);
+    View.removeView(key);
+    Controller.removeController(key);
+    instanceMap.remove(key);
   }
 
   // References to [IModel], [IView], and [IController]
-  IController controller;
-  IModel model;
-  IView view;
+  IController? controller;
+  IModel? model;
+  IView? view;
 
   // This [IFacade]'s Multiton key
-  String multitonKey;
+  String? _multitonKey;
+  String? get multitonKey => _multitonKey;
 
   // The [IFacade] Multiton instanceMap.
-  static Map<String,IFacade> instanceMap;
+  static Map<String, IFacade> instanceMap = Map<String, IFacade>();
 }
 
 class MultitonErrorFacadeExists {
-  const MultitonErrorFacadeExists ();
+  const MultitonErrorFacadeExists();
 
   String toString() {
     return "IFacade Multiton instance already constructed for this key.";
   }
 }
-

@@ -20,7 +20,6 @@ part of puremvc;
  * See [IFacade], [INotification]
  */
 abstract class INotifier {
-
   /**
    * Send an [INotification].
    *
@@ -31,24 +30,22 @@ abstract class INotifier {
    * -  Param [body] - the body of the note (optional)
    * -  Param [type] - the type of the note (optional)
    */
-  void sendNotification( String noteName, [dynamic body, String type] );
+  void sendNotification(String noteName, [dynamic body, String? type]);
 
   /**
    * Initialize this [INotifier] instance.
    *
-   * This is how a [INotifier] gets its [multitonKey].
+   * This is how a [INotifier] gets its [_multitonKey].
    * Calls to [sendNotification] or access to the
    * [facade] will fail until after this method
    * has been called.
    *
    * -  Param [key] - the Multiton key for this [INotifier].
    */
-  void initializeNotifier( String key );
+  void initializeNotifier(String? key);
 
   /**
    * This INotifier's Multiton Key
    */
-  void set multitonKey( String key );
-  String get multitonKey;
-
+  String? get multitonKey;
 }
