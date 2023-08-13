@@ -9,12 +9,12 @@ import 'package:puremvc/puremvc.dart' as mvc;
 // The Unit Testing Framework for Dart
 import 'package:test/test.dart';
 
+// PureMVC Unit Tests
 part 'Test_Controller.dart';
 part 'Test_Facade.dart';
 part 'Test_MacroCommand.dart';
 part 'Test_Mediator.dart';
 part 'Test_Model.dart';
-// PureMVC Unit Tests
 part 'Test_Notification.dart';
 part 'Test_Observer.dart';
 part 'Test_Proxy.dart';
