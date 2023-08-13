@@ -57,7 +57,7 @@ class MacroCommand extends Notifier implements ICommand {
   void execute(INotification note) {
     for (Function commandFactory in subCommands) {
       ICommand commandInstance = commandFactory();
-      commandInstance.initializeNotifier(_multitonKey);
+      commandInstance.initializeNotifier(multitonKey);
       commandInstance.execute(note);
     }
   }
