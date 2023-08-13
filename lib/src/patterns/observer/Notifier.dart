@@ -50,7 +50,7 @@ class Notifier implements INotifier {
   /**
    * Initialize this [INotifier] instance.
    *
-   * This is how a [INotifier] gets its [_multitonKey].
+   * This is how a [INotifier] gets its [multitonKey].
    * Calls to [sendNotification] or access to the
    * [facade] will fail until after this method
    * has been called.

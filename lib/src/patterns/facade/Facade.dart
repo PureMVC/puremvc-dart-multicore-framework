@@ -277,12 +277,12 @@ class Facade implements IFacade {
   /**
    * Initialize this [INotifier].
    *
-   * This is how an [INotifier] gets its [_multitonKey].
+   * This is how an [INotifier] gets its [multitonKey].
    * Calls to [sendNotification] or to access the
    * [facade] will fail until after this method
    * has been called.
    *
-   * -  Param [key] - the [_multitonKey] for this [INotifier] to use.
+   * -  Param [key] - the [multitonKey] for this [INotifier] to use.
    */
   void initializeNotifier(String? key) {}
 

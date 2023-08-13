@@ -26,7 +26,7 @@ class Controller implements IController {
   Controller(String key) {
     if (instanceMap.containsKey(key)) throw MultitonErrorControllerExists();
     multitonKey = key;
-    instanceMap[_multitonKey] = this;
+    instanceMap[multitonKey] = this;
     commandMap = Map<String, Function>();
     initializeController();
   }
