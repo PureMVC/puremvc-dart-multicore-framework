@@ -33,9 +33,9 @@ class Facade implements IFacade {
    */
   Facade(String key) {
     if (instanceMap.containsKey(key)) throw MultitonErrorFacadeExists();
-    _multitonKey = key;
+    multitonKey = key;
     initializeNotifier(key);
-    instanceMap[_multitonKey!] = this;
+    instanceMap[multitonKey!] = this;
     initializeFacade();
   }
 
