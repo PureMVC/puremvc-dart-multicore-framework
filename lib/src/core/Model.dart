@@ -64,7 +64,6 @@ class Model implements IModel {
    * -  Param [proxy] - an object reference to be held by the [IModel].
    */
   void registerProxy(IProxy proxy) {
-//  	print("> Framework -> Model > registerProxy: " + proxy.getName());
     proxy.initializeNotifier(multitonKey);
     proxyMap[proxy.getName()] = proxy;
     proxy.onRegister();
