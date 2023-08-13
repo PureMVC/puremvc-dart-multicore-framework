@@ -100,7 +100,9 @@ class Observer implements IObserver {
     return identical(object, _notifyContext);
   }
 
-  set notifyContext(Object? caller) {
-    _notifyContext = caller;
-  }
+  Object? get notifyContext => _notifyContext;
+  set notifyContext(Object? caller) => _notifyContext = caller;
+
+  Function? get notifyMethod => _notifyMethod;
+  set notifyMethod(Function? method) => _notifyMethod = method;
 }

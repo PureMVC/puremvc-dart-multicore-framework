@@ -70,4 +70,10 @@ abstract class IObserver {
    * -  Param [note] - the [INotification] to pass to the caller's [notifyMethod].
    */
   void notifyObserver(INotification note);
+
+  Object? get notifyContext;
+  void set notifyContext(Object? value);
+
+  Function? get notifyMethod;
+  set notifyMethod(Function? method);
 }
