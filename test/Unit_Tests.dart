@@ -1,9 +1,6 @@
 // PureMVC Unit Test Library
 library puremvc_unit_tests;
 
-// DART HTML Library
-// import 'dart:html';
-
 // PureMVC Framework for Dart
 import 'package:puremvc/puremvc.dart' as mvc;
 // The Unit Testing Framework for Dart
@@ -23,14 +20,6 @@ part 'Test_View.dart';
 
 class Unit_Tests {
   Unit_Tests() {}
-
-  // void onTestResult(TestCase testCase) {
-  //   write("${testCase.result}  ${testCase.currentGroup}");
-  // }
-  //
-  // void write(String message) {
-  //   document.querySelector('#status')?.innerHtml = message;
-  // }
 
   void run() {
     // Now, run the PureMVC Tests
