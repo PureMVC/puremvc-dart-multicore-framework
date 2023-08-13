@@ -101,6 +101,6 @@ class Observer implements IObserver {
   }
 
   set notifyContext(Object? caller) {
-    notifyContext = caller;
+    _notifyContext = caller;
   }
 }
