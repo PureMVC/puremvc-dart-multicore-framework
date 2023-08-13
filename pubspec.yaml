@@ -4,9 +4,10 @@ author: Cliff Hall <cliff.hall@puremvc.org>
 description: PureMVC is a lightweight framework for creating applications based upon the classic Model-View-Controller design meta-pattern. It supports modular programming through the use of Multiton Core actors.
 homepage: http://www.puremvc.org
 environment:
-  sdk: '>=0.8.10+6 <2.0.0'
+  sdk: '^3.0.0'
 dependencies:
-  analyzer: '>=0.10.1 <0.11.0'
-  browser: '>=0.9.0 <0.10.0'
+  analyzer: '^6.0.0'
 dev_dependencies:
-  unittest: '>=0.9.0 <0.10.0'
+  build_runner: any
+  build_web_compilers: any
+  test: ^1.24.5

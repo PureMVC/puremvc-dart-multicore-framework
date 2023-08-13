@@ -19,8 +19,7 @@ part of puremvc;
  *
  * See [IProxy], [IFacade]
  */
-class Model implements IModel
-{
+class Model implements IModel {
   /**
    * Constructor.
    *
@@ -29,12 +28,11 @@ class Model implements IModel
    *
    * -  Throws [MultitonErrorModelExists] if instance for this Multiton key instance has already been constructed.
    */
-  Model( String key )
-  {
-    if ( instanceMap[ key ] != null ) throw new MultitonErrorModelExists();
+  Model(String key) {
+    if (instanceMap.containsKey(key)) throw MultitonErrorModelExists();
     multitonKey = key;
-    instanceMap[ multitonKey ] = this;
-    proxyMap = new Map<String,IProxy>();
+    instanceMap[multitonKey] = this;
+    proxyMap = Map<String, IProxy>();
     initializeModel();
   }
 
@@ -44,19 +42,20 @@ class Model implements IModel
    * Called automatically by the constructor, this is your opportunity to initialize the Singleton
    * instance in your subclass without overriding the constructor.
    */
-  void initializeModel(  ){ }
+  void initializeModel() {}
 
   /**
    * [IModel] Multiton Factory method.
    *
    * -  Returns the [IModel] Multiton instance for the specified key.
    */
-  static IModel getInstance( String key )
-  {
-    if ( key == null || key == "" ) return null;
-    if ( instanceMap == null ) instanceMap = new Map<String,IModel>();
-    if ( instanceMap[ key ] == null ) instanceMap[ key ] = new Model( key );
-    return instanceMap[ key ];
+  static IModel? getInstance(String? key) {
+    if (key == null || key == "") return null;
+    if (instanceMap.containsKey(key)) {
+      return instanceMap[key];
+    } else {
+      return instanceMap[key] = Model(key);
+    }
   }
 
   /**
@@ -64,10 +63,9 @@ class Model implements IModel
    *
    * -  Param [proxy] - an object reference to be held by the [IModel].
    */
-  void registerProxy( IProxy proxy )
-  {
-    proxy.initializeNotifier( multitonKey );
-    proxyMap[ proxy.getName() ] = proxy;
+  void registerProxy(IProxy proxy) {
+    proxy.initializeNotifier(multitonKey);
+    proxyMap[proxy.getName()] = proxy;
     proxy.onRegister();
   }
 
@@ -77,9 +75,8 @@ class Model implements IModel
    * -  Param [proxyName] - the name of the [IProxy] instance to retrieve.
    * -  Returns the [IProxy] instance previously registered with the given [proxyName].
    */
-  IProxy retrieveProxy( String proxyName )
-  {
-    return proxyMap[ proxyName ];
+  IProxy retrieveProxy(String proxyName) {
+    return proxyMap[proxyName]!;
   }
 
   /**
@@ -88,14 +85,10 @@ class Model implements IModel
    * -  Param [proxyName] - name of the [IProxy] instance to be removed.
    * -  Returns [IProxy] - the [IProxy] that was removed from the [IModel].
    */
-  IProxy removeProxy( String proxyName )
-  {
-    IProxy proxy = proxyMap[ proxyName ];
-    if ( proxy != null )
-    {
-      proxyMap[ proxyName ] = null;
-      proxy.onRemove();
-    }
+  IProxy removeProxy(String proxyName) {
+    IProxy proxy = proxyMap[proxyName]!;
+    proxyMap.remove(proxyName);
+    proxy.onRemove();
     return proxy;
   }
 
@@ -105,9 +98,8 @@ class Model implements IModel
    * -  Param [proxyName] - the name of the [IProxy] instance you're looking for.
    * -  Returns [bool] - whether an [IProxy] is currently registered with the given [proxyName].
    */
-  bool hasProxy( String proxyName )
-  {
-    return proxyMap[ proxyName ] != null;
+  bool hasProxy(String proxyName) {
+    return proxyMap.containsKey(proxyName);
   }
 
   /**
@@ -115,19 +107,20 @@ class Model implements IModel
    *
    * -  Param [key] - the multitonKey of [IModel] instance to remove
    */
-  static void removeModel( String key )
-  {
-    instanceMap[ key ] = null;
+  static void removeModel(String key) {
+    instanceMap.remove(key);
   }
 
   // Mapping of proxyNames to IProxy instances
-  Map<String,IProxy> proxyMap;
+  late Map<String, IProxy> proxyMap;
 
   // Multiton instance map
-  static Map<String,IModel> instanceMap;
+  static Map<String, IModel> instanceMap = Map<String, IModel>();
 
   // The Multiton Key for this Core
-  String multitonKey;
+  late String _multitonKey;
+  String get multitonKey => _multitonKey;
+  void set multitonKey(String value) => _multitonKey = value;
 }
 
 class MultitonErrorModelExists {

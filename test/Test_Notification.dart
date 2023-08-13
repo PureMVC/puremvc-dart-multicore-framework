@@ -1,50 +1,44 @@
 part of puremvc_unit_tests;
 
-class Test_Notification
-{
-  _tests()
-  {
-    group('Notification', ()
-    {
+class Test_Notification {
+  _tests() {
+    group('Notification', () {
       test('Constructor minimum args', () {
         // Create a Notification with a name only
-        String name   = "Test";
-        mvc.INotification note = new mvc.Notification( name );
+        String name = "Test";
+        mvc.INotification note = mvc.Notification(name);
 
         // Make sure the note was created
-        expect( note, isNotNull );
+        expect(note, isNotNull);
       });
 
       test('.name, getName()', () {
         // Create a Notification with name only
-        String name   = "Test";
-        mvc.INotification note = new mvc.Notification( name );
+        String name = "Test";
+        mvc.INotification note = mvc.Notification(name);
 
         // Make sure the name was set
-        expect( name, equals( note.getName() ) );
-        expect( name, equals( note.name ) );
+        expect(name, equals(note.getName()));
       });
 
       test('.type, getType()', () {
         // Create a Notification with name and type only
-        String name   = "Test";
-        String type   = "Type";
-        mvc.INotification note = new mvc.Notification( name, null, type );
+        String name = "Test";
+        String type = "Type";
+        mvc.INotification note = mvc.Notification(name, null, type);
 
         // Make Sure the type was set
-        expect( type, equals( note.getType() ) );
-        expect( type, equals( note.type ) );
+        expect(type, equals(note.getType()));
       });
 
       test('.body, getBody()', () {
         // Create a Notification with a body
-        String name   = "Test";
-        List<String> body  = new List<String>();
-        mvc.INotification note = new mvc.Notification( name, body );
+        String name = "Test";
+        List<String> body = List<String>.empty(growable: true);
+        mvc.INotification note = mvc.Notification(name, body);
 
         // Make sure the body was set
-        expect( body, equals( note.getBody() ) );
-        expect( body, equals( note.body ) );
+        expect(body, equals(note.getBody()));
       });
     });
   }

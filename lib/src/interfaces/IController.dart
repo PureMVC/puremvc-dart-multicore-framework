@@ -14,15 +14,14 @@ part of puremvc;
  *
  * See [INotification], [ICommand]
  */
-abstract class IController
-{
+abstract class IController {
   /**
    * Register an [INotification] to [ICommand] mapping with the [IController].
    *
    * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
    * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
-  void registerCommand( String notificationName, Function commandFactory );
+  void registerCommand(String notificationName, Function commandFactory);
 
   /**
    * Execute the [ICommand] previously registered as the
@@ -30,14 +29,14 @@ abstract class IController
    *
    * -  Param [note] - the [INotification] to execute the associated [ICommand] for
    */
-  void executeCommand( INotification note );
+  void executeCommand(INotification note);
 
   /**
    * Remove a previously registered [INotification] to [ICommand] mapping from the [IController].
    *
    * -  Param [noteName] - the name of the [INotification] to remove the [ICommand] mapping for.
    */
-  void removeCommand( String noteName );
+  void removeCommand(String noteName);
 
   /**
    * Check if an [ICommand] is registered for a given [INotification] name with the [IController].
@@ -45,12 +44,11 @@ abstract class IController
    * -  Param [noteName] - the name of the [INotification].
    * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
    */
-  bool hasCommand( String noteName );
+  bool hasCommand(String noteName);
 
   /**
    * This IController's Multiton Key
    */
-  void set multitonKey( String key );
   String get multitonKey;
-
+  void set multitonKey(String value);
 }

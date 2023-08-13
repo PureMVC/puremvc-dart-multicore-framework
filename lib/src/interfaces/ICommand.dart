@@ -5,12 +5,11 @@ part of puremvc;
  *
  * See [IController], [INotification]
  */
-abstract class ICommand extends INotifier
-{
+abstract class ICommand extends INotifier {
   /**
    * Execute the [ICommand]'s logic to handle a given [INotification].
    *
    * -  Param [note] - an [INotification] to handle.
    */
-  void execute( INotification note );
+  void execute(INotification note);
 }

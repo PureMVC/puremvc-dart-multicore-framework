@@ -14,9 +14,7 @@ part of puremvc;
  *
  * See [INotification], [ICommand]
  */
-class Controller implements IController
-{
-
+class Controller implements IController {
   /**
    * Constructor.
    *
@@ -25,12 +23,11 @@ class Controller implements IController
    *
    * -  Throws [MultitonErrorControllerExists] if instance for this Multiton key has already been constructed
    */
-  Controller( String key )
-  {
-    if ( instanceMap[ key ] != null ) throw new MultitonErrorControllerExists();
+  Controller(String key) {
+    if (instanceMap.containsKey(key)) throw MultitonErrorControllerExists();
     multitonKey = key;
-    instanceMap[ multitonKey ] = this;
-    commandMap = new Map<String,Function>();
+    instanceMap[multitonKey] = this;
+    commandMap = Map<String, Function>();
     initializeController();
   }
 
@@ -43,9 +40,8 @@ class Controller implements IController
    * you should also subclass [Controller] and override the [initializeController] method,
    * setting [view] equal to the return value of a call to [getInstance] on your [IView] implementor.
    */
-  void initializeController( )
-  {
-    view = View.getInstance( multitonKey );
+  void initializeController() {
+    view = View.getInstance(multitonKey)!;
   }
 
   /**
@@ -53,12 +49,13 @@ class Controller implements IController
    *
    * -  Returns the [IController] Multiton instance for the specified key
    */
-  static IController getInstance( String key )
-  {
-    if ( key == null || key == "" ) return null;
-    if ( instanceMap == null ) instanceMap = new Map<String,IController>();
-    if ( instanceMap[ key ] == null ) instanceMap[ key ] = new Controller( key );
-    return instanceMap[ key ];
+  static IController? getInstance(String? key) {
+    if (key == null || key == "") return null;
+    if (instanceMap.containsKey(key)) {
+      return instanceMap[key];
+    } else {
+      return instanceMap[key] = Controller(key);
+    }
   }
 
   /**
@@ -67,14 +64,14 @@ class Controller implements IController
    *
    * -  Param [note] - the [INotification] to execute the associated [ICommand] for
    */
-  void executeCommand( INotification note )
-  {
-    Function commandFactory = commandMap[ note.getName() ];
-    if ( commandFactory == null ) return;
+  void executeCommand(INotification note) {
+    final noteName = note.getName();
+    Function? commandFactory = commandMap[noteName];
+    if (commandFactory == null) return;
 
     ICommand commandInstance = commandFactory();
-    commandInstance.initializeNotifier( multitonKey );
-    commandInstance.execute( note );
+    commandInstance.initializeNotifier(multitonKey);
+    commandInstance.execute(note);
   }
 
   /**
@@ -83,12 +80,11 @@ class Controller implements IController
    * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
    * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
-  void registerCommand( String noteName, Function commandFactory )
-  {
-    if ( commandMap[ noteName ] == null ) {
-      view.registerObserver( noteName, new Observer( executeCommand, this ) );
+  void registerCommand(String noteName, Function commandFactory) {
+    if (!hasCommand(noteName)) {
+      view.registerObserver(noteName, Observer(executeCommand, this));
     }
-    commandMap[ noteName ] = commandFactory;
+    commandMap[noteName] = commandFactory;
   }
 
   /**
@@ -97,9 +93,8 @@ class Controller implements IController
    * -  Param [noteName] - the name of the [INotification].
    * -  Returns [bool] - whether an [ICommand] is currently registered for the given [noteName].
    */
-  bool hasCommand( String noteName )
-  {
-    return commandMap[ noteName ] != null;
+  bool hasCommand(String noteName) {
+    return commandMap.containsKey(noteName);
   }
 
   /**
@@ -107,16 +102,14 @@ class Controller implements IController
    *
    * -  Param [noteName] - the name of the [INotification] to remove the [ICommand] mapping for.
    */
-  void removeCommand( String noteName )
-  {
+  void removeCommand(String noteName) {
     // if the Command is registered...
-    if ( hasCommand( noteName ) )
-    {
+    if (hasCommand(noteName)) {
       // remove the observer
-      view.removeObserver( noteName, this );
+      view.removeObserver(noteName, this);
 
       // remove the command
-      commandMap[ noteName ] = null;
+      commandMap.remove(noteName);
     }
   }
 
@@ -125,23 +118,23 @@ class Controller implements IController
    *
    * -  Param [key] multitonKey of the [IController] instance to remove
    */
-  static void removeController( String key )
-  {
-    instanceMap[ key ] = null;
+  static void removeController(String key) {
+    instanceMap.remove(key);
   }
 
   // Local reference to this core's IView
-  IView view;
+  late IView view;
 
   // Mapping of Notification names to Command Class references
-  Map<String,Function> commandMap;
+  late Map<String, Function?> commandMap;
 
   // The Multiton Key for this Core
-  String multitonKey;
+  late String _multitonKey;
+  String get multitonKey => _multitonKey;
+  void set multitonKey(value) => _multitonKey = value;
 
   // Multiton instance map
-  static Map<String,IController> instanceMap;
-
+  static Map<String, IController> instanceMap = Map<String, IController>();
 }
 
 class MultitonErrorControllerExists {

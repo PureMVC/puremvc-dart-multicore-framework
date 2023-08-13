@@ -28,57 +28,52 @@ part of puremvc;
  *
  * See [Proxy], [Facade], [Mediator], [MacroCommand], [SimpleCommand]
  */
-class Notifier implements INotifier
-{
+class Notifier implements INotifier {
+  Notifier() {}
 
-    Notifier(){
-
+  /**
+   * Send an [INotification].
+   *
+   * Convenience method to prevent having to construct new
+   * [INotification] instances in our implementation code.
+   *
+   * -  Param [noteName] the name of the note to send
+   * -  Param [body] - the body of the note (optional)
+   * -  Param [type] - the type of the note (optional)
+   */
+  void sendNotification(String noteName, [dynamic body, String? type]) {
+    if (facade != null) {
+      facade.sendNotification(noteName, body, type);
     }
+  }
 
-    /**
-     * Send an [INotification].
-     *
-     * Convenience method to prevent having to construct new
-     * [INotification] instances in our implementation code.
-     *
-     * -  Param [noteName] the name of the note to send
-     * -  Param [body] - the body of the note (optional)
-     * -  Param [type] - the type of the note (optional)
-     */
-    void sendNotification( String noteName, [dynamic body, String type] )
-    {
-        if (facade != null) {
-            facade.sendNotification( noteName, body, type );
-        }
-    }
+  /**
+   * Initialize this [INotifier] instance.
+   *
+   * This is how a [INotifier] gets its [multitonKey].
+   * Calls to [sendNotification] or access to the
+   * [facade] will fail until after this method
+   * has been called.
+   *
+   * -  Param [key] - the Multiton key for this [INotifier].
+   */
+  void initializeNotifier(String? key) {
+    _multitonKey = key;
+  }
 
-    /**
-     * Initialize this [INotifier] instance.
-     *
-     * This is how a [INotifier] gets its [multitonKey].
-     * Calls to [sendNotification] or access to the
-     * [facade] will fail until after this method
-     * has been called.
-     *
-     * -  Param [key] - the Multiton key for this [INotifier].
-     */
-    void initializeNotifier( String key )
-    {
-        multitonKey = key;
-    }
+  /**
+   *  Return the Multiton Facade instance
+   *  -  Throws [MultitonErrorNotifierLacksKey] if no multitonKey is set. Usually means facade getter is being accessed before initializeNotifier has been called (i.e., from the constructor). Defer facade access until the onRegister method.
+   */
+  IFacade get facade {
+    if (multitonKey == null) throw MultitonErrorNotifierLacksKey();
+    return Facade.getInstance(multitonKey!)!;
+  }
 
-    /**
-     *  Return the Multiton Facade instance
-     *  -  Throws [MultitonErrorNotifierLacksKey] if no multitonKey is set. Usually means facade getter is being accessed before initializeNotifier has been called (i.e., from the constructor). Defer facade access until the onRegister method.
-     */
-    IFacade get facade
-    {
-        if ( multitonKey == null ) throw new MultitonErrorNotifierLacksKey( );
-        return Facade.getInstance( multitonKey );
-    }
-
-    // The Multiton Key for this app
-    String multitonKey;
+  // The Multiton Key for this app
+  String? _multitonKey;
+  String? get multitonKey => _multitonKey;
+  void set multitonKey(String? value) => _multitonKey = value;
 }
 
 class MultitonErrorNotifierLacksKey {

@@ -7,9 +7,7 @@ part of puremvc;
  *
  * See [ICommand], [IController], [INotification], [MacroCommand], [INotifier]
  */
-class SimpleCommand extends Notifier implements ICommand
-{
-
+class SimpleCommand extends Notifier implements ICommand {
   /**
    * Respond to the [INotification] that triggered this [SimpleCommand].
    *
@@ -17,6 +15,5 @@ class SimpleCommand extends Notifier implements ICommand
    *
    * -  Param [note] - an [INotification] object that triggered the execution of this [SimpleCommand]
    */
-  void execute( INotification note ){ }
-
+  void execute(INotification note) {}
 }

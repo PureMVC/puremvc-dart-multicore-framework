@@ -19,61 +19,39 @@ part of puremvc;
  *
  * See [IView], [IObserver]
  */
-abstract class INotification
-{
+abstract class INotification {
+  /**
+   * Get the [name] of the [INotification].
+   *
+   * -  Returns [String] - the name of the [INotification].
+   */
+  String getName();
 
-    /**
-     * Get the [name] of the [INotification].
-     *
-     * -  Returns [String] - the name of the [INotification].
-     */
-    String getName();
+  /**
+   * Set the [body] of the [INotification].
+   *
+   * -  Param [body] - the body of the [INotification].
+   */
+  void setBody(Object body);
 
-    /**
-     * Set the [body] of the [INotification].
-     *
-     * -  Param [body] - the body of the [INotification].
-     */
-    void setBody( Object body );
+  /**
+   * Get the [body] of the [INotification].
+   *
+   * -  Returns [Dynamic] - the body of the [INotification].
+   */
+  dynamic getBody();
 
-    /**
-     * Get the [body] of the [INotification].
-     *
-     * -  Returns [Dynamic] - the body of the [INotification].
-     */
-    dynamic getBody();
+  /**
+   * Set the [type] of the [INotification].
+   *
+   * -  Param [type] - the type of the [INotification].
+   */
+  void setType(String? type);
 
-    /**
-     * Set the [type] of the [INotification].
-     *
-     * -  Param [type] - the type of the [INotification].
-     */
-    void setType( String type );
-
-    /**
-     * Get the [type] of the [INotification].
-     *
-     * -  Returns [String] - the type of the [INotification].
-     */
-    String getType();
-
-    /**
-     * This [INotifications]'s [body]
-     */
-    void set body( dynamic bodyObject );
-    dynamic get body;
-
-    /**
-     * This [INotifications]'s [name]
-     */
-    void set name( String noteName );
-    String get name;
-
-    /**
-     * This [INotifications]'s [type]
-     */
-    void set type( String noteType );
-    String get type;
-
-
+  /**
+   * Get the [type] of the [INotification].
+   *
+   * -  Returns [String] - the type of the [INotification].
+   */
+  String? getType();
 }

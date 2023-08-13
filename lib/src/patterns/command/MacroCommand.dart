@@ -13,8 +13,7 @@ part of puremvc;
  *
  * See [ICommand], [IController], [INotification], [SimpleCommand], [INotifier]
  */
-class MacroCommand extends Notifier implements ICommand
-{
+class MacroCommand extends Notifier implements ICommand {
   /**
    * Constructor.
    *
@@ -22,9 +21,8 @@ class MacroCommand extends Notifier implements ICommand
    * instead, override the [initializeMacroCommand]
    * method.
    */
-  MacroCommand()
-  {
-    subCommands = new List<Function>();
+  MacroCommand() {
+    subCommands = List<Function>.empty(growable: true);
     initializeMacroCommand();
   }
 
@@ -36,7 +34,7 @@ class MacroCommand extends Notifier implements ICommand
    *
    * Note that 'SubCommand's may be any [ICommand] implementor, [MacroCommand]s or [SimpleCommands] are both acceptable.
    */
-  void initializeMacroCommand(){}
+  void initializeMacroCommand() {}
 
   /**
    * Add a 'SubCommand'.
@@ -45,9 +43,8 @@ class MacroCommand extends Notifier implements ICommand
    *
    * -  Param [commandFactory] - a Function that constructs an instance of an [ICommand].
    */
-  void addSubCommand( Function commandFactory )
-  {
-      subCommands.add( commandFactory );
+  void addSubCommand(Function commandFactory) {
+    subCommands.add(commandFactory);
   }
 
   /**
@@ -57,15 +54,14 @@ class MacroCommand extends Notifier implements ICommand
    *
    * -  Param [note] - the [INotification] object to be passed to each 'SubCommand'.
    */
-  void execute( INotification note )
-  {
-      for ( Function commandFactory in subCommands ) {
-          ICommand commandInstance = commandFactory();
-          commandInstance.initializeNotifier( multitonKey );
-          commandInstance.execute( note );
-      }
+  void execute(INotification note) {
+    for (Function commandFactory in subCommands) {
+      ICommand commandInstance = commandFactory();
+      commandInstance.initializeNotifier(multitonKey);
+      commandInstance.execute(note);
+    }
   }
 
   // This [MacroCommand]'s 'SubCommands'
-  List<Function> subCommands;
+  late List<Function> subCommands;
 }
