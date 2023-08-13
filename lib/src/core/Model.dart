@@ -30,7 +30,7 @@ class Model implements IModel {
    */
   Model(String key) {
     if (instanceMap.containsKey(key)) throw MultitonErrorModelExists();
-    _multitonKey = key;
+    multitonKey = key;
     instanceMap[_multitonKey] = this;
     proxyMap = Map<String, IProxy>();
     initializeModel();

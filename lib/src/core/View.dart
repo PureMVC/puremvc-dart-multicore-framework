@@ -25,7 +25,7 @@ class View implements IView {
    */
   View(String key) {
     if (instanceMap.containsKey(key)) throw MultitonErrorViewExists();
-    _multitonKey = key;
+    multitonKey = key;
     instanceMap[_multitonKey] = this;
     mediatorMap = Map<String, IMediator>();
     observerMap = Map<String, List<IObserver>>();
