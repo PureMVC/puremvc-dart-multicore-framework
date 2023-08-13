@@ -71,9 +71,15 @@ abstract class IObserver {
    */
   void notifyObserver(INotification note);
 
-  Object? get notifyContext;
+  /**
+   * This [IObserver]'s [notifyMethod] (i.e., callback)
+   */
   void set notifyContext(Object? value);
+  Object? get notifyContext;
 
-  Function? get notifyMethod;
+  /**
+   * This [IObserver]'s [notifyContext] (i.e., caller)
+   */
   set notifyMethod(Function? method);
+  Function? get notifyMethod;
 }
