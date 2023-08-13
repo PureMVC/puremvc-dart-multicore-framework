@@ -75,7 +75,7 @@ class Facade implements IFacade {
    */
   void initializeController() {
     if (controller != null) return;
-    controller = Controller.getInstance(_multitonKey)!;
+    controller = Controller.getInstance(multitonKey)!;
   }
 
   /**
@@ -87,7 +87,7 @@ class Facade implements IFacade {
    */
   void initializeModel() {
     if (model != null) return;
-    model = Model.getInstance(_multitonKey)!;
+    model = Model.getInstance(multitonKey)!;
   }
 
   /**
@@ -99,7 +99,7 @@ class Facade implements IFacade {
    */
   void initializeView() {
     if (view != null) return;
-    view = View.getInstance(_multitonKey!);
+    view = View.getInstance(multitonKey!);
   }
 
   /**

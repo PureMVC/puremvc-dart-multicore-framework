@@ -66,8 +66,8 @@ class Notifier implements INotifier {
    *  -  Throws [MultitonErrorNotifierLacksKey] if no multitonKey is set. Usually means facade getter is being accessed before initializeNotifier has been called (i.e., from the constructor). Defer facade access until the onRegister method.
    */
   IFacade get facade {
-    if (_multitonKey == null) throw MultitonErrorNotifierLacksKey();
-    return Facade.getInstance(_multitonKey!)!;
+    if (multitonKey == null) throw MultitonErrorNotifierLacksKey();
+    return Facade.getInstance(multitonKey!)!;
   }
 
   // The Multiton Key for this app
