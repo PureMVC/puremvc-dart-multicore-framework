@@ -23,11 +23,11 @@ class Notification implements INotification {
   /**
    * Constructor.
    *
-   * -  Param [_name] - name of the [INotification].
-   * -  Param [_body] - the [INotification] body. (optional)
-   * -  Param [_type] - the type of the [INotification] (optional)
+   * -  Param [name] - name of the [INotification].
+   * -  Param [body] - the [INotification] body. (optional)
+   * -  Param [type] - the type of the [INotification] (optional)
    */
-  Notification(this._name, [dynamic this._body, this._type]) {}
+  Notification(this.name, [dynamic this.body, this.type]) {}
 
   /**
    * Get the [name] of the [INotification].
@@ -35,7 +35,7 @@ class Notification implements INotification {
    * -  Returns [String] - the name of the [INotification].
    */
   String getName() {
-    return _name;
+    return name;
   }
 
   /**
@@ -44,7 +44,7 @@ class Notification implements INotification {
    * -  Param [body] - the body of the [INotification].
    */
   void setBody(dynamic bodyObject) {
-    _body = bodyObject;
+    body = bodyObject;
   }
 
   /**
@@ -53,7 +53,7 @@ class Notification implements INotification {
    * -  Returns [Dynamic] - the body of the [INotification].
    */
   dynamic getBody() {
-    return _body;
+    return body;
   }
 
   /**
@@ -62,7 +62,7 @@ class Notification implements INotification {
    * -  Param [type] - the type of the [INotification].
    */
   void setType(String? noteType) {
-    _type = noteType;
+    type = noteType;
   }
 
   /**
@@ -71,21 +71,21 @@ class Notification implements INotification {
    * -  Returns [String] - the type of the [INotification].
    */
   String? getType() {
-    return _type;
+    return type;
   }
 
   /**
    * This [INotifications]'s [name]
    */
-  final String _name;
+  final String name;
 
   /**
    * This [INotifications]'s [type]
    */
-  String? _type;
+  String? type;
 
   /**
    * This [INotifications]'s [body]
    */
-  dynamic _body;
+  dynamic body;
 }
