@@ -55,6 +55,7 @@ class Test_Observer {
         // Make sure caller was set
         expect(observer.getNotifyContext(), isNotNull);
         expect(observer.getNotifyContext(), same(this));
+        expect(observer.notifyContext, isNotNull);
       });
 
       test('compareNotifyContext()', () {
