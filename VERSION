@@ -7,6 +7,15 @@ Release Date: 11/14/2013
        Minor: 6
      Authors: Cliff Hall <cliff@puremvc.org>
 --------------------------------------------------------------------------
+2.0.7 Update code base to match requirements of mull-safety and Dart SDK version > 3.0.0
+      - environment: sdk: '^3.0.0'
+      - dependencies:
+        build_runner: any
+        build_web_compilers: any
+      Default Dart (Flutter) linter rules and code style corrections.
+      Many changes to internal processing of classes properties (through access modifiers).
+      Tests corrections to run unit tests and example.
+
 2.0.6 Update pubspec.yaml 
       - environment: sdk: '>=0.8.10+6 <2.0.0'
       - dependencies:
