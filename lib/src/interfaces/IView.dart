@@ -86,4 +86,5 @@ abstract class IView {
    * This [IView]'s Multiton key
    */
   String get multitonKey;
+  void set multitonKey(String value);
 }

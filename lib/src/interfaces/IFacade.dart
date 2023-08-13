@@ -150,6 +150,7 @@ abstract class IFacade extends INotifier {
    * This [IFacade]'s Multiton key
    */
   String? get multitonKey;
+  void set multitonKey(String? value);
 
   /**
    * This [IFacade]'s [IModel]

@@ -131,6 +131,7 @@ class Controller implements IController {
   // The Multiton Key for this Core
   late String _multitonKey;
   String get multitonKey => _multitonKey;
+  void set multitonKey(value) => _multitonKey = value;
 
   // Multiton instance map
   static Map<String, IController> instanceMap = Map<String, IController>();

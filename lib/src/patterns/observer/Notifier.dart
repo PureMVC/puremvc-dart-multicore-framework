@@ -73,6 +73,7 @@ class Notifier implements INotifier {
   // The Multiton Key for this app
   String? _multitonKey;
   String? get multitonKey => _multitonKey;
+  void set multitonKey(String? value) => _multitonKey = value;
 }
 
 class MultitonErrorNotifierLacksKey {

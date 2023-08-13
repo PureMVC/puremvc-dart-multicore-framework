@@ -121,6 +121,7 @@ class Model implements IModel {
   // The Multiton Key for this Core
   late String _multitonKey;
   String get multitonKey => _multitonKey;
+  void set multitonKey(String value) => _multitonKey = value;
 }
 
 class MultitonErrorModelExists {

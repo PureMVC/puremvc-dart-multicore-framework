@@ -48,4 +48,5 @@ abstract class INotifier {
    * This INotifier's Multiton Key
    */
   String? get multitonKey;
+  void set multitonKey(String? value);
 }

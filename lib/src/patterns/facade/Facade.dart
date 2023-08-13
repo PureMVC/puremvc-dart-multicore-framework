@@ -320,6 +320,7 @@ class Facade implements IFacade {
   // This [IFacade]'s Multiton key
   String? _multitonKey;
   String? get multitonKey => _multitonKey;
+  void set multitonKey(String? value) => _multitonKey = value;
 
   // The [IFacade] Multiton instanceMap.
   static Map<String, IFacade> instanceMap = Map<String, IFacade>();

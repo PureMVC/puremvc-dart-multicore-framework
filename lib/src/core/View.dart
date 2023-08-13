@@ -233,6 +233,7 @@ class View implements IView {
   // The Multiton key for this Core
   late String _multitonKey;
   String get multitonKey => _multitonKey;
+  void set multitonKey(String value) => _multitonKey = value;
 }
 
 class MultitonErrorViewExists {

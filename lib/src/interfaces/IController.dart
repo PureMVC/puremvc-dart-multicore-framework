@@ -50,4 +50,5 @@ abstract class IController {
    * This IController's Multiton Key
    */
   String get multitonKey;
+  void set multitonKey(String value);
 }

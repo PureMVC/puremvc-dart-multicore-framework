@@ -54,4 +54,5 @@ abstract class IModel {
      * This [IModel]'s Multiton Key
      */
   String get multitonKey;
+  void set multitonKey(String value);
 }
