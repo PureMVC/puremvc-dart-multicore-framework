@@ -20,7 +20,9 @@ class Test_Observer {
 
         // Make sure caller and callback were set
         expect(observer.getNotifyMethod(), isNotNull);
+        expect(observer.notifyMethod, isNotNull);
         expect(observer.getNotifyContext(), isNotNull);
+        expect(observer.notifyContext, isNotNull);
       });
 
       test('Constructor minimum args', () {
@@ -32,6 +34,7 @@ class Test_Observer {
 
         // Make sure callback method was set
         expect(observer.getNotifyMethod(), isNotNull);
+        expect(observer.notifyMethod, isNotNull);
       });
 
       test('setNotifyMethod()', () {
@@ -43,6 +46,7 @@ class Test_Observer {
 
         // Make sure callback method was set
         expect(observer.getNotifyMethod(), isNotNull);
+        expect(observer.notifyMethod, isNotNull);
       });
 
       test('setNotifyContext()', () {
