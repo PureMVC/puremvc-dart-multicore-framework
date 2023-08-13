@@ -58,7 +58,7 @@ abstract class IFacade extends INotifier {
    * Register an [INotification] to [ICommand] mapping with the [IController].
    *
    * -  Param [noteName] - the name of the [INotification] to associate the [ICommand] with.
-   * -  Param [commandFactory] - a function that creates a instance of the [ICommand].
+   * -  Param [commandFactory] - a function that creates a new instance of the [ICommand].
    */
   void registerCommand(String noteName, Function commandFactory);
   void executeCommand(String noteName, [dynamic body = null, String? type]);
